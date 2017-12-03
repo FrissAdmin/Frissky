@@ -4,6 +4,7 @@
   "description": "Online beauty app",
   "main": "index.js",
   "scripts": {
+    "start:dev": "webpack-dev-server --hot --inline",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,21 @@
   "bugs": {
     "url": "https://github.com/FrissAdmin/Frissky/issues"
   },
-  "homepage": "https://github.com/FrissAdmin/Frissky#readme"
+  "homepage": "https://github.com/FrissAdmin/Frissky#readme",
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.9.1",
+    "webpack-dev-server": "^2.9.5"
+  }
 }
