@@ -1,12 +1,17 @@
-import styles from './styles';
+import { Provider }             from 'react-redux';
 import React, { PureComponent } from 'react';
+import store                    from '../../store';
+import styles                   from './styles';
+import Survey                   from '../Survey';
 
 export default class App extends PureComponent {
   render() {
     return (
-      <div className={ styles.Root }>
-        <h1><span>Hello</span> <span>World</span>!</h1>
-      </div>
+      <Provider store={ store }>
+        <div className={ styles.Root }>
+          <Survey />
+        </div>
+      </Provider>
     );
   }
 }

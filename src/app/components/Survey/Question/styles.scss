@@ -1,0 +1,86 @@
+@mixin is-current-transition {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+
+  .isCurrent & {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.Root {
+  @include is-current-transition;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+$iscurrentTransition
+
+.Title {
+  @include is-current-transition;
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  text-align: center;
+  transition-delay: 0.1s;
+}
+
+.SubTitle {
+  @include is-current-transition;
+  font-family: sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+  transition-delay: 0.2s;
+}
+
+.ChoiceGroup {
+  @include is-current-transition;
+  list-style-type: none;
+  text-align: center;
+  transition-delay: 0.3s;
+}
+
+$choiceSize: 40px;
+
+.ChoiceWrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.ChoiceInput {
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+}
+
+.Choice {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: $choiceSize / 2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  display: block;
+  height: $choiceSize;
+  line-height: $choiceSize - 2px;
+  margin: 10px;
+  padding: 0 20px;
+  width: auto;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+
+  &:hover {
+    border-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
+
+.ChoiceInput:checked + .Choice {
+  border-color: rgba(0, 0, 0, 1);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 1), 0 2px 4px 1px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background-color: transparent;
+  }
+}
