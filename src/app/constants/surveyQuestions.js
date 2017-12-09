@@ -1,7 +1,7 @@
 export default [
   {
     id    : 1,
-    title : 'We’re exciting to meet you! What’s your first name?',
+    title : 'We’re excited to meet you! What’s your first name?',
     type  : 'text',
   },
   {

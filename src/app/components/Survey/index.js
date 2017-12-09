@@ -21,7 +21,7 @@ export default containerFactory(class Survey extends PureComponent {
         <ul className={ styles.Questions }>
           <For each="question" of={ surveyQuestions }>
             <Question
-              isCurrent={ this.state.currentQuestion === question.id }
+              isCurrent={ this.state.currentQuestion >= question.id }
               key={ `question-${question.id}` }
               nextQuestion={ this.nextQuestion }
               question={ question }

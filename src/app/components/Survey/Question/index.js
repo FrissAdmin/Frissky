@@ -11,15 +11,20 @@ export default class Question extends PureComponent {
     question     : propTypes.question,
   }
 
+  nextQuestion = (event) => {
+    event.preventDefault();
+    this.props.nextQuestion();
+  }
+
   getChoiceGroupClasses = () => [
     styles.ChoiceGroup,
     (this.props.isVisible ? styles.isCurrent : ''),
-  ].join('')
+  ].join(' ')
 
   getRootClasses = () => [
     styles.Root,
     (this.props.isCurrent ? styles.isCurrent : ''),
-  ].join('')
+  ].join(' ')
 
   renderInput() {
     if (this.props.question.type === 'text') return this.renderTextInput();
@@ -28,7 +33,7 @@ export default class Question extends PureComponent {
 
   renderTextInput() {
     return (
-      <input type="text" />
+      <input className={ styles.Input } type="text" />
     );
   }
 
@@ -79,6 +84,8 @@ export default class Question extends PureComponent {
         </If>
 
         { this.renderInput() }
+
+        <button className={ styles.SaveButton } onClick={ this.nextQuestion }>Next</button>
       </li>
     );
   }

@@ -1,0 +1,18 @@
+@mixin successive-delay($number, $baseDelay: 0.15s, $increment: 0.1, $property: transition) {
+  @for $i from 1 through $number {
+    &:nth-child(n + #{$i}) {
+      @if ($property == transition) {
+        transition-delay: #{($i * $increment) + $baseDelay};
+      }
+
+      @if ($property == animation) {
+        animation-delay: #{($i * $increment) + $baseDelay};
+      }
+
+      @if ($property == both) {
+        animation-delay: #{($i * $increment) + $baseDelay};
+        transition-delay: #{($i * $increment) + $baseDelay};
+      }
+    }
+  }
+}

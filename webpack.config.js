@@ -32,13 +32,23 @@ module.exports = {
           },
           {
             loader: 'sass-loader'
-          }
+          },
+          {
+            loader  : 'sass-resources-loader',
+            options : {
+              resources: path.resolve(__dirname, "src/app/shared/styles/index.scss"),
+            },
+          },
         ]
       }
     ]
   },
   resolve: {
-    extensions: [".js", ".scss"]
+    extensions: [".js", ".scss"],
+    modules: [
+      path.resolve(__dirname, "src/app"),
+      "node_modules"
+    ]
   },
   devServer: {
     // index: path.resolve(__dirname, './src/app/index.html')

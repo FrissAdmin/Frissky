@@ -1,8 +1,9 @@
 @mixin is-current-transition {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 
+  &.isCurrent,
   .isCurrent & {
     opacity: 1;
     transform: none;
@@ -14,8 +15,6 @@
   margin: 40px auto;
   padding: 20px;
 }
-
-$iscurrentTransition
 
 .Title {
   @include is-current-transition;
@@ -33,21 +32,35 @@ $iscurrentTransition
   font-weight: 600;
   text-transform: uppercase;
   text-align: center;
-  transition-delay: 0.2s;
+  transition-delay: 0.1s;
+}
+
+.Input {
+  border: 2px solid color(Black, 0.2);
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: block;
+  margin: 0 auto;
+  max-width: 50%;
+  padding: 5px;
+  width: 100%;
 }
 
 .ChoiceGroup {
   @include is-current-transition;
   list-style-type: none;
   text-align: center;
-  transition-delay: 0.3s;
+  transition-delay: 0.2s;
 }
 
 $choiceSize: 40px;
 
 .ChoiceWrapper {
+  @include is-current-transition;
   display: inline-block;
   position: relative;
+
+  @include successive-delay(10, 0.2s, 0.075s);
 }
 
 .ChoiceInput {
@@ -83,4 +96,14 @@ $choiceSize: 40px;
   &:hover {
     background-color: transparent;
   }
+}
+
+.SaveButton {
+  @include is-current-transition;
+  background-color: color(Black, 0.75);
+  border: 0;
+  color: color(White);
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
 }

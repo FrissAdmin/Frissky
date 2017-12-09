@@ -1,0 +1,19 @@
+@mixin font($family: default, $weight: normal) {
+  // Font family
+  @if ($family == default) {
+    font-family: sans-serif;
+  }
+
+  // Weights
+  @if ($weight == light) {
+    font-weight: 300;
+  }
+
+  @if ($weight == normal) {
+    font-weight: 400;
+  }
+
+  @if ($weight == bold) {
+    font-weight: 600;
+  }
+}
