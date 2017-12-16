@@ -27,8 +27,9 @@ export default class Question extends PureComponent {
   ].join(' ')
 
   renderInput() {
-    if (this.props.question.type === 'text') return this.renderTextInput();
-    if (this.props.question.type === 'choice') return this.renderChoiceInput();
+    if (this.props.question.get('type') === 'text') return this.renderTextInput();
+    if (this.props.question.get('type') === 'choice') return this.renderChoiceInput();
+    return null;
   }
 
   renderTextInput() {
@@ -38,28 +39,28 @@ export default class Question extends PureComponent {
   }
 
   renderChoiceInput() {
-    const {
-      id,
-      choices,
-    } = this.props.question;
+    const { question } = this.props;
 
     return (
       <div className={ this.getChoiceGroupClasses() }>
-        <For each="choice" of={ choices }>
-          <div className={ styles.ChoiceWrapper } key={ `question-${id}-${slugify(choice)}` }>
+        <For each="choice" of={ question.get('choices') }>
+          <div
+            className={ styles.ChoiceWrapper }
+            key={ `question-${question.get('id')}-${slugify(choice.get('title'))}` }
+          >
             <input
               className={ styles.ChoiceInput }
-              id={ `question-${id}-${slugify(choice)}` }
-              name={ `question-${id}` }
-              value={ choice }
+              id={ `question-${question.get('id')}-${slugify(choice.get('title'))}` }
+              name={ `question-${question.get('id')}` }
               type="radio"
+              value={ choice }
             />
 
             <label
               className={ styles.Choice }
-              htmlFor={ `question-${id}-${slugify(choice)}` }
+              htmlFor={ `question-${question.get('id')}-${slugify(choice.get('title'))}` }
             >
-              { choice }
+              { choice.get('title') }
             </label>
           </div>
         </For>
@@ -68,19 +69,14 @@ export default class Question extends PureComponent {
   }
 
   render() {
-    const {
-      id,
-      subtitle,
-      title,
-      type,
-    } = this.props.question;
+    const { question } = this.props;
 
     return (
       <li className={ this.getRootClasses() }>
-        <h4 className={ styles.Title }>{ title }</h4>
+        <h4 className={ styles.Title }>{ question.get('title') }</h4>
 
-        <If condition={ subtitle }>
-          <h5 className={ styles.SubTitle }>{ subtitle }</h5>
+        <If condition={ question.get('subtitle') }>
+          <h5 className={ styles.SubTitle }>{ question.get('subtitle') }</h5>
         </If>
 
         { this.renderInput() }

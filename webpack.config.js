@@ -1,6 +1,10 @@
 const path = require('path');
 
 module.exports = {
+  // entry: [
+  //   'babel-polyfill',
+  //   path.resolve(__dirname, 'src/app/index.js')
+  // ],
   entry: path.resolve(__dirname, 'src/app/index.js'),
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -19,6 +23,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
+        exclude: /node_modules/,
         use: [
           {
             loader: 'style-loader'
@@ -40,11 +45,24 @@ module.exports = {
             },
           },
         ]
+      },
+      {
+        test: /\.graphql$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'webpack-graphql-loader',
+            options: {
+              output: 'string',
+              removeUnusedFragments: true
+            }
+          }
+        ]
       }
     ]
   },
   resolve: {
-    extensions: [".js", ".scss"],
+    extensions: ['.js', '.scss', '.graphql'],
     modules: [
       path.resolve(__dirname, "src/app"),
       "node_modules"
@@ -52,5 +70,8 @@ module.exports = {
   },
   devServer: {
     // index: path.resolve(__dirname, './src/app/index.html')
+    proxy: {
+      '/graphql': "http://localhost:8081"
+    }
   }
 }

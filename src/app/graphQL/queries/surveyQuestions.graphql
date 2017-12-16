@@ -1,0 +1,12 @@
+query {
+  surveyQuestions {
+    choices {
+      id
+      title
+    }
+    id
+    subtitle
+    title
+    type
+  }
+}
