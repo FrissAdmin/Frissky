@@ -4,5 +4,10 @@
         "react",
         "stage-0"
     ],
-    "plugins": ["jsx-control-statements"]
+    "plugins": ["jsx-control-statements"],
+    "env": {
+      "production": {
+        "plugins": ["transform-react-remove-prop-types"]
+      }
+    }
 }

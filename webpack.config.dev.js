@@ -1,11 +1,12 @@
 const path = require('path');
 
 module.exports = {
-  // entry: [
-  //   'babel-polyfill',
-  //   path.resolve(__dirname, 'src/app/index.js')
-  // ],
-  entry: path.resolve(__dirname, 'src/app/index.js'),
+  devtool: 'inline-source-map',
+  entry: [
+    'babel-polyfill',
+    path.resolve(__dirname, 'src/app/index.js')
+  ],
+  // entry: path.resolve(__dirname, 'src/app/index.js'),
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'frissky.bundle.js'
@@ -69,9 +70,12 @@ module.exports = {
     ]
   },
   devServer: {
-    // index: path.resolve(__dirname, './src/app/index.html')
+    compress: true,
+    contentBase: '/public/',
+    port: 8080,
     proxy: {
       '/graphql': "http://localhost:8081"
-    }
+    },
+    publicPath: '/dist/'
   }
 }
