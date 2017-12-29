@@ -1,5 +1,3 @@
-
-
 export default (query, variables) =>
   new Promise((resolve, reject) => fetch('/graphql', {
     method: 'POST',

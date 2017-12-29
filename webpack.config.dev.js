@@ -42,7 +42,7 @@ module.exports = {
           {
             loader  : 'sass-resources-loader',
             options : {
-              resources: path.resolve(__dirname, "src/app/shared/styles/index.scss"),
+              resources: path.resolve(__dirname, 'src/app/shared/styles/index.scss'),
             },
           },
         ]
@@ -65,16 +65,17 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.scss', '.graphql'],
     modules: [
-      path.resolve(__dirname, "src/app"),
+      path.resolve(__dirname, 'src/app'),
       "node_modules"
     ]
   },
   devServer: {
     compress: true,
-    contentBase: '/public/',
+    contentBase: '/assets/',
     port: 8080,
     proxy: {
-      '/graphql': "http://localhost:8081"
+      '/': 'http://localhost:8081',
+      '/graphql': 'http://localhost:8081'
     },
     publicPath: '/dist/'
   }
