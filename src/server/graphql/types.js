@@ -1,6 +1,6 @@
 export default `
 
-input SurveyAnswer {
+input SurveyAnswerInput {
   answer: String
   choice: ID
   question: ID!
@@ -8,7 +8,7 @@ input SurveyAnswer {
 
 type Mutation {
   surveyAnswers(
-    answers: [SurveyAnswer]
+    answers: [SurveyAnswerInput]
   ): Boolean
 }
 
@@ -17,19 +17,20 @@ type Query {
   users: [User]!
 }
 
+type SurveyAnswer {
+  answer: String
+  choice: SurveyQuestionChoice
+  id: ID!
+  question: SurveyQuestion!
+  user: User!
+}
+
 type SurveyQuestion {
   choices: [SurveyQuestionChoice]
   id: ID!
   subtitle: String
   title: String!
   type: String!
-}
-
-type SurveyQuestionAnswer {
-  answer: String
-  choice: SurveyQuestionChoice
-  question: SurveyQuestion!
-  user: User!
 }
 
 type SurveyQuestionChoice {
