@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux-immutable';
-import questions           from './questions';
+import surveyAnswers       from './surveyAnswers';
+import surveyQuestions     from './surveyQuestions';
 
 export default combineReducers({
-  questions,
+  surveyAnswers,
+  surveyQuestions,
 });

@@ -4,6 +4,6 @@ import React                from 'react';
 import ReactDOM             from 'react-dom';
 import store                from './store';
 
-store.dispatch(globalActionCreators.loadQuestions());
+store.dispatch(globalActionCreators.loadSurvey());
 
 ReactDOM.render(<App />, document.getElementById('react-root'));

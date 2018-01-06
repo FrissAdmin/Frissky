@@ -1,4 +1,5 @@
-import * as propTypes           from '../../../constants/propTypes';
+import * as appPropTypes        from '../../../constants/propTypes';
+import Immutable                from 'immutable';
 import PropTypes                from 'prop-types';
 import React, { PureComponent } from 'react';
 import slugify                  from '../../../lib/slugify';
@@ -6,15 +7,50 @@ import styles                   from './styles';
 
 export default class Question extends PureComponent {
   static propTypes = {
-    isCurrent    : PropTypes.bool,
-    nextQuestion : PropTypes.func.isRequired,
-    question     : propTypes.question,
+    answer               : appPropTypes.surveyAnswer,
+    isCurrent            : PropTypes.bool,
+    nextQuestion         : PropTypes.func.isRequired,
+    question             : appPropTypes.surveyQuestion,
+    surveyAnswersActions : appPropTypes.actions,
+  }
+
+  static defaultProps = {
+    answer : Immutable.Map({
+      answer     : '',
+      choiceId   : '',
+      questionId : '',
+    }),
+  }
+
+  state = {
+    answerText : this.props.answer.get('answer'),
+    choiceId   : this.props.answer.get('choiceId'),
   }
 
   nextQuestion = (event) => {
     event.preventDefault();
+    this.saveAnswer();
     this.props.nextQuestion();
   }
+
+  saveAnswer = () => {
+    if (this.props.question.get('type').trim() === 'text') {
+      this.props.surveyAnswersActions.setAnswer({
+        answer   : this.state.answerText,
+        question : this.props.question.get('id'),
+      });
+    }
+
+    if (this.props.question.get('type').trim() === 'choice') {
+      this.props.surveyAnswersActions.setAnswer({
+        choice   : this.state.choiceId,
+        question : this.props.question.get('id'),
+      });
+    }
+  }
+
+  handleTextInput = (event) => this.setState({ answerText : event.currentTarget.value })
+  handleChoice = (event) => this.setState({ choiceId : event.currentTarget.value })
 
   getChoiceGroupClasses = () => [
     styles.ChoiceGroup,
@@ -27,14 +63,19 @@ export default class Question extends PureComponent {
   ].join(' ')
 
   renderInput() {
-    if (this.props.question.get('type') === 'text') return this.renderTextInput();
-    if (this.props.question.get('type') === 'choice') return this.renderChoiceInput();
+    if (this.props.question.get('type').trim() === 'text') return this.renderTextInput();
+    if (this.props.question.get('type').trim() === 'choice') return this.renderChoiceInput();
     return null;
   }
 
   renderTextInput() {
     return (
-      <input className={ styles.Input } type="text" />
+      <input
+        className={ styles.Input }
+        onChange={ this.handleTextInput }
+        type="text"
+        value={ this.state.answerText }
+      />
     );
   }
 
@@ -46,19 +87,20 @@ export default class Question extends PureComponent {
         <For each="choice" of={ question.get('choices') }>
           <div
             className={ styles.ChoiceWrapper }
-            key={ `question-${question.get('id')}-${slugify(choice.get('title'))}` }
+            key={ `question-${question.get('id').trim()}-${slugify(choice.get('title'))}` }
           >
             <input
               className={ styles.ChoiceInput }
-              id={ `question-${question.get('id')}-${slugify(choice.get('title'))}` }
-              name={ `question-${question.get('id')}` }
+              id={ `question-${question.get('id').trim()}-${slugify(choice.get('title'))}` }
+              name={ `question-${question.get('id').trim()}` }
+              onChange={ this.handleChoice }
               type="radio"
-              value={ choice }
+              value={ choice.get('id') }
             />
 
             <label
               className={ styles.Choice }
-              htmlFor={ `question-${question.get('id')}-${slugify(choice.get('title'))}` }
+              htmlFor={ `question-${question.get('id').trim()}-${slugify(choice.get('title'))}` }
             >
               { choice.get('title') }
             </label>

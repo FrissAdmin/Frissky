@@ -1,24 +1,39 @@
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes          from 'prop-types';
 
-export const choice = ImmutablePropTypes.contains({
+export const actions = PropTypes.objectOf(PropTypes.func);
+
+export const surveyAnswer = ImmutablePropTypes.contains({
+  answer     : PropTypes.string,
+  choiceId   : PropTypes.string,
+  questionId : PropTypes.string.isRequired,
+});
+
+export const surveyAnswers = ImmutablePropTypes.mapOf(surveyAnswer);
+
+export const surveyAnswerState = ImmutablePropTypes.contains({
+  answers : surveyAnswers,
+  saved   : PropTypes.bool.isRequired,
+});
+
+export const surveyQuestionChoice = ImmutablePropTypes.contains({
   id    : PropTypes.string.isRequired,
   title : PropTypes.string.isRequired,
 });
 
-export const choices = ImmutablePropTypes.listOf(choice);
+export const surveyQuestionChoices = ImmutablePropTypes.listOf(surveyQuestionChoice);
 
-export const question = ImmutablePropTypes.contains({
-  choices,
+export const surveyQuestion = ImmutablePropTypes.contains({
+  choices  : surveyQuestionChoices,
   id       : PropTypes.string.isRequired,
   subtitle : PropTypes.string,
   title    : PropTypes.string.isRequired,
   type     : PropTypes.string.isRequired,
 });
 
-export const questions = ImmutablePropTypes.listOf(question);
+export const surveyQuestions = ImmutablePropTypes.listOf(surveyQuestion);
 
-export const questionState = ImmutablePropTypes.contains({
+export const surveyQuestionState = ImmutablePropTypes.contains({
   areLoading : PropTypes.bool.isRequired,
-  questions,
+  questions  : surveyQuestions,
 });

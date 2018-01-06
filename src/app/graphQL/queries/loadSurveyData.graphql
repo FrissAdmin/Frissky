@@ -1,4 +1,10 @@
 query {
+  surveyAnswers {
+    answer
+    choiceId
+    questionId
+}
+
   surveyQuestions {
     choices {
       id

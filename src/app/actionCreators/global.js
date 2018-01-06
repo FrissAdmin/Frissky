@@ -1,10 +1,10 @@
 import * as actionTypes from '../constants/actionTypes';
 import graphql          from '../lib/api/graphql';
-import surveyQuestions  from '../graphQL/queries/surveyQuestions.graphql';
+import loadSurveyData   from '../graphQL/queries/loadSurveyData.graphql';
 
 export default {
-  loadQuestions: () => ({
-    type    : actionTypes.LOAD_QUESTIONS,
-    payload : graphql(surveyQuestions, {}),
+  loadSurvey: () => ({
+    type    : actionTypes.LOAD_SURVEY,
+    payload : graphql(loadSurveyData, {}),
   }),
 };

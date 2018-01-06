@@ -1,3 +1,4 @@
 export default (state) => ({
-  questions : state.get('questions'),
+  surveyAnswers   : state.get('surveyAnswers'),
+  surveyQuestions : state.get('surveyQuestions'),
 });

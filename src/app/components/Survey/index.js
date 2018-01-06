@@ -6,16 +6,22 @@ import styles                   from './styles';
 
 export default containerFactory(class Survey extends PureComponent {
   static propTypes = {
-    questions : appPropTypes.questionState,
+    surveyAnswers        : appPropTypes.surveyAnswerState,
+    surveyAnswersActions : appPropTypes.actions,
+    surveyQuestions      : appPropTypes.surveyQuestionState,
   }
 
   state = {
     currentQuestion : 1,
   }
 
+  getAnswer(question) {
+    return this.props.surveyAnswers.getIn(['answers', question.get('id')]);
+  }
+
   nextQuestion = () => this.setState({
     currentQuestion : Math.min(
-      this.props.questions.get('loaded').size + 1,
+      this.props.surveyQuestions.get('loaded').size + 1,
       this.state.currentQuestion + 1,
     ),
   })
@@ -26,12 +32,14 @@ export default containerFactory(class Survey extends PureComponent {
         <h1 className={ styles.Title }>Survey</h1>
 
         <ul className={ styles.Questions }>
-          <For each="question" of={ this.props.questions.get('loaded') }>
+          <For each="question" of={ this.props.surveyQuestions.get('loaded') }>
             <Question
-              isCurrent={ this.state.currentQuestion >= question.get('id') }
+              answer={ this.getAnswer(question) }
+              isCurrent={ this.state.currentQuestion >= question.get('id').trim() }
               key={ `question-${question.get('id')}` }
               nextQuestion={ this.nextQuestion }
               question={ question }
+              surveyAnswersActions={ this.props.surveyAnswersActions }
             />
           </For>
         </ul>

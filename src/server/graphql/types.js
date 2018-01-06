@@ -13,6 +13,7 @@ type Mutation {
 }
 
 type Query {
+  surveyAnswers: [SurveyAnswer]!
   surveyQuestions: [SurveyQuestion]!
   users: [User]!
 }
@@ -20,8 +21,10 @@ type Query {
 type SurveyAnswer {
   answer: String
   choice: SurveyQuestionChoice
+  choiceId: ID!
   id: ID!
   question: SurveyQuestion!
+  questionId: ID!
   user: User!
 }
 

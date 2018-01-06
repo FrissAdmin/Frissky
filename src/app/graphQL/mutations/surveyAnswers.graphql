@@ -1,0 +1,3 @@
+mutation surveyAnswers($answers: [SurveyAnswerInput]!) {
+  surveyAnswers(answers: answers)
+}

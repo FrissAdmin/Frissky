@@ -10,7 +10,6 @@ export default (query, variables) =>
     }),
   })
     .then((response) => {
-      console.log('response', response);
       if (response.ok) {
         resolve(response.json());
       } else {

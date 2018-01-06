@@ -3,7 +3,7 @@ CREATE TABLE users(
   first_name CHAR(50) NULL,
   last_name CHAR(50) NOT NULL,
   email TEXT NOT NULL,
-  password CHAR(60) NOT NULL,
+  password TEXT NOT NULL,
   role CHAR(15) NOT NULL,
   active boolean NOT NULL DEFAULT TRUE,
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
