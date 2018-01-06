@@ -1,5 +1,5 @@
-import * as appPropTypes        from '../../constants/propTypes';
-import containerFactory         from '../../containers/factory';
+import * as appPropTypes        from 'constants/propTypes';
+import containerFactory         from 'containers/factory';
 import Question                 from './Question';
 import React, { PureComponent } from 'react';
 import styles                   from './styles';

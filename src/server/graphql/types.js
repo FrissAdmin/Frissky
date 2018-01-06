@@ -7,6 +7,16 @@ input SurveyAnswerInput {
 }
 
 type Mutation {
+  login(
+    email: String!
+    password: String!
+  ): User
+
+  register(
+    email: String!
+    password: String!
+  ): User
+
   surveyAnswers(
     answers: [SurveyAnswerInput]
   ): Boolean

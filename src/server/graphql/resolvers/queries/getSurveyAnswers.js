@@ -1,7 +1,6 @@
-import wrapQueryInPromise from './wrapQueryInPromise';
+import wrapSQLInPromise from '../lib/wrapSQLInPromise';
 
-export default (connectionPromise) => wrapQueryInPromise(
-  connectionPromise,
+export default () => wrapSQLInPromise(
   `SELECT id, survey_question_id AS questionId, answer, survey_question_choice_id AS choiceId
   FROM survey_answers`,
   [],

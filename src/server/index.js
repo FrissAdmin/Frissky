@@ -16,7 +16,7 @@ app.use('/dist', express.static(DIST_DIR));
 
 app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
 
-app.get('/', (request, response) => {
+app.get('*', (request, response) => {
   response.send(buildHtml(INDEX));
 });
 

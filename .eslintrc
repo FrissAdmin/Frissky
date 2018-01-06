@@ -17,6 +17,7 @@
   "rules": {
     // throw errors on these
     "comma-dangle"                 : 2,
+    "function-paren-newline"       : [2, "consistent"],
     "import/prefer-default-export" : 2,
     "no-extra-boolean-cast"        : 2,
     "no-mixed-operators"           : 2,

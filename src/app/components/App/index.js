@@ -1,16 +1,16 @@
+import { BrowserRouter }        from 'react-router-dom';
 import { Provider }             from 'react-redux';
 import React, { PureComponent } from 'react';
-import store                    from '../../store';
-import styles                   from './styles';
-import Survey                   from '../Survey';
+import Routes                   from './Routes';
+import store                    from 'app/store';
 
 export default class App extends PureComponent {
   render() {
     return (
       <Provider store={ store }>
-        <div className={ styles.Root }>
-          <Survey />
-        </div>
+        <BrowserRouter>
+          <Routes />
+        </BrowserRouter>
       </Provider>
     );
   }

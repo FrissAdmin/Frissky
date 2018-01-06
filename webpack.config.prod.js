@@ -83,6 +83,17 @@ module.exports = {
     extractSass
   ],
   resolve: {
+    alias: {
+      actionCreators: path.resolve(__dirname, 'src/app/actionCreators'),
+      app: path.resolve(__dirname, 'src/app'),
+      components: path.resolve(__dirname, 'src/app/components'),
+      constants: path.resolve(__dirname, 'src/app/constants'),
+      containers: path.resolve(__dirname, 'src/app/containers'),
+      graphQL: path.resolve(__dirname, 'src/app/graphQL'),
+      lib: path.resolve(__dirname, 'src/app/lib'),
+      reducers: path.resolve(__dirname, 'src/app/reducers'),
+      shared: path.resolve(__dirname, 'src/app/shared'),
+    },
     extensions: ['.js', '.scss', '.graphql'],
     modules: [
       path.resolve(__dirname, "src/app"),

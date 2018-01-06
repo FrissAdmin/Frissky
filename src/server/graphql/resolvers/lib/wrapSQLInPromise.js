@@ -1,5 +1,7 @@
-export default (connectionPromise, sql, params) => new Promise((resolve, reject) => {
-  connectionPromise.then((client) => {
+import getConnection from '../../../db/getConnection';
+
+export default (sql, params) => new Promise((resolve, reject) => {
+  getConnection().then((client) => {
     client.query(
       sql,
       params,

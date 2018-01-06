@@ -1,6 +1,6 @@
-import * as actionTypes from '../constants/actionTypes';
-import graphql          from '../lib/api/graphql';
-import surveyAnswers    from '../graphQL/mutations/surveyAnswers.graphql';
+import * as actionTypes from 'constants/actionTypes';
+import graphql          from 'lib/api/graphql';
+import surveyAnswers    from 'graphQL/mutations/surveyAnswers.graphql';
 
 export default {
   setAnswer: (surveyAnswerInput) => ({

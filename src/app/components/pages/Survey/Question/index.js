@@ -1,8 +1,8 @@
-import * as appPropTypes        from '../../../constants/propTypes';
+import * as appPropTypes        from 'constants/propTypes';
 import Immutable                from 'immutable';
 import PropTypes                from 'prop-types';
 import React, { PureComponent } from 'react';
-import slugify                  from '../../../lib/slugify';
+import slugify                  from 'lib/slugify';
 import styles                   from './styles';
 
 export default class Question extends PureComponent {
@@ -16,9 +16,9 @@ export default class Question extends PureComponent {
 
   static defaultProps = {
     answer : Immutable.Map({
-      answer     : '',
-      choiceId   : '',
-      questionId : '',
+      answer   : '',
+      choice   : '',
+      question : '',
     }),
   }
 

@@ -1,8 +1,8 @@
 query {
   surveyAnswers {
     answer
-    choiceId
-    questionId
+    choice: choiceId
+    question: questionId
 }
 
   surveyQuestions {

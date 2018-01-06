@@ -1,0 +1,47 @@
+.Root {
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+.Title {
+  font-family: sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.InputField {
+  display: block;
+  margin: 10px auto;
+  max-width: 200px;
+  width: 50%;
+}
+
+.Label {
+  font-family: sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.Input {
+  border: 2px solid color(Black, 0.2);
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: block;
+  outline: none;
+  padding: 5px;
+  width: 100%;
+}
+
+.Button {
+  background-color: color(Black, 0.75);
+  border: 0;
+  color: color(White);
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+}
