@@ -6,6 +6,7 @@ import styles                   from './styles';
 
 export default containerFactory(class Survey extends PureComponent {
   static propTypes = {
+    globalActions        : appPropTypes.actions,
     surveyAnswers        : appPropTypes.surveyAnswerState,
     surveyAnswersActions : appPropTypes.actions,
     surveyQuestions      : appPropTypes.surveyQuestionState,
@@ -13,6 +14,10 @@ export default containerFactory(class Survey extends PureComponent {
 
   state = {
     currentQuestion : 1,
+  }
+
+  componentWillMount() {
+    this.props.globalActions.loadSurveyData();
   }
 
   getAnswer(question) {

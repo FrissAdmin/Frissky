@@ -1,3 +1,9 @@
+import store from 'app/store';
+
+const getToken = () => store.getState().getIn(['auth', 'token']);
+
+const addTokenToVariables = (obj) => Object.assign(obj, { token : getToken() });
+
 export default (query, variables) =>
   new Promise((resolve, reject) => fetch('/graphql', {
     method: 'POST',
@@ -6,7 +12,7 @@ export default (query, variables) =>
     },
     body: JSON.stringify({
       query,
-      variables,
+      variables : addTokenToVariables(variables),
     }),
   })
     .then((response) => {

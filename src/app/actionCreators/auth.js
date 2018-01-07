@@ -13,7 +13,7 @@ export default {
   }),
 
   register: (email, password) => ({
-    type    : actionTypes.LOGIN,
+    type    : actionTypes.REGISTER,
     payload : graphql(register, {
       email,
       password,

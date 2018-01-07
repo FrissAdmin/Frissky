@@ -3,7 +3,7 @@ import graphql          from 'lib/api/graphql';
 import loadSurveyData   from 'graphQL/queries/loadSurveyData.graphql';
 
 export default {
-  loadSurvey: () => ({
+  loadSurveyData: () => ({
     type    : actionTypes.LOAD_SURVEY,
     payload : graphql(loadSurveyData, {}),
   }),
