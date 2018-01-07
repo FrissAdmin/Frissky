@@ -6,26 +6,55 @@ input SurveyAnswerInput {
   question: ID!
 }
 
+type AuthResponse {
+  error: String
+  token: String
+}
+
 type Mutation {
   login(
     email: String!
     password: String!
-  ): User
+  ): AuthResponse!
+
+  mutationRoleCustomer(
+    token: String!
+  ): MutationRoleCustomer
 
   register(
     email: String!
     password: String!
-  ): User
+  ): AuthResponse!
+}
 
+type MutationRoleCustomer {
   surveyAnswers(
     answers: [SurveyAnswerInput]
   ): Boolean
 }
 
 type Query {
-  surveyAnswers: [SurveyAnswer]!
+  queryRoleAdmin(
+    token: String!
+  ): QueryRoleAdmin
+
+  queryRoleCustomer(
+    token: String!
+  ): QueryRoleCustomer
+
   surveyQuestions: [SurveyQuestion]!
+}
+
+type QueryRoleAdmin {
+  surveyAnswers(
+    user: ID!
+  ): [SurveyAnswer]!
+
   users: [User]!
+}
+
+type QueryRoleCustomer {
+  surveyAnswers: [SurveyAnswer]!
 }
 
 type SurveyAnswer {

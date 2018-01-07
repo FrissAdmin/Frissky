@@ -6,6 +6,7 @@ mutation register(
     email: $email
     password: $password
   ) {
-    id
+    error
+    token
   }
 }

@@ -6,6 +6,7 @@ mutation login(
     email: $email
     password: $password
   ) {
-    id
+    error
+    token
   }
 }

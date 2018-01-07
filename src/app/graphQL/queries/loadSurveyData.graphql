@@ -1,9 +1,11 @@
-query {
-  surveyAnswers {
-    answer
-    choice: choiceId
-    question: questionId
-}
+query($token: String!) {
+  queryRoleCustomer(token: $token) {
+    surveyAnswers {
+      answer
+      choice: choiceId
+      question: questionId
+    }
+  }
 
   surveyQuestions {
     choices {

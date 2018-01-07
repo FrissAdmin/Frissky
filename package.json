@@ -36,6 +36,7 @@
     "graphql-server-express": "^1.3.0",
     "graphql-tools": "^2.13.0",
     "immutable": "^3.8.2",
+    "jsonwebtoken": "^8.1.0",
     "pg": "^7.4.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
