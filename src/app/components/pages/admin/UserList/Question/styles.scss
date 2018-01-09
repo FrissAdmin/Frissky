@@ -1,0 +1,109 @@
+@mixin is-current-transition {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+
+  &.isCurrent,
+  .isCurrent & {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.Root {
+  @include is-current-transition;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.Title {
+  @include is-current-transition;
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  text-align: center;
+  transition-delay: 0.1s;
+}
+
+.SubTitle {
+  @include is-current-transition;
+  font-family: sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+  transition-delay: 0.1s;
+}
+
+.Input {
+  border: 2px solid color(Black, 0.2);
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: block;
+  margin: 0 auto;
+  max-width: 50%;
+  padding: 5px;
+  width: 100%;
+}
+
+.ChoiceGroup {
+  @include is-current-transition;
+  list-style-type: none;
+  text-align: center;
+  transition-delay: 0.2s;
+}
+
+$choiceSize: 40px;
+
+.ChoiceWrapper {
+  @include is-current-transition;
+  display: inline-block;
+  position: relative;
+
+  @include successive-delay(10, 0.2s, 0.075s);
+}
+
+.ChoiceInput {
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+}
+
+.Choice {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: $choiceSize / 2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  display: block;
+  height: $choiceSize;
+  line-height: $choiceSize - 2px;
+  margin: 10px;
+  padding: 0 20px;
+  width: auto;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+
+  &:hover {
+    border-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
+
+.ChoiceInput:checked + .Choice {
+  border-color: rgba(0, 0, 0, 1);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 1), 0 2px 4px 1px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+.SaveButton {
+  @include is-current-transition;
+  background-color: color(Black, 0.75);
+  border: 0;
+  color: color(White);
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+}

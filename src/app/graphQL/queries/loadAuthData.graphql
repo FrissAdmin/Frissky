@@ -1,0 +1,7 @@
+query {
+  authData {
+    email
+    id
+    role
+  }
+}

@@ -1,5 +1,6 @@
 import * as actionTypes from 'constants/actionTypes';
 import graphql          from 'lib/api/graphql';
+import store            from '../store';
 import surveyAnswers    from 'graphQL/mutations/surveyAnswers.graphql';
 
 export default {
@@ -8,10 +9,10 @@ export default {
     payload : surveyAnswerInput,
   }),
 
-  saveAnswers: () => (dispatch, getState) => dispatch({
+  saveAnswers: () => ({
     type : actionTypes.SAVE_ANSWERS,
     payload : graphql(surveyAnswers, {
-      answers : getState().getIn(['surveyAnswers', 'answers']),
+      answers : Object.values(store.getState().getIn(['surveyAnswers', 'answers']).toJS()),
     }),
   }),
 };

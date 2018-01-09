@@ -2,28 +2,30 @@ import store from 'app/store';
 
 const getToken = () => store.getState().getIn(['auth', 'token']);
 
-const addTokenToVariables = (obj) => Object.assign(obj, { token : getToken() });
-
 export default (query, variables) =>
   new Promise((resolve, reject) => fetch('/graphql', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type' : 'application/json',
+      Accepts        : 'application/json',
+      Authorization  : getToken(),
     },
     body: JSON.stringify({
       query,
-      variables : addTokenToVariables(variables),
+      variables,
     }),
   })
     .then((response) => {
-      if (response.ok) {
-        resolve(response.json());
-      } else {
-        console.log('Request failed status check: ', response);
-        reject(response);
+      if (!response.ok) {
+        return reject(response);
       }
+
+      const json = response.json();
+
+      if (json.errors) {
+        return reject(json);
+      }
+
+      return resolve(json);
     })
-    .catch((error) => {
-      console.log('Request failed: ', error);
-      reject(error);
-    }));
+    .catch(reject));

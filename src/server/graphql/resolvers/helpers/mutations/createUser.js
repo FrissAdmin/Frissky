@@ -1,4 +1,4 @@
-import wrapSQLInPromise from '../lib/wrapSQLInPromise';
+import wrapSQLInPromise from '../../lib/wrapSQLInPromise';
 
 export default (userObj) => {
   const values = [];

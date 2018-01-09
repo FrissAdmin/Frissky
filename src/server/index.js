@@ -1,4 +1,5 @@
 import { graphqlExpress } from 'graphql-server-express';
+import auth               from './auth';
 import bodyParser         from 'body-parser';
 import buildHtml          from './buildHTML';
 import express            from 'express';
@@ -14,7 +15,10 @@ const INDEX = fs.readFileSync(path.resolve(__dirname, './index.html'), { encodin
 const DIST_DIR = path.resolve(__dirname, '../../dist');
 app.use('/dist', express.static(DIST_DIR));
 
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
+app.use('/graphql', bodyParser.json(), auth, graphqlExpress((request) => ({
+  schema,
+  context: { user : request.user },
+})));
 
 app.get('*', (request, response) => {
   response.send(buildHtml(INDEX));

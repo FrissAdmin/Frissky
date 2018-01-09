@@ -11,56 +11,44 @@ type AuthResponse {
   token: String
 }
 
+type AuthUser {
+  email: String!
+  id: String!
+  role: String!
+}
+
 type Mutation {
   login(
     email: String!
     password: String!
   ): AuthResponse!
 
-  mutationRoleCustomer(
-    token: String!
-  ): MutationRoleCustomer
-
   register(
     email: String!
     password: String!
   ): AuthResponse!
-}
 
-type MutationRoleCustomer {
   surveyAnswers(
     answers: [SurveyAnswerInput]
-  ): Boolean
+  ): Boolean!
 }
 
 type Query {
-  queryRoleAdmin(
-    token: String!
-  ): QueryRoleAdmin
+  authData: AuthUser
 
-  queryRoleCustomer(
-    token: String!
-  ): QueryRoleCustomer
-
-  surveyQuestions: [SurveyQuestion]!
-}
-
-type QueryRoleAdmin {
   surveyAnswers(
-    user: ID!
+    user: ID
   ): [SurveyAnswer]!
 
-  users: [User]!
-}
+  surveyQuestions: [SurveyQuestion]!
 
-type QueryRoleCustomer {
-  surveyAnswers: [SurveyAnswer]!
+  users: [User]!
 }
 
 type SurveyAnswer {
   answer: String
   choice: SurveyQuestionChoice
-  choiceId: ID!
+  choiceId: ID
   id: ID!
   question: SurveyQuestion!
   questionId: ID!

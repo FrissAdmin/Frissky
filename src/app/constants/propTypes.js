@@ -3,13 +3,15 @@ import PropTypes          from 'prop-types';
 
 export const actions = PropTypes.objectOf(PropTypes.func);
 
-export const user = ImmutablePropTypes.contains({
-  id : PropTypes.string,
+export const authUser = ImmutablePropTypes.contains({
+  email : PropTypes.string.isRequired,
+  id    : PropTypes.string.isRequired,
+  role  : PropTypes.string.isRequired,
 });
 
 export const auth = ImmutablePropTypes.contains({
   isLoggedIn : PropTypes.bool,
-  user,
+  user       : authUser,
 });
 
 export const surveyAnswer = ImmutablePropTypes.contains({
