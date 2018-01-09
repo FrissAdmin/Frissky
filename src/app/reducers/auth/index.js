@@ -7,17 +7,15 @@ export default createReducer(initialState, {
   [actionTypes.LOAD_AUTH_DATA_FULFILLED]: (state, { payload: { data } }) =>
     state.set('user', Immutable.fromJS(data.authData)),
 
-  [actionTypes.LOGIN_FULFILLED]: (state, { payload: { data } }) => {
-    if (data.errors) {
-      return state.merge({
-        isLoggedIn : false,
-        user       : null,
-      });
-    }
+  [actionTypes.LOGIN_FULFILLED]: (state, { payload: { data: { login } } }) => {
+    if (login.error) return state.merge({ error : login.error });
+
+    window.localStorage.setItem('friss_app_token', login.token);
 
     return state.merge({
       isLoggedIn : true,
-      user : Immutable.fromJS(data.user),
+      token      : login.token,
+      user       : Immutable.fromJS(login.user),
     });
   },
 
@@ -37,8 +35,9 @@ export default createReducer(initialState, {
     window.localStorage.setItem('friss_app_token', register.token);
 
     return state.merge({
-      token      : register.token,
       isLoggedIn : true,
+      token      : register.token,
+      user       : Immutable.fromJS(register.user),
     });
   },
 });

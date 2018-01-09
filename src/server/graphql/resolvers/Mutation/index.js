@@ -1,8 +1,8 @@
-import * as authUtils   from '../lib/authUtils';
-import createHash       from '../lib/createHash';
-import createUser       from '../helpers/mutations/createUser';
-import getUsersByEmail  from '../helpers/queries/getUsersByEmail';
-import setSurveyAnswers from '../helpers/mutations/setSurveyAnswers';
+import * as authUtils              from '../lib/authUtils';
+import createHash, { compareHash } from '../lib/createHash';
+import createUser                  from '../helpers/mutations/createUser';
+import getUsersByEmail             from '../helpers/queries/getUsersByEmail';
+import setSurveyAnswers            from '../helpers/mutations/setSurveyAnswers';
 
 export default {
   login: (root, args) => new Promise((resolve) => {
@@ -17,13 +17,25 @@ export default {
         return;
       }
 
-      const hash = createHash(args.email, args.password);
       const user = usersWithEmail[0];
 
-      if (user.password !== hash) {
+      if (!compareHash(args.email, args.password, user)) {
         resolve({ error: 'That password is incorrect.' });
         return;
       }
+
+      console.log({
+        token : authUtils.signToken({
+          email : user.email,
+          id    : user.id,
+          role  : user.role,
+        }),
+        user : {
+          email : user.email,
+          id    : user.id,
+          role  : user.role,
+        },
+      });
 
       resolve({
         token : authUtils.signToken({

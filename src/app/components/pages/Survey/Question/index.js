@@ -34,14 +34,14 @@ export default class Question extends PureComponent {
   }
 
   saveAnswer = () => {
-    if (this.props.question.get('type').trim() === 'text') {
+    if (this.props.question.get('type') === 'text') {
       this.props.surveyAnswersActions.setAnswer({
         answer   : this.state.answerText,
         question : this.props.question.get('id'),
       });
     }
 
-    if (this.props.question.get('type').trim() === 'choice') {
+    if (this.props.question.get('type') === 'choice') {
       this.props.surveyAnswersActions.setAnswer({
         choice   : this.state.choiceId,
         question : this.props.question.get('id'),
@@ -63,8 +63,8 @@ export default class Question extends PureComponent {
   ].join(' ')
 
   renderInput() {
-    if (this.props.question.get('type').trim() === 'text') return this.renderTextInput();
-    if (this.props.question.get('type').trim() === 'choice') return this.renderChoiceInput();
+    if (this.props.question.get('type') === 'text') return this.renderTextInput();
+    if (this.props.question.get('type') === 'choice') return this.renderChoiceInput();
     return null;
   }
 
@@ -87,12 +87,12 @@ export default class Question extends PureComponent {
         <For each="choice" of={ question.get('choices') }>
           <div
             className={ styles.ChoiceWrapper }
-            key={ `question-${question.get('id').trim()}-${slugify(choice.get('title'))}` }
+            key={ `question-${question.get('id')}-${slugify(choice.get('title'))}` }
           >
             <input
               className={ styles.ChoiceInput }
-              id={ `question-${question.get('id').trim()}-${slugify(choice.get('title'))}` }
-              name={ `question-${question.get('id').trim()}` }
+              id={ `question-${question.get('id')}-${slugify(choice.get('title'))}` }
+              name={ `question-${question.get('id')}` }
               onChange={ this.handleChoice }
               type="radio"
               value={ choice.get('id') }
@@ -100,7 +100,7 @@ export default class Question extends PureComponent {
 
             <label
               className={ styles.Choice }
-              htmlFor={ `question-${question.get('id').trim()}-${slugify(choice.get('title'))}` }
+              htmlFor={ `question-${question.get('id')}-${slugify(choice.get('title'))}` }
             >
               { choice.get('title') }
             </label>

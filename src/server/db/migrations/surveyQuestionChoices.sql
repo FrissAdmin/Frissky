@@ -1,6 +1,6 @@
 CREATE TABLE survey_question_choices (
-  id CHAR(50) NOT NULL,
-  survey_question_id CHAR(50) NOT NULL,
+  id VARCHAR(50) NOT NULL,
+  survey_question_id VARCHAR(50) NOT NULL,
   title TEXT NOT NULL,
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   modified TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

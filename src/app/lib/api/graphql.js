@@ -1,6 +1,12 @@
 import store from 'app/store';
 
-const getToken = () => store.getState().getIn(['auth', 'token']);
+const getAuthorizationHeader = () => {
+  const token = store.getState().getIn(['auth', 'token']);
+
+  if (!token) return {};
+
+  return { Authorization : token };
+};
 
 export default (query, variables) =>
   new Promise((resolve, reject) => fetch('/graphql', {
@@ -8,7 +14,7 @@ export default (query, variables) =>
     headers: {
       'Content-Type' : 'application/json',
       Accepts        : 'application/json',
-      Authorization  : getToken(),
+      ...getAuthorizationHeader(),
     },
     body: JSON.stringify({
       query,
