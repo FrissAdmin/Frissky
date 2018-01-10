@@ -5,16 +5,17 @@
   "main": "index.html",
   "scripts": {
     "build:client": "NODE_ENV=production webpack -p --config webpack.config.prod.js",
-    "build:server": "BABEL_ENV=production babel --source-maps --out-file build/server.js ./src/server/index.js",
+    "build:server": "BABEL_ENV=production babel --source-maps -d ./build/server/ ./src/server/ && cp ./src/server/index.html ./build/server/",
     "build": "npm run build:client && npm run build:server",
     "clean:client": "rm -rf dist && mkdir dist",
-    "clean:server": "rm -rf build && mkdir build",
+    "clean:server": "rm -rf build && mkdir -p build/server",
     "clean": "npm run clean:client && npm run clean:server",
     "deploy": "npm run clean && npm run build && npm run start",
     "dev:client": "webpack-dev-server --hot --inline --config webpack.config.dev.js",
     "dev:server": "babel-node src/server/index.js",
     "dev": "npm run dev:client & npm run dev:server",
     "postinstall": "npm run deploy",
+    "start": "node build/server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
