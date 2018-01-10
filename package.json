@@ -5,7 +5,6 @@
   "main": "index.html",
   "scripts": {
     "build:client": "NODE_ENV=production webpack -p --config webpack.config.prod.js",
-    "build:html": "node ./scripts/buildHtml.js",
     "build:server": "BABEL_ENV=production babel --source-maps --out-file build/server.js ./src/server/index.js",
     "build": "npm run build:client && npm run build:server",
     "clean:client": "rm -rf dist && mkdir dist",
