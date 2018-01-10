@@ -10,7 +10,7 @@
     "clean:client": "rm -rf dist && mkdir dist",
     "clean:server": "rm -rf build && mkdir -p build/server",
     "clean": "npm run clean:client && npm run clean:server",
-    "deploy": "npm run clean && npm run build && npm run start",
+    "deploy": "npm run clean && npm run build",
     "dev:client": "webpack-dev-server --hot --inline --config webpack.config.dev.js",
     "dev:server": "babel-node src/server/index.js",
     "dev": "npm run dev:client & npm run dev:server",
