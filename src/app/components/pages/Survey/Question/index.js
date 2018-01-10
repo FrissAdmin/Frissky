@@ -24,7 +24,7 @@ export default class Question extends PureComponent {
 
   state = {
     answerText : this.props.answer.get('answer'),
-    choiceId   : this.props.answer.get('choiceId'),
+    choiceId   : this.props.answer.get('choice'),
   }
 
   nextQuestion = (event) => {
@@ -90,6 +90,7 @@ export default class Question extends PureComponent {
             key={ `question-${question.get('id')}-${slugify(choice.get('title'))}` }
           >
             <input
+              checked={ choice.get('id') === this.state.choiceId }
               className={ styles.ChoiceInput }
               id={ `question-${question.get('id')}-${slugify(choice.get('title'))}` }
               name={ `question-${question.get('id')}` }

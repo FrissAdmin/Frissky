@@ -3,7 +3,10 @@ import createReducer    from 'reducers/createReducer';
 import Immutable        from 'immutable';
 import initialState     from './initialState';
 
-const reduceToAnswerMap = (answerMap, answer) => answerMap[answer.question] = answer;
+const reduceToAnswerMap = (answerMap, answer) => {
+  answerMap[answer.question] = answer;
+  return answerMap;
+};
 
 export default createReducer(initialState, {
   [actionTypes.LOAD_SURVEY_FULFILLED]: (state, { payload: { data } }) => state.merge({

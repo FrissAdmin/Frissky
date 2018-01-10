@@ -20,19 +20,28 @@ export default containerFactory(class Survey extends PureComponent {
     this.props.globalActions.loadSurveyData();
   }
 
+  isOnLastQuestion = () =>
+    this.state.currentQuestion === this.props.surveyQuestions.get('loaded').size
+
   getAnswer(question) {
     return this.props.surveyAnswers.getIn(['answers', question.get('id')]);
   }
 
-  nextQuestion = () => this.setState({
-    currentQuestion : Math.min(
-      this.props.surveyQuestions.get('loaded').size + 1,
-      this.state.currentQuestion + 1,
-    ),
-  })
+  nextQuestion = () => {
+    if (this.isOnLastQuestion()) {
+      this.submitAnswers();
+    }
+
+    this.setState({
+      currentQuestion : Math.min(
+        this.props.surveyQuestions.get('loaded').size + 1,
+        this.state.currentQuestion + 1,
+      ),
+    });
+  }
 
   submitAnswers = (event) => {
-    event.preventDefault();
+    if (event) event.preventDefault();
     this.props.surveyAnswersActions.saveAnswers();
   }
 

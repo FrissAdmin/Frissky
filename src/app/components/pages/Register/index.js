@@ -14,6 +14,12 @@ export default containerFactory(class Register extends PureComponent {
     password : '',
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.auth.get('isLoggedIn') && nextProps.auth.get('isLoggedIn')) {
+      this.props.history.push('/survey');
+    }
+  }
+
   handleEmailChange = (event) => this.setState({ email : event.currentTarget.value })
   handlePasswordChange = (event) => this.setState({ password : event.currentTarget.value })
 
