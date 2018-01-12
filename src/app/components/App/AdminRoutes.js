@@ -20,6 +20,7 @@ export default containerFactory(class AdminRoutes extends PureComponent {
     return (
       <Switch>
         <Route exact path={ routes.USER_LIST }><UserList /></Route>
+        <Route path={ routes.USER_DETAIL }><UserList /></Route>
       </Switch>
     );
   }

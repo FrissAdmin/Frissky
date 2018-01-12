@@ -70,7 +70,10 @@ type SurveyQuestionChoice {
 }
 
 type User {
+  email: String!
+  firstName: String
   id: ID!
+  lastName: String
   role: String!
 }
 

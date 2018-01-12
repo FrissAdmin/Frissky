@@ -1,57 +1,29 @@
 import * as appPropTypes        from 'constants/propTypes';
 import containerFactory         from 'containers/factory';
-import Question                 from './Question';
 import React, { PureComponent } from 'react';
 import styles                   from './styles';
+import User                     from './User';
 
-export default containerFactory(class Survey extends PureComponent {
+export default containerFactory(class UserList extends PureComponent {
   static propTypes = {
-    globalActions        : appPropTypes.actions,
-    surveyAnswers        : appPropTypes.surveyAnswerState,
-    surveyAnswersActions : appPropTypes.actions,
-    surveyQuestions      : appPropTypes.surveyQuestionState,
-  }
-
-  state = {
-    currentQuestion : 1,
+    globalActions : appPropTypes.actions,
+    users         : appPropTypes.usersState,
   }
 
   componentWillMount() {
-    this.props.globalActions.loadSurveyData();
-  }
-
-  getAnswer(question) {
-    return this.props.surveyAnswers.getIn(['answers', question.get('id')]);
-  }
-
-  nextQuestion = () => this.setState({
-    currentQuestion : Math.min(
-      this.props.surveyQuestions.get('loaded').size + 1,
-      this.state.currentQuestion + 1,
-    ),
-  })
-
-  submitAnswers = (event) => {
-    event.preventDefault();
-    this.props.surveyAnswersActions.saveAnswers();
+    this.props.globalActions.loadUsers();
   }
 
   render() {
     return (
       <div className={ styles.Root }>
-        <h1 className={ styles.Title }>Survey</h1>
-
-        <button onClick={ this.submitAnswers } type="submit">Save Answers</button>
+        <h1 className={ styles.Title }>Users</h1>
 
         <ul className={ styles.Questions }>
-          <For each="question" of={ this.props.surveyQuestions.get('loaded') }>
-            <Question
-              answer={ this.getAnswer(question) }
-              isCurrent={ this.state.currentQuestion >= question.get('id').trim() }
-              key={ `question-${question.get('id')}` }
-              nextQuestion={ this.nextQuestion }
-              question={ question }
-              surveyAnswersActions={ this.props.surveyAnswersActions }
+          <For each="user" of={ this.props.users.get('loaded') }>
+            <User
+              key={ `user-list-user-${user.get('id')}` }
+              user={ user }
             />
           </For>
         </ul>

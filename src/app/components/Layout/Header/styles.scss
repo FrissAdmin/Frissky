@@ -1,0 +1,54 @@
+$headerHeight: 60px;
+
+.Root {
+  display: flex;
+  height: $headerHeight;
+  justify-content: center;
+}
+
+.Logo {
+  background-color: color(White);
+  font-family: sans-serif;
+  font-size: 16px;
+  height: $headerHeight;
+  line-height: $headerHeight;
+  margin: 0 10px;
+  text-align: center;
+  width: $headerHeight;
+}
+
+.Nav {
+  display: block;
+  height: 100%;
+  flex: 1 0 0;
+  padding: 0 10px;
+
+  > ul {
+    display: block;
+    height: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  & ~ .Nav > ul {
+    text-align: right;
+  }
+}
+
+.LinkWrapper {
+  display: inline-block;
+  height: 100%;
+  line-height: $headerHeight;
+}
+
+.Link,
+.Link:link,
+.Link:visited,
+.Link:active {
+  color: color(Tundora);
+  font-family: sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  text-decoration: underline;
+}

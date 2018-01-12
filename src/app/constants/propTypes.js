@@ -46,5 +46,19 @@ export const surveyQuestions = ImmutablePropTypes.listOf(surveyQuestion);
 
 export const surveyQuestionState = ImmutablePropTypes.contains({
   areLoading : PropTypes.bool.isRequired,
-  questions  : surveyQuestions,
+  loaded     : surveyQuestions,
+});
+
+export const user = ImmutablePropTypes.contains({
+  email     : PropTypes.string.isRequired,
+  firstName : PropTypes.string,
+  id        : PropTypes.string.isRequired,
+  lastName  : PropTypes.string,
+});
+
+export const users = ImmutablePropTypes.listOf(user);
+
+export const usersState = ImmutablePropTypes.contains({
+  areLoading : PropTypes.bool.isRequired,
+  loaded     : users,
 });

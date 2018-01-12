@@ -1,12 +1,16 @@
-import { Switch, Route }        from 'react-router';
-import * as routes              from 'constants/routes';
-import AdminRoutes              from './AdminRoutes';
-import Login                    from 'components/pages/Login';
-import React, { PureComponent } from 'react';
-import Register                 from 'components/pages/Register';
-import Survey                   from 'components/pages/Survey';
+import { Switch, Route, withRouter }    from 'react-router';
+import * as routes          from 'constants/routes';
+import AdminRoutes          from './AdminRoutes';
+import Login                from 'components/pages/Login';
+import React, { Component } from 'react';
+import Register             from 'components/pages/Register';
+import Survey               from 'components/pages/Survey';
 
-export default class Routes extends PureComponent {
+export default withRouter(class Routes extends Component {
+  shouldComponentUpdate(nextProps) {
+    return this.props.location.pathname !== nextProps.location.pathname;
+  }
+
   render() {
     return (
       <Switch>
@@ -20,4 +24,4 @@ export default class Routes extends PureComponent {
       </Switch>
     );
   }
-}
+});

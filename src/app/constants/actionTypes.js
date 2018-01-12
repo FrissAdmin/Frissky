@@ -6,6 +6,10 @@ export const LOAD_SURVEY                  = 'LOAD_SURVEY';
 export const LOAD_SURVEY_PENDING          = `${LOAD_SURVEY}_PENDING`;
 export const LOAD_SURVEY_FULFILLED        = `${LOAD_SURVEY}_FULFILLED`;
 
+export const LOAD_USERS                   = 'LOAD_USERS';
+export const LOAD_USERS_PENDING           = `${LOAD_USERS}_PENDING`;
+export const LOAD_USERS_FULFILLED         = `${LOAD_USERS}_FULFILLED`;
+
 export const LOGIN                        = 'LOGIN';
 export const LOGIN_PENDING                = `${LOGIN}_PENDING`;
 export const LOGIN_FULFILLED              = `${LOGIN}_FULFILLED`;

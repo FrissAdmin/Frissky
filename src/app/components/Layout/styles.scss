@@ -1,54 +1,6 @@
-$headerHeight: 60px;
-
 .Root {
-  background-color: #f8f8f8;
+  background-color: color(Alabaster);
   min-height: 100vh;
   overflow: hidden;
   width: 100%;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-}
-
-.Header {
-  display: flex;
-  height: $headerHeight;
-  justify-content: center;
-}
-
-.Logo {
-  font-family: sans-serif;
-  font-size: 16px;
-  height: $headerHeight;
-  line-height: $headerHeight;
-  margin: 0 10px;
-  text-align: center;
-  width: $headerHeight;
-}
-
-.Nav {
-  display: block;
-  height: 100%;
-  flex: 1 0 0;
-  padding: 0 10px;
-
-  ul {
-    display: block;
-    height: 100%;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  li {
-    display: inline-block;
-    height: 100%;
-    line-height: $headerHeight;
-  }
-
-  & ~ .Nav ul {
-    text-align: right;
-  }
 }

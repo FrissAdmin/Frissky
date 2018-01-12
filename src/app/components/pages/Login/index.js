@@ -1,6 +1,7 @@
 import * as appPropTypes        from 'constants/propTypes';
 import containerFactory         from 'containers/factory';
 import React, { PureComponent } from 'react';
+import redirectFromLoginPage    from 'lib/redirectFromLoginPage';
 import styles                   from './styles';
 
 export default containerFactory(class Login extends PureComponent {
@@ -12,6 +13,12 @@ export default containerFactory(class Login extends PureComponent {
   state = {
     email    : '',
     password : '',
+  }
+
+  componentWillMount() {
+    if (this.props.auth.get('user') !== null) {
+      this.props.history.push(redirectFromLoginPage(this.props.auth.get('user')));
+    }
   }
 
   handleEmailChange = (event) => this.setState({ email : event.currentTarget.value })

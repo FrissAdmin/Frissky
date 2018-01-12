@@ -24,19 +24,6 @@ export default {
         return;
       }
 
-      console.log({
-        token : authUtils.signToken({
-          email : user.email,
-          id    : user.id,
-          role  : user.role,
-        }),
-        user : {
-          email : user.email,
-          id    : user.id,
-          role  : user.role,
-        },
-      });
-
       resolve({
         token : authUtils.signToken({
           email : user.email,
