@@ -1,15 +1,18 @@
-const path = require('path');
+const path    = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   devtool: 'inline-source-map',
   entry: [
     'babel-polyfill',
+    'react-hot-loader/patch',
     path.resolve(__dirname, 'src/app/index.js')
   ],
   // entry: path.resolve(__dirname, 'src/app/index.js'),
   output: {
+    filename: 'frissky.bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    filename: 'frissky.bundle.js'
+    publicPath: '/dist/'
   },
   module: {
     rules: [
@@ -27,13 +30,17 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: 'style-loader'
+            loader: 'style-loader',
+            options: {
+              sourceMap: true
+            }
           },
           {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[path][name]__[local]--[hash:base64:5]'
+              localIdentName: '[path][name]__[local]--[hash:base64:5]',
+              sourceMap: true
             }
           },
           {
@@ -62,6 +69,9 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new webpack.NamedModulesPlugin()
+  ],
   resolve: {
     alias: {
       actionCreators: path.resolve(__dirname, 'src/app/actionCreators'),

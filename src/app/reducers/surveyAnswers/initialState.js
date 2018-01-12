@@ -1,6 +1,7 @@
 import Immutable from 'immutable';
 
 export default Immutable.fromJS({
-  answers : {},
-  saved   : false,
+  answers        : {},
+  saveAfterLogin : false,
+  saved          : false,
 });

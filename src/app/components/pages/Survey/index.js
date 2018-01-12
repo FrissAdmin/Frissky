@@ -1,4 +1,5 @@
 import * as appPropTypes        from 'constants/propTypes';
+import * as routes              from 'constants/routes';
 import containerFactory         from 'containers/factory';
 import Question                 from './Question';
 import React, { PureComponent } from 'react';
@@ -6,6 +7,7 @@ import styles                   from './styles';
 
 export default containerFactory(class Survey extends PureComponent {
   static propTypes = {
+    auth                 : appPropTypes.auth,
     globalActions        : appPropTypes.actions,
     surveyAnswers        : appPropTypes.surveyAnswerState,
     surveyAnswersActions : appPropTypes.actions,
@@ -29,10 +31,10 @@ export default containerFactory(class Survey extends PureComponent {
 
   nextQuestion = () => {
     if (this.isOnLastQuestion()) {
-      this.submitAnswers();
+      return this.submitAnswers();
     }
 
-    this.setState({
+    return this.setState({
       currentQuestion : Math.min(
         this.props.surveyQuestions.get('loaded').size + 1,
         this.state.currentQuestion + 1,
@@ -42,7 +44,9 @@ export default containerFactory(class Survey extends PureComponent {
 
   submitAnswers = (event) => {
     if (event) event.preventDefault();
-    this.props.surveyAnswersActions.saveAnswers();
+    this.props.surveyAnswersActions.saveAnswers(!this.props.auth.isUserLoggedIn);
+
+    if (!this.props.auth.isUserLoggedIn) this.props.history.push(routes.LOGIN);
   }
 
   render() {
