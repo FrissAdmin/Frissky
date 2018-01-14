@@ -17,7 +17,26 @@ type AuthUser {
   role: String!
 }
 
+type Channel {
+  id: ID!
+  messages: [Message]
+  users: [User]
+}
+
+type Message {
+  author: User!
+  channel: ID!
+  content: String!
+  id: ID!
+  sent: Int!
+}
+
 type Mutation {
+  beginMessage(
+    channelName: String
+    withUser: ID!
+  ): Channel
+
   login(
     email: String!
     password: String!
@@ -27,6 +46,11 @@ type Mutation {
     email: String!
     password: String!
   ): AuthResponse!
+
+  sendMessage(
+    channel: ID!
+    content: String!
+  ): Boolean!
 
   surveyAnswers(
     answers: [SurveyAnswerInput]
@@ -43,6 +67,10 @@ type Query {
   surveyQuestions: [SurveyQuestion]!
 
   users: [User]!
+}
+
+type Subscription {
+  messageAdded(channel: ID!): Message
 }
 
 type SurveyAnswer {

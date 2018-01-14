@@ -1,0 +1,8 @@
+CREATE TABLE messages(
+  author_id VARCHAR(50) NOT NULL REFERENCES users(id),
+  channel_id VARCHAR(50) NOT NULL REFERENCES channels(id),
+  content TEXT NOT NULL,
+  id VARCHAR(50) NOT NULL,
+  sent TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY(id)
+);

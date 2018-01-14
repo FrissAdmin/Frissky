@@ -1,10 +1,17 @@
 import * as authUtils              from '../lib/authUtils';
 import createHash, { compareHash } from '../lib/createHash';
+import createMessage               from '../helpers/mutations/createMessage';
 import createUser                  from '../helpers/mutations/createUser';
+import getOrCreateChannel          from '../helpers/mutations/getOrCreateChannel';
 import getUsersByEmail             from '../helpers/queries/getUsersByEmail';
 import setSurveyAnswers            from '../helpers/mutations/setSurveyAnswers';
 
 export default {
+  beginMessage: (root, args, context) => {
+    authUtils.requireCustomer(context.user);
+    return getOrCreateChannel(context.user, args);
+  },
+
   login: (root, args) => new Promise((resolve) => {
     getUsersByEmail(args.email, true).then((usersWithEmail) => {
       if (usersWithEmail.length < 1) {
@@ -71,6 +78,11 @@ export default {
         .catch((error) => resolve({ error }));
     });
   }),
+
+  sendMessage: (root, args, context) => {
+    authUtils.requireCustomer(context.user);
+    return createMessage(args.channel, args.content);
+  },
 
   surveyAnswers: (root, args, context) => {
     authUtils.requireCustomer(context.user);
