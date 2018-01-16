@@ -1,0 +1,7 @@
+#import "graphQL/fragments/messageFields.graphql"
+
+query messages($channel: ID!) {
+  messages(channel: $channel) {
+    ...messageFields
+  }
+}

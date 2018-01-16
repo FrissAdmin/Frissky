@@ -20,15 +20,16 @@ type AuthUser {
 type Channel {
   id: ID!
   messages: [Message]
+  name: String
   users: [User]
 }
 
 type Message {
   author: User!
-  channel: ID!
+  channel: Channel!
   content: String!
   id: ID!
-  sent: Int!
+  sent: Float!
 }
 
 type Mutation {
@@ -50,7 +51,7 @@ type Mutation {
   sendMessage(
     channel: ID!
     content: String!
-  ): Boolean!
+  ): Message
 
   surveyAnswers(
     answers: [SurveyAnswerInput]
@@ -59,6 +60,13 @@ type Mutation {
 
 type Query {
   authData: AuthUser
+
+  channels: [Channel]!
+
+  messages(
+    afterTime: Int
+    channel: ID!
+  ): [Message]!
 
   surveyAnswers(
     user: ID

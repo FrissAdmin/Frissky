@@ -3,9 +3,30 @@ import createReducer    from 'reducers/createReducer';
 import Immutable        from 'immutable';
 import initialState     from './initialState';
 
+const noAuth = (state, errorMessage = null) => {
+  window.localStorage.removeItem('friss_app_token');
+
+  return state.merge({
+    error     : errorMessage,
+    isLoaded  : true,
+    isLoading : false,
+    token     : null,
+    user      : null,
+  });
+};
+
 export default createReducer(initialState, {
-  [actionTypes.LOAD_AUTH_DATA_FULFILLED]: (state, { payload: { data } }) =>
-    state.set('user', Immutable.fromJS(data.authData)),
+  [actionTypes.LOAD_AUTH_DATA_FULFILLED]: (state, { payload: { data } }) => {
+    if (!data.authData) return noAuth(state);
+
+    return state.merge({
+      isLoaded  : true,
+      isLoading : false,
+      user      : Immutable.fromJS(data.authData),
+    });
+  },
+
+  [actionTypes.LOAD_AUTH_DATA_REJECTED]: state => noAuth(state),
 
   [actionTypes.LOGIN_FULFILLED]: (state, { payload: { data: { login } } }) => {
     if (login.error) return state.merge({ error : login.error });

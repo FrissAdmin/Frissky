@@ -1,0 +1,11 @@
+fragment messageFields on Message {
+  author {
+    id
+  }
+  channel {
+    id
+  }
+  content
+  id
+  sent
+}

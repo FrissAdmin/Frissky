@@ -14,6 +14,29 @@ export const auth = ImmutablePropTypes.contains({
   user       : authUser,
 });
 
+export const channel = ImmutablePropTypes.contains({
+  id   : PropTypes.string.isRequired,
+  name : PropTypes.string,
+});
+
+export const channels = ImmutablePropTypes.listOf(channel);
+
+export const message = ImmutablePropTypes.contains({
+  channel : PropTypes.string.isRequired,
+  content : PropTypes.string.isRequired,
+  id      : PropTypes.string.isRequired,
+});
+
+export const messages = ImmutablePropTypes.listOf(message);
+
+export const messagesState = ImmutablePropTypes.contains({
+  channels,
+  currentChannel : PropTypes.string,
+  isLoading      : PropTypes.bool.isRequired,
+  lastReadTime   : PropTypes.number,
+  messages,
+});
+
 export const surveyAnswer = ImmutablePropTypes.contains({
   answer     : PropTypes.string,
   choice     : PropTypes.string,

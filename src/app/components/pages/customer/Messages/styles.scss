@@ -1,0 +1,18 @@
+.Root {
+  @include page-container($invisible: true);
+}
+
+.Input {
+  max-width: 600px;
+  width: 100%;
+}
+
+.Input input {
+  border: 2px solid color(Black, 0.1);
+  border-radius: 2px;
+  font-family: sans-serif;
+  font-size: 14px;
+  outline: none;
+  padding: 10px 5px;
+  width: 100%;
+}

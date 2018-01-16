@@ -14,6 +14,7 @@ export default (user, channelName = null, withUser = null) => new Promise((resol
     `
     INSERT INTO channels( ${channelFields.join(', ')} )
     VALUES (${getPositionalParameters(channelValues)})
+    RETURNING id
     `,
     channelValues,
   ).then((rows) => {

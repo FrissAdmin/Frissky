@@ -11,6 +11,9 @@ export default class AdminNav extends PureComponent {
           <li className={ styles.LinkWrapper }>
             <Link className={ styles.Link } to={ routes.USER_LIST }>Users</Link>
           </li>
+          <li className={ styles.LinkWrapper }>
+            <Link className={ styles.Link } to={ routes.CHANNELS }>Messages</Link>
+          </li>
         </ul>
       </nav>
     );

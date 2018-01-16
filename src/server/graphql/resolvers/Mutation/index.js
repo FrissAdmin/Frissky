@@ -81,7 +81,7 @@ export default {
 
   sendMessage: (root, args, context) => {
     authUtils.requireCustomer(context.user);
-    return createMessage(args.channel, args.content);
+    return createMessage(context.user, args.channel, args.content);
   },
 
   surveyAnswers: (root, args, context) => {

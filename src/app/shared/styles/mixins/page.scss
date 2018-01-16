@@ -1,0 +1,10 @@
+@mixin page-container($invisible: false) {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
+
+  @if ($invisible == false) {
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+}

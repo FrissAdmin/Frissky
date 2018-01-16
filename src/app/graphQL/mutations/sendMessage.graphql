@@ -1,0 +1,13 @@
+#import "graphQL/fragments/messageFields.graphql"
+
+mutation sendMessage(
+  $channel: ID!
+  $content: String!
+) {
+  sendMessage(
+    channel: $channel
+    content: $content
+  ) {
+    ...messageFields
+  }
+}

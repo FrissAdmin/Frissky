@@ -1,6 +1,19 @@
+export const BEGIN_MESSAGE                = 'BEGIN_MESSAGE';
+export const BEGIN_MESSAGE_PENDING        = `${BEGIN_MESSAGE}_PENDING`;
+export const BEGIN_MESSAGE_FULFILLED      = `${BEGIN_MESSAGE}_FULFILLED`;
+
 export const LOAD_AUTH_DATA               = 'LOAD_AUTH_DATA';
 export const LOAD_AUTH_DATA_PENDING       = `${LOAD_AUTH_DATA}_PENDING`;
 export const LOAD_AUTH_DATA_FULFILLED     = `${LOAD_AUTH_DATA}_FULFILLED`;
+export const LOAD_AUTH_DATA_REJECTED      = `${LOAD_AUTH_DATA}_REJECTED`;
+
+export const LOAD_CHANNELS                = 'LOAD_CHANNELS';
+export const LOAD_CHANNELS_PENDING        = `${LOAD_CHANNELS}_PENDING`;
+export const LOAD_CHANNELS_FULFILLED      = `${LOAD_CHANNELS}_FULFILLED`;
+
+export const LOAD_MESSAGES                = 'LOAD_MESSAGES';
+export const LOAD_MESSAGES_PENDING        = `${LOAD_MESSAGES}_PENDING`;
+export const LOAD_MESSAGES_FULFILLED      = `${LOAD_MESSAGES}_FULFILLED`;
 
 export const LOAD_SURVEY                  = 'LOAD_SURVEY';
 export const LOAD_SURVEY_PENDING          = `${LOAD_SURVEY}_PENDING`;

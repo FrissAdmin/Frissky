@@ -2,19 +2,18 @@ import getPositionalParameters from '../../lib/getPositionalParameters';
 import wrapSQLInPromise        from '../../lib/wrapSQLInPromise';
 
 export default (user, channelId, content) => new Promise((resolve, reject) => {
-  const sent = Date.now();
+  const sent = new Date();
 
   const params = [
     user.id,
     channelId,
     content,
-    Buffer.from(`${channelId}:${user.id}:${sent}`).toString('base64'),
     sent,
   ];
 
   wrapSQLInPromise(
     `
-    INSERT INTO messages( author_id, channel_id, content, id, sent )
+    INSERT INTO messages( author_id, channel_id, content, sent )
     VALUES (${getPositionalParameters(params)})
     `,
     params,

@@ -1,0 +1,5 @@
+mutation beginMessage($withUser: ID!) {
+  beginMessage(withUser: $withUser) {
+    id
+  }
+}

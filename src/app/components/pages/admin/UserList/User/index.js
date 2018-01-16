@@ -4,7 +4,13 @@ import styles                   from './styles';
 
 export default class User extends PureComponent {
   static propTypes = {
-    user : appPropTypes.user,
+    messagesActions : appPropTypes.actions,
+    user            : appPropTypes.user,
+  }
+
+  handleSendMessage = (event) => {
+    event.preventDefault();
+    this.props.messagesActions.beginMessage(this.props.user.get('id'));
   }
 
   renderName() {
@@ -27,6 +33,7 @@ export default class User extends PureComponent {
     return (
       <li className={ styles.Root }>
         { this.renderName() }
+        <button onClick={ this.handleSendMessage }>Send message</button>
       </li>
     );
   }

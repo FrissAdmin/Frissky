@@ -11,6 +11,9 @@ export default class CustomerNav extends PureComponent {
           <li className={ styles.LinkWrapper }>
             <Link className={ styles.Link } to={ routes.SURVEY }>Survey</Link>
           </li>
+          <li className={ styles.LinkWrapper }>
+            <Link className={ styles.Link } to={ routes.MESSAGES }>Messages</Link>
+          </li>
         </ul>
       </nav>
     );
