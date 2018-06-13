@@ -4,7 +4,7 @@
     "theme_name": "Atlantic",
     "theme_author": "Pixel Union",
     "theme_version": "11.3.1",
-    "theme_documentation_url": "https://www.pixelunion.net/support/atlantic-theme-manual/",
+    "theme_documentation_url": "https:\/\/www.pixelunion.net\/support\/atlantic-theme-manual\/",
     "theme_support_email": "support@pixelunion.net"
   },
   {
@@ -605,7 +605,7 @@
       {
         "type": "checkbox",
         "id": "show-brand-names",
-        "label": "Show brand names / links",
+        "label": "Show brand names \/ links",
         "default": true
       },
       {
@@ -708,49 +708,49 @@
         "type": "text",
         "id": "twitter-url",
         "label": "Twitter",
-        "info": "http://twitter.com/shopify"
+        "info": "http:\/\/twitter.com\/shopify"
       },
       {
         "type": "text",
         "id": "facebook-url",
         "label": "Facebook",
-        "info": "https://www.facebook.com/shopify"
+        "info": "https:\/\/www.facebook.com\/shopify"
       },
       {
         "type": "text",
         "id": "pinterest-url",
         "label": "Pinterest",
-        "info": "https://www.pinterest.com/shopify"
+        "info": "https:\/\/www.pinterest.com\/shopify"
       },
       {
         "type": "text",
         "id": "google-plus-url",
         "label": "Google Plus",
-        "info": "https://plus.google.com/+shopify"
+        "info": "https:\/\/plus.google.com\/+shopify"
       },
       {
         "type": "text",
         "id": "instagram-url",
         "label": "Instagram",
-        "info": "https://instagram.com/shopify"
+        "info": "https:\/\/instagram.com\/shopify"
       },
       {
         "type": "text",
         "id": "tumblr-url",
         "label": "Tumblr",
-        "info": "http://shopify.tumblr.com"
+        "info": "http:\/\/shopify.tumblr.com"
       },
       {
         "type": "text",
         "id": "youtube-url",
         "label": "YouTube",
-        "info": "https://www.youtube.com/user/shopify"
+        "info": "https:\/\/www.youtube.com\/user\/shopify"
       },
       {
         "type": "text",
         "id": "vimeo-url",
         "label": "Vimeo",
-        "info": "https://vimeo.com/shopify"
+        "info": "https:\/\/vimeo.com\/shopify"
       }
     ]
   },
@@ -785,7 +785,7 @@
         "id": "currency-switcher-supported-currencies",
         "label": "Supported currencies",
         "default": "INR GBP CAD USD AUD EUR JPY",
-        "info": "Use the country's ISO [currency code](http://www.xe.com/iso4217.php). Separate your currency codes with a space."
+        "info": "Use the country's ISO [currency code](http:\/\/www.xe.com\/iso4217.php). Separate your currency codes with a space."
       },
       {
         "type": "text",

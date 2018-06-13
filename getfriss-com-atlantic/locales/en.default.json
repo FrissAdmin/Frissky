@@ -136,7 +136,7 @@
     "submit": "Check out",
     "update": "Update",
     "shipping_calculator": {
-      "error": "Error: zip / postal code --error_message--",
+      "error": "Error: zip \/ postal code --error_message--",
       "submit": "Calculate Shipping",
       "working": "Calculating...",
       "rates_html": "There are --number_of_rates-- shipping rates available for --address--, starting at --rate--.",
@@ -211,8 +211,8 @@
       "city": "City",
       "country": "Country",
       "phone": "Phone",
-      "province": "State / Province",
-      "zip": "ZIP / Postal code",
+      "province": "State \/ Province",
+      "zip": "ZIP \/ Postal code",
       "set_as_default": "Set as Default Address?"
     },
     "login": {
@@ -305,6 +305,6 @@
   "date_formats": {
     "short_month": "%b %d, %Y",
     "full_month": "%B %d, %Y",
-    "gift_card_expiry": "%d/%m/%y"
+    "gift_card_expiry": "%d\/%m\/%y"
   }
 }

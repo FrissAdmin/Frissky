@@ -4,5 +4,6 @@ yarn-error.log*
 /.changelog
 node_modules/
 .DS_Store
-dist/
 build/
+dist/
+config.yml
