@@ -56,7 +56,7 @@ assets/site.js.liquid:
 assets/theme.scss.liquid:
   development: 2018-02-28T09:36:39-07:00   0120e931628ff1dab57319c11d822a23
 config/settings_data.json:
-  development: 2018-05-31T23:12:33-06:00   a47a13bff2576a0bd2c46a936a04181e
+  development: 2018-06-12T23:10:20-06:00   e2cf89f400e2821f044489397b88ce2f
 config/settings_schema.json:
   development: 2018-02-28T09:36:42-07:00   bf0708ea162ec8fb93cab23a676a558a
 layout/password.liquid:
