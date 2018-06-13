@@ -1,0 +1,81 @@
+<div data-section-id="{{ section.id }}" data-section-type="featured-video">
+
+  {%- assign border = section.settings.border -%}
+  {%- assign video = section.settings.video_url.id -%}
+  {%- assign videoType = section.settings.video_url.type -%}
+  {%- assign image = section.settings.image -%}
+
+  <div class="home-section home-module home-video
+    {% if border %}has-border{% endif %}"
+    data-home-video
+    data-video-id="{{ video }}"
+    data-video-type="{{ videoType }}">
+
+    <div class="home-module-content">
+      <div class="home-video-play"></div>
+
+      <div class="home-video-embed-wrapper">
+        <div class="home-video-embed">
+          {% if videoType == "youtube" %}
+            <iframe src="https://www.youtube.com/embed/{{ video }}" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+          {% else %}
+            <iframe src="//player.vimeo.com/video/{{ video }}?byline=0&portrait=0&badge=0" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="home-video-screenshot">
+        <span class="home-video-play-button mobile meta">{{ 'home_page.video_button_text' | t }}</span>
+
+        {% if image != blank %}
+          <img src="{{ image | img_url: '1080x1080' }}" alt="{{ image.alt | escape }}">
+        {% elsif video != blank %}
+          {% if videoType == "youtube" %}
+            <img class="youtube-image" src="https://img.youtube.com/vi/{{ video }}/0.jpg">
+          {% else %}
+            <img class="vimeo-image" src="">
+          {% endif %}
+        {% else %}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+      </div>
+
+      <div class="home-video-content rte">
+        <span class="home-video-play-button meta">{% include 'icon' with 'playvideo' %}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Featured video",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "border",
+      "label": "Show border",
+      "default": true
+    },
+    {
+      "id": "video_url",
+      "type": "video_url",
+      "label": "Video URL",
+      "accept": ["youtube", "vimeo"]
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Video screenshot",
+      "info": "1080 x 640px .jpg recommended"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Video",
+      "name": "Featured video"
+    }
+  ]
+}
+
+{% endschema %}

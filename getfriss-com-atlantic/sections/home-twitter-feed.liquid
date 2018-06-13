@@ -1,0 +1,63 @@
+<div data-section-id="{{ section.id }}" data-section-type="twitter-feed">
+
+  {%- assign border = section.settings.border -%}
+  {%- assign username = section.settings.username | escape -%}
+  {%- assign retweets = section.settings.retweets -%}
+
+  <section class="home-section twitter-widget content-area
+    {% if sectionHeading != blank %}has-heading{% endif %}
+    {% if border %}has-border{% endif %}"
+    data-twitter-username="{{ username }}"
+    data-show-retweets="{% if retweets %}true{% endif %}">
+
+    <div class="section-border">
+      {% if username != blank %}
+        <div class="twitter-tweet" data-twitter-tweets></div>
+      {% else %}
+        <div class="twitter-tweet">
+          {{ 'onboarding.twitter_tweet' | t }}
+          <span class="timestamp">
+            <a href="#">{{ 'onboarding.twitter_posted' | t }} {{'now' | date: "%s" | date: "%B %d"}}</a>
+            <span class="divider">/</span>
+            <a href="#">
+              <span>{{ 'onboarding.twitter_username' | t }}</span>
+            </a>
+          </span>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+
+</div>
+
+{% schema %}
+{
+  "name": "Twitter feed",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "border",
+      "label": "Show border",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "username",
+      "label": "Username",
+      "info": "Note: Don't include the '@' symbol."
+    },
+    {
+      "type": "checkbox",
+      "id": "retweets",
+      "label": "Show retweets"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Social",
+    "name": "Twitter feed"
+    }
+  ]
+}
+
+{% endschema %}

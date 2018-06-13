@@ -1,0 +1,17 @@
+<div class="collection-sorter">
+  <label for="sort-by">{{ 'collections.listing.sort-by' | t }}
+    <span class="sort-dropdown">
+      <select id="sort-by" class="sort-by-box-okay">
+        <option value="featured">{{ 'collections.sorting.featured' | t }}</option>
+        <option value="price-ascending">{{ 'collections.sorting.price-ascending' | t }}</option>
+        <option value="price-descending">{{ 'collections.sorting.price-descending' | t }}</option>
+        <option value="title-ascending">{{ 'collections.sorting.title-ascending' | t }}</option>
+        <option value="title-descending">{{ 'collections.sorting.title-descending' | t }}</option>
+        <option value="created-ascending">{{ 'collections.sorting.created-ascending' | t }}</option>
+        <option value="created-descending">{{ 'collections.sorting.created-descending' | t }}</option>
+        <option value="best-selling">{{ 'collections.sorting.best-selling' | t }}</option>
+      </select>
+      {% include "icon" with "down-arrow" %}
+    </span>
+  </label> 
+</div>

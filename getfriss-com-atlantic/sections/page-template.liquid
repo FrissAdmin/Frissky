@@ -1,0 +1,74 @@
+<div data-section-id="{{ section.id }}" data-section-type="page-template">
+
+  {%- assign sidebarHeading = section.settings.title | escape -%}
+  {%- assign sidebarContent = section.settings.content -%}
+
+  {%- if sidebarHeading != blank or sidebarContent != blank -%}
+    {%- assign hasSidebar = true -%}
+  {%- else -%}
+    {%- assign hasSidebar = false -%}
+  {%- endif -%}
+
+  <main class="content content-area">
+
+    {% include 'breadcrumbs' %}
+
+    <div class="page-title">
+      <h1 class="label">{{ page.title }}</h1>
+    </div>
+
+    <div class="text-content-wrap clearfix">
+      <div class="rte clearfix text-content {% if hasSidebar %}has-sidebar{% endif %}">
+        {{ page.content }}
+      </div>
+
+      {% if hasSidebar %}
+        <div class="sidebar rte">
+          {% if sidebarHeading != blank %}
+            <h2 class="title">{{ sidebarHeading }}</h2>
+          {% endif %}
+
+          {% if sidebarContent.size > 0 %}
+            {{ sidebarContent }}
+          {% endif %}
+        </div>
+      {% endif %}
+
+    </div>
+
+  </main>
+
+</div>
+
+{% schema %}
+{
+  "name": "Static pages",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+      "type": "checkbox",
+      "id": "show-breadcrumbs",
+      "label": "Show breadcrumbs",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Sidebar"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "html",
+      "id": "content",
+      "label": "Content"
+    }
+  ]
+}
+
+{% endschema %}

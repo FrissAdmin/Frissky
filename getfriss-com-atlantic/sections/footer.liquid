@@ -1,0 +1,64 @@
+<div data-section-id="{{ section.id }}" data-section-type="footer">
+
+  {%- assign footerMessage = section.settings.footer-message -%}
+  {%- assign paymentOptions = section.settings.footer-payment-options -%}
+  {%- assign mailingList = section.settings.footer-mailing-list -%}
+  {%- assign alternateFooter = section.settings.footer-alternate -%}
+  {%- assign alternateFooterMenu = section.settings.footer-secondary-menu -%}
+
+  {% unless alternateFooter %}
+    {% include 'footer-one' %}
+  {% else %}
+    {% include 'footer-two' %}
+  {% endunless %}
+
+</div>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+      "type": "text",
+      "id": "footer-message-title",
+      "label": "Footer message heading"
+    },
+    {
+      "type": "richtext",
+      "id": "footer-message",
+      "label": "Footer message"
+    },
+    {
+      "type": "checkbox",
+      "id": "footer-mailing-list",
+      "label": "Show newsletter form",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "footer-payment-options",
+      "label": "Show payment icons"
+    },
+    {
+      "type": "header",
+      "content": "Alternate footer"
+    },
+    {
+      "type": "checkbox",
+      "id": "footer-alternate",
+      "label": "Use alternate footer layout"
+    },
+    {
+      "type": "link_list",
+      "id": "footer-secondary-menu",
+      "label": "Secondary footer menu",
+      "info": "This menu won't show dropdown items"
+    }
+  ]
+}
+
+{% endschema %}

@@ -1,0 +1,73 @@
+<!-- Fonts
+///////////////////////////////////////// -->
+
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+<script>
+
+  var googleFonts = [];
+
+  {% assign font = "'PT Serif', 'Times New Roman', Times, serif" %}
+  {% if settings.body-font == font or settings.main-title-font == font or settings.secondary-header-font == font or settings.meta-font == font %}
+    googleFonts.push('PT+Serif:400,700,400italic,700italic');
+  {% endif %}
+
+  {% assign font = "'Raleway', sans-serif" %}
+  {% if settings.body-font == font or settings.main-title-font == font or settings.secondary-header-font == font or settings.meta-font == font %}
+    googleFonts.push('Raleway:400,700,600');
+  {% endif %}
+
+  {% assign font = "'Open Sans', sans-serif" %}
+  {% if settings.body-font == font or settings.main-title-font == font or settings.secondary-header-font == font or settings.meta-font == font %}
+    googleFonts.push('Open+Sans:400italic,600italic,700italic,400,700,600');
+  {% endif %}
+
+  {% assign font = "'Source Sans Pro', sans-serif" %}
+  {% if settings.body-font == font or settings.main-title-font == font or settings.secondary-header-font == font or settings.meta-font == font %}
+    googleFonts.push('Source+Sans+Pro:400,600,700,400italic,600italic,700italic');
+  {% endif %}
+
+  {% assign font = "'Arvo', serif" %}
+  {% if settings.body-font == font or settings.main-title-font == font or settings.secondary-header-font == font or settings.meta-font == font %}
+    googleFonts.push('Arvo:400,700,400italic,700italic');
+  {% endif %}
+
+  {% assign font = "Karla, 'Helvetica Neue', Helvetica, Arial, Sans-serif" %}
+  {% if settings.body-font == font or settings.main-title-font == font or settings.secondary-header-font == font or settings.meta-font == font %}
+    googleFonts.push('Karla:400,700,400italic,700italic');
+  {% endif %}
+  
+  {% assign font = "Poppins, 'Helvetica Neue', Helvetica, Arial, Sans-serif" %}
+  {% if settings.body-font == font or settings.main-title-font == font or settings.secondary-header-font == font or settings.meta-font == font %}
+    googleFonts.push('Poppins:400,600,400italic,600italic');
+  {% endif %}
+
+  {% assign font = "'Work Sans', 'Helvetica Neue', Helvetica, Arial, Sans-serif" %}
+  {% if settings.body-font == font or settings.main-title-font == font or settings.secondary-header-font == font or settings.meta-font == font %}
+      googleFonts.push('Work+Sans:400,700,400italic,700italic');
+  {% endif %}
+
+  {% assign font = "'Droid Sans', 'Helvetica Neue', Helvetica, Arial, Sans-serif" %}
+  {% if settings.body-font == font or settings.main-title-font == font or settings.secondary-header-font == font or settings.meta-font == font %}
+      googleFonts.push('Droid+Sans:400,700,400italic,700italic');
+  {% endif %}
+
+  {% assign font = "Montserrat, 'Helvetica Neue', Helvetica, Arial, Sans-serif" %}
+  {% if settings.body-font == font or settings.main-title-font == font or settings.secondary-header-font == font or settings.meta-font == font %}
+      googleFonts.push('Montserrat:400,700,400italic,700italic');
+  {% endif %}
+
+  {% assign font = "'Droid Serif', 'Times New Roman', Times, serif" %}
+  {% if settings.body-font == font or settings.main-title-font == font or settings.secondary-header-font == font or settings.meta-font == font %}
+      googleFonts.push('Droid+Serif:400,700,400italic,700italic');
+  {% endif %}
+
+  if (googleFonts.length) {
+    WebFont.load({
+      google: {
+        families: googleFonts
+      }
+    });
+  }
+
+</script>
+

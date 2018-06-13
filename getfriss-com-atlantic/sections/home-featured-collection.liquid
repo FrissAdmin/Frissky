@@ -1,0 +1,89 @@
+<div data-section-id="{{ section.id }}" data-section-type="featured-collection">
+
+  {%- assign productsPerRow = section.settings.products_per_row -%}
+  {%- assign productsLimit = productsPerRow | times: section.settings.rows -%}
+  {%- assign sectionHeading = section.settings.title | escape -%}
+  {%- assign border = section.settings.border -%}
+  {%- assign productsCollection = section.settings.collection -%}
+  {%- assign brandNames = settings.show-brand-names -%}
+  {%- assign altProductCard = settings.alt-product-card -%}
+  {%- assign imageBorders = settings.image-borders -%}
+  {%- assign enableQuickshop = settings.enable-quick-shop -%}
+
+    <section class="home-section featured-collection clearfix
+      {% if productsLimit >= 4 %}multi-row{% endif %}
+      {% if sectionHeading != blank %}has-heading{% endif %}
+      {% if border %}has-border{% endif %}
+      content-area">
+
+      {% if sectionHeading != blank %}
+        <h2 class="section-title">{{ sectionHeading}}</h2>
+      {% endif %}
+
+      {% if productsCollection != blank %}
+        <ul class="product-list row-of-{{ productsPerRow }}">
+          {% for product in collections[productsCollection].products limit: productsLimit %}
+            {% include 'product-item' %}
+          {% endfor %}
+        </ul>
+      {% else %}
+        <ul class="product-list row-of-{{ productsPerRow }}">
+          {% for i in (1..productsLimit) %}
+            {% include 'product-item-demo' %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+    </section>
+
+</div>
+
+{% schema %}
+{
+  "name": "Featured collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured collection"
+    },
+    {
+      "type": "checkbox",
+      "id": "border",
+      "label": "Show border",
+      "default": true
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "rows",
+      "label": "Rows",
+      "min": 1,
+      "max": 11,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "products_per_row",
+      "label": "Number of products per row",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "category": "Collection",
+      "name": "Featured collection"
+    }
+  ]
+}
+
+{% endschema %}

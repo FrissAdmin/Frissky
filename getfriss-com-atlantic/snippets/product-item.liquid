@@ -1,0 +1,71 @@
+{% if altProductCard %}
+  {% capture cardType %} product-card-alt{% endcapture %}
+{% endif %}
+
+<li {% assign itemType = product %}
+  {% if template contains 'search' %}
+    {% assign itemType = item %}
+  {% elsif template contains 'product' %}
+    {% assign itemType = prod %}
+  {% endif %}
+  class="product product-{{ itemType.id }} {% include 'for-looper' %} {% cycle 'flush', '', '', '' %}">
+
+  {% assign productImageSize = 'grande' %}
+
+  <div class="product-inner{{ cardType }}">
+    <figure style="background-image:url('{{ itemType.images[0] | product_img_url: productImageSize }}');">
+      <img alt="{{ itemType.images[0].alt }}" src="{{ itemType.images[0] | product_img_url: productImageSize }}">
+
+      <a href="{{ itemType.url | within: collection }}" class="{% if imageBorders %}with-border{% endif %}"></a>
+
+      {% if altProductCard %}
+        <a class="centering-wrapper overlay" href="{{ itemType.url | within: collection }}"
+          {% if enableQuickshop %}data-quickshop-id="{{ itemType.id }}"{% endif %}>
+          <span class="product-card-details-overlay">
+            {% if brandNames %}
+              <h3 class="brand">{{ itemType.vendor }}</h3>
+            {% endif %}
+            <h2 class="title">{{ itemType.title }}</h2>
+
+            {% if itemType.available %}
+              {% if itemType.compare_at_price_min > itemType.price_min %}
+                <p class="price sale"><span class="original money"> {{ itemType.compare_at_price_min | money }}</span> <span class="money">{{ itemType.price_min | money }}</span></p>
+              {% else %}
+                <p class="price"><span class="money">{{ itemType.price_min | money }}</span></p>
+              {% endif %}
+            {% else %}
+              <p class="price">{{ 'products.product.sold_out' | t }}</p>
+            {% endif %}
+          </span>
+        </a>
+      {% elsif enableQuickshop %}
+        <div class="overlay quickshop-trigger" data-quickshop-id="{{ itemType.id }}">
+          <span class="label">{{ 'collections.collection.quick_shop' | t }}</span>
+        </div>
+      {% endif %}
+
+      {% include 'product-badges' %}
+    </figure>
+
+    <div class="product-card-details">
+      {% if brandNames %}
+        <h3 class="brand">{{ itemType.vendor | link_to_vendor }}</h3>
+      {% endif %}
+      <h2 class="title"><a href="{{ itemType.url | within: collection }}">{{ itemType.title }}</a></h2>
+
+      {% if itemType.available %}
+        {% if itemType.compare_at_price_min > itemType.price_min %}
+          <p class="price sale"><span class="original money">{{ itemType.compare_at_price_min | money_without_currency }}</span> <span class="money">{{ itemType.price_min | money }}</span></p>
+        {% else %}
+          <p class="price"><span class="money">{{ itemType.price_min | money }}</span></p>
+        {% endif %}
+      {% else %}
+        <p class="price"><span class="label">{{ 'products.product.sold_out' | t }}</span></p>
+      {% endif %}
+    </div>
+
+    {% if enableQuickshop %}
+      {% include 'product-quick-shop' %}
+    {% endif %}
+  </div>
+</li>

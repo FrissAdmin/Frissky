@@ -1,0 +1,116 @@
+<div data-section-id="{{ section.id }}" data-section-type="logo-list">
+
+  {%- assign sectionHeading = section.settings.title | escape -%}
+  {%- assign border = section.settings.border -%}
+  {%- assign logosPerRow = section.settings.logos_per_row -%}
+
+  <section class="home-section logo-list clearfix rows-of-{{ logosPerRow }} content-area
+    {% if sectionHeading != blank %}has-heading{% endif %}
+    {% if border %}has-border{% endif %}">
+
+    {% if sectionHeading != blank %}
+      <h2 class="section-title">{{ sectionHeading }}</h2>
+    {% endif %}
+
+    <div class="logo-list-container">
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          {%- assign link = block.settings.link -%}
+          {%- assign logo = block.settings.logo -%}
+
+          {% if logo %}
+            <div class="logo-list-item">
+              <div class="logo-list-item-wrap">
+                {% if link %}
+                  <a href="{{ link | escape }}" target="_blank">
+                    <img src="{{ logo | img_url: '240x240' }}" alt="{{ image.alt | escape }}">
+                  </a>
+                {% else %}
+                  <img src="{{ logo | img_url: '240x240' }}" alt="{{ image.alt | escape }}">
+                {% endif %}
+              </div>
+            </div>
+          {% else %}
+            {% include 'logo-list-onboarding' %}
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        {% for i in (1..logosPerRow) %}
+          {% include 'logo-list-onboarding' %}
+        {% endfor %}
+      {% endif %}
+    </div>
+
+  </section>
+
+</div>
+
+{% schema %}
+{
+  "name": "Logo list",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Logo list"
+    },
+    {
+      "type": "checkbox",
+      "id": "border",
+      "label": "Show border",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "logos_per_row",
+      "label": "Logos per row",
+      "min": 3,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Image",
+          "info": "480 x 480px .jpg recommended"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Image",
+      "name": "Logo list",
+      "blocks": [
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        }
+      ]
+    }
+  ]
+}
+
+{% endschema %}

@@ -1,0 +1,15 @@
+{% capture current %}{% cycle 1, 2, 3 %}{% endcapture %}
+{% assign placeholder = 'collection-' | append: current %}
+{% assign color = settings.primary-border-colour %}
+{% assign color_string = 'fill="' | append: color | append: '" xmlns' %}
+
+{% capture demo_image %}{%- include 'placeholder_svg_uri', placeholder: placeholder, color_string: color_string -%}{% endcapture %}
+
+<div class="collection-wrap">
+  <div class="collection placeholder-background" style="background-image:url('{{ demo_image }}');">
+    <a href="#">
+      <h3 class="label preload">{{ 'onboarding.collection_title' | t }}</h3>
+      <span class="browse">{{ 'collections.collection.browse' | t }}</span>
+    </a>
+  </div>
+</div>

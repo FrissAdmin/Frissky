@@ -1,0 +1,64 @@
+<nav class="compact
+  {% if shop.customer_accounts_enabled %}account-enabled{% endif %}
+  {% if settings.show-currency-switcher %}currency-enabled{% endif %}">
+  <ul>
+    <li
+      class="nav-item dropdown first"
+      aria-haspopup="true"
+      aria-controls="main-header--mobile-nav"
+      aria-expanded="false"
+      aria-label="{{ linklists[section.settings.menu].title }}"
+    >
+      <span class="border"></span>
+      <div><span class="icon">n</span></div>
+    </li>
+
+    {% if settings.show-currency-switcher %}
+      <li class="nav-item currency">
+        <div class="currency-switcher">
+          <div class="selected-currency"></div><span class="drop-arrow"><</span>
+          <select id="currencies" name="currencies">
+            {% capture codes %},USD,EUR,GBP,CAD,ARS,AUD,BBD,BDT,BSD,BHD,BRL,BOB,BND,BGN,MMK,KYD,CLP,CNY,COP,CRC,HRK,CZK,DKK,DOP,XCD,EGP,XPF,FJD,GHS,GTQ,GYD,GEL,HKD,HUF,ISK,INR,IDR,NIS,JMD,JPY,JOD,KZT,KES,KWD,LVL,LTL,MXN,MYR,MUR,MDL,MAD,MNT,MZN,ANG,NZD,NGN,NOK,OMR,PKR,PYG,PEN,PHP,PLN,QAR,RON,RUB,SAR,RSD,SCR,SGD,SYP,ZAR,KRW,LKR,SEK,CHF,TWD,THB,TZS,TTD,TRY,UAH,AED,UYU,VEB,VND,ZMK,{% endcapture %}
+            {% assign supported_codes = settings.currency-switcher-supported-currencies | escape | split: ' ' %}
+            <option value="{{ shop.currency }}" selected="selected">{{ shop.currency }}</option>
+            {% for code in supported_codes %}
+              {% if code != shop.currency and codes contains code %}
+                <option value="{{ code }}">{{ code }}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+      </li>
+    {% endif %}
+
+    {% if shop.customer_accounts_enabled %}
+      <li class="nav-item account">
+        <a href="/account"><span class="icon">a</span></a>
+      </li>
+    {% endif %}
+
+    <li class="nav-item cart">
+      <a href="/cart">
+        <span class="icon">
+          {% if cartIcon == "cart" %}
+            {% include 'icon' with 'cart' %}
+          {% else %}
+            {% include 'icon' with 'bag' %}
+          {% endif %}
+          {% if cart.item_count > 0 %}<div class="count"><span>{{ cart.item_count }}</span></div>{% endif %}
+        </span>
+      </a>
+    </li><li class="nav-item last search">
+      <div><span class="icon">s</span></div>
+    </li><li class="search-outer-wrap">
+      <div class="search-wrap">
+        <form action="/search" method="get">
+          <input class="search-input" name="q" type="text" placeholder="{{ 'general.search_placeholder' | t }}" value="">
+          <span class="icon">s</span>
+        </form>
+      </div>
+    </li>
+  </ul>
+
+  {% include 'header-mobile-dropdown' %}
+</nav>

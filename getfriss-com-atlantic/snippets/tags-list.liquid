@@ -1,0 +1,19 @@
+<h2 class="sidebar-title">{{ 'collections.listing.taglist' | t }}</h2>
+<ul class="tags">
+  {% for tag in collection.all_tags %}
+    <li class="tag show">{{ tag | link_to_tag: tag }}</li>
+  {% endfor %}
+</ul>
+
+{% if current_tags %}
+  <h2 class="sidebar-title">{{ 'collections.listing.current' | t }}</h2>
+  <ul class="tags">
+    {% for tag in collection.all_tags %}
+      {% if current_tags contains tag %}
+        <li class="tag show current">
+          {{ tag | append: '<span class="remove">x</span>' | link_to: collection.url }}
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+{% endif %}

@@ -1,0 +1,135 @@
+<div data-section-id="{{ section.id }}" data-section-type="image-block">
+
+  {% if section.blocks.size > 0 %}
+
+    {% for block in section.blocks %}
+      {%- assign image = block.settings.image -%}
+      {%- assign heading = block.settings.title | escape -%}
+      {%- assign content = block.settings.content -%}
+      {%- assign alignment = block.settings.alignment -%}
+
+      {%- capture image_tag -%}
+        {%- if block.settings.image != blank -%}
+          <img src="{{ image | img_url: '1024x1024' }}" alt="{{ heading }}">
+        {%- else -%}
+          {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      {%- endcapture -%}
+
+      {% capture current %}{% cycle 1, 2 %}{% endcapture %}
+      {% assign placeholder = 'collection-' | append: current %}
+      {% assign color = settings.accent-colour %}
+      {% assign color_string = 'fill="' | append: color | append: '" xmlns' %}
+      {% capture demo_image %}{%- include 'placeholder_svg_uri', placeholder: placeholder, color_string: color_string -%}{% endcapture %}
+
+      {%- capture image_background -%}{%- if block.settings.image != blank -%}{{ image | img_url: '1024x1024' }}{%- else -%}{{ demo_image }}{%- endif -%}{%- endcapture -%}
+
+      <section class="home-section clearfix picture-block picture-block-{{ alignment }}">
+        <div class="picture-block-image" style="background-image: url('{{ image_background }}')">
+          {{ image_tag }}
+        </div>
+
+        <div class="picture-block-wrapper">
+          <div class="centering-wrapper">
+            <div class="picture-block-content">
+              <h2 class="picture-block-heading">
+                {% if heading != blank %}
+                  {{ heading }}
+                {% endif %}
+              </h2>
+
+              <p class="picture-block-body">
+                {% if content != blank %}
+                  {{ content }}</p>
+                {% endif %}
+            </div>
+          </div>
+        </div>
+      </section>
+    {% endfor %}
+
+  {% else %}
+
+    <section class="home-section clearfix picture-block picture-block-left has-border">
+      {% assign placeholder = 'collection-1' %}
+      {% assign color = settings.accent-colour %}
+      {% assign color_string = 'fill="' | append: color | append: '" xmlns' %}
+      {% capture demo_image %}{%- include 'placeholder_svg_uri', placeholder: placeholder, color_string: color_string -%}{% endcapture %}
+
+      <div class="picture-block-image" style="background-image: url('{{ demo_image }}')">
+        {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      </div>
+
+      <div class="picture-block-wrapper">
+        <div class="centering-wrapper">
+          <div class="picture-block-content">
+            <h2 class="picture-block-heading">{{ 'onboarding.image_block_title' | t }}</h2>
+            <p class="picture-block-body">{{ 'onboarding.image_block_caption' | t }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  {% endif %}
+
+</div>
+
+{% schema %}
+{
+  "name": "Image with text",
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Image position",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Image with text"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Say a bit about your brand, a specific product, or promotion.</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "720 x 500px .jpg recommended"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Image",
+      "name": "Image with text",
+      "blocks": [
+        {
+          "type": "feature"
+        }
+      ]
+    }
+  ]
+}
+
+{% endschema %}

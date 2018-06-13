@@ -1,0 +1,100 @@
+<div data-section-id="{{ section.id }}" data-section-type="blog-template">
+
+  {%- assign paginationStyle = section.settings.pagination-style -%}
+  {%- assign recentPosts = section.settings.recent-posts -%}
+  {%- assign tagList = section.settings.tag-list -%}
+
+  <main class="content content-area">
+
+    {% include 'breadcrumbs' %}
+
+    <div class="page-title">
+      <h1 class="label">{{ blog.title }}</h1>
+    </div>
+
+    <div class="content-wrap clearfix">
+
+      {% paginate blog.articles by 10 %}
+        <section class="articles">
+          {% for article in blog.articles %}
+            {% include 'article-item' %}
+          {% endfor %}
+
+          {% if paginate.previous or paginate.next %}
+            {% include 'pagination' %}
+          {% endif %}
+        </section>
+      {% endpaginate %}
+
+      {% if recentPosts or tagList %}
+        {% include 'blog-sidebar' %}
+      {% endif %}
+
+      {% paginate blog.articles by 10 %}
+        {% if paginate.previous or paginate.next %}
+          <div class="mobile">
+            {% include 'pagination' %}
+          </div>
+        {% endif %}
+      {% endpaginate %}
+
+    </div>
+
+  </main>
+
+</div>
+
+{% schema %}
+{
+  "name": "Blog pages",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+      "type": "checkbox",
+      "id": "show-breadcrumbs",
+      "label": "Show breadcrumbs",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Sidebar"
+    },
+    {
+      "type": "checkbox",
+      "id": "recent-posts",
+      "label": "Show recent posts",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "tag-list",
+      "label": "Show tags",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Pagination"
+    },
+    {
+      "type": "select",
+      "id": "pagination-style",
+      "label": "Style",
+      "options": [
+        {
+          "value": "standard",
+          "label": "Standard pagination"
+        },
+        {
+          "value": "jump-to-page",
+          "label": "Jump-to-page pagination"
+        }
+      ],
+      "default": "standard"
+    }
+  ]
+}
+
+{% endschema %}

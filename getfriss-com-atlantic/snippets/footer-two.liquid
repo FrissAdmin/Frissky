@@ -1,0 +1,67 @@
+{% assign footerModules = 1 %}
+
+{% if alternateFooterMenu != blank %}
+  {% assign footerModules = footerModules | plus: 1 %}
+{% endif %}
+
+{% if footerMessage != blank or mailingList %}
+  {% assign footerModules = footerModules | plus: 1 %}
+{% endif %}
+
+<footer class="main-footer main-footer-alt content-area" id="main-footer">
+
+  <ul class="connect clearfix module-count-{{ footerModules }}">
+    {% if mailingList %}
+      <li class="first newsletter">
+        {% if footerMessage != blank %}
+          {% if section.settings.footer-message-title != blank %}
+            <h2 class="title">{{ section.settings.footer-message-title | escape }}</h2>
+          {% endif %}
+          <div class="footer-message">{{ footerMessage }}</div>
+        {% endif %}
+        {% form 'customer' %}
+          <div class="wrap">
+            <input class="email" name="contact[email]" type="email" placeholder="{{ 'layout.footer.email' | t }}" value="">
+            <input type="hidden" id="contact_tags" name="contact[tags]" value="prospect,newsletter"/>
+            <input class="submit" name="subscribe" type="submit" value="{{ 'general.submit' | t }}">
+          </div>
+        {% endform %}
+      </li>
+    {% elsif footerMessage != blank %}
+      <li class="first newsletter">
+        <div class="footer-message">{{ footerMessage }}</div>
+      </li>
+    {% endif %}
+
+    <li class="footer-menu">
+      <ul class="footer-linklist-one">
+        {% for link in linklists.footer.links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
+
+    {% if alternateFooterMenu != "" %}
+      <li class="footer-menu">
+        <ul class="footer-linklist-one">
+          {% for link in linklists[alternateFooterMenu].links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </li>
+    {% endif %}
+  </ul>
+
+  <div class="sub-footer">
+    {% unless settings.twitter-url.size == 0 and settings.facebook-url.size == 0 and settings.pinterest-url.size == 0 and settings.google-plus-url.size == 0 and settings.instagram-url.size == 0 and settings.tumblr-url.size == 0 and settings.youtube-url.size == 0 and settings.vimeo-url.size == 0 %}
+      <nav class="social">
+        {% include 'social-links' %}
+      </nav>
+    {% endunless %}
+
+    <p><a href="http://www.pixelunion.net/themes/shopify/atlantic">Atlantic Theme</a> by <a href="http://www.pixelunion.net">Pixel Union</a>. {{ powered_by_link }}.</p>
+
+    {% include 'footer-payments' %}
+  </div>
+
+</footer>

@@ -1,0 +1,15 @@
+{% assign heading = 'h2' %}
+{% if template == 'index' or template contains 'customers' %}
+  {% assign heading = 'h1' %}
+{% endif %}
+
+<{{ heading }} class="store-title">
+  {% if logo != blank %}
+    <a href="/" style="max-width: {{ logoWidth }}px;">
+      <img src="{{ logo | img_url: '400x200' }}"
+        alt="{{ shop.description | escape }}">
+    </a>
+  {% else %}
+    {{ shop.name | link_to: '/' }}
+  {% endif %}
+</{{ heading }}>

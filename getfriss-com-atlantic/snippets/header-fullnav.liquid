@@ -1,0 +1,113 @@
+<nav class="
+  full
+  {% if headerFormat == 'minimal' %}
+    main-header--nav-compressed
+    compress
+  {% endif %}
+">
+  {% unless headerCenter or headerFormat == 'minimal' %}
+    <div class="content-area">
+  {% endunless %}
+
+  {% comment %} First level {% endcomment %}
+  {% assign menu = linklists[section.settings.menu] %}
+
+  <ul class="main-header--nav-links">
+    {%- for link in menu.links -%}
+      {%- capture _ -%}
+        {% comment %}
+          Using capture to remove whitespace--layout depends on it.
+        {% endcomment %}
+        {% include 'is-dropdown-or-meganav', first_tier_link: link %}
+      {%- endcapture -%}
+
+      <li
+        class="
+          nav-item
+          {% if forloop.first %}first{% endif %}
+          {% if forloop.last %}last{% endif %}
+          {% if link.links != blank %}dropdown{% endif %}
+          {% if is_meganav %}has-mega-nav{% endif %}
+        "
+
+        {% if is_dropdown or is_meganav %}
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-controls="header-dropdown-{{ link.handle }}"
+        {% endif %}
+      >
+        {% if is_dropdown or is_meganav %}
+          <span class="border"></span>
+        {% endif %}
+
+        <a class="label" href="{{ link.url }}">
+          {{ link.title }}
+          {% if is_dropdown or is_meganav %}<span class="icon"><</span>{% endif %}
+        </a>
+
+        {% comment %} Second level {% endcomment %}
+        {% if is_dropdown %}
+          <ul
+            class="dropdown-wrap primary"
+            id="header-dropdown-{{ link.handle }}"
+            aria-hidden="true"
+          >
+            {% for link in link.links %}
+              {% include 'is-dropdown-or-meganav', first_tier_link: link %}
+
+              <li
+                class="
+                  dropdown-item
+                  {% if forloop.first %}first{% endif %}
+                  {% if forloop.last %}last{% endif %}
+                "
+
+                {% if is_dropdown %}
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  aria-controls="header-dropdown-{{ link.handle }}"
+                {% endif %}
+              >
+                <a href="{{ link.url }}">
+                  <span class="label">{{ link.title }}</span>
+                  {% if is_dropdown %}<span class="icon">></span>{% endif %}
+                </a>
+
+                {% comment %} Third level {% endcomment %}
+                {% if is_dropdown %}
+                  <ul
+                    class="dropdown-wrap child secondary right"
+                    id="header-dropdown-{{ link.handle }}"
+                    aria-hidden="true"
+                  >
+                    {% for link in link.links %}
+                      <li class="
+                        dropdown-item
+                        {% if forloop.first %}first{% endif %}
+                        {% if forloop.last %}last{% endif %}
+                      ">
+                        <a href="{{ link.url }}">
+                          <span class="label">{{ link.title }}</span>
+                        </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+                {% comment %} End third level {% endcomment %}
+
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        {% comment %} End second level {% endcomment %}
+
+      </li>
+    {%- endfor -%}
+  </ul>
+  {% comment %} End first level {% endcomment %}
+
+  {% unless headerCenter or headerFormat == 'minimal' %}
+    </div>
+  {% endunless %}
+
+</nav>

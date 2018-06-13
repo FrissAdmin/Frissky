@@ -1,0 +1,63 @@
+{% assign footerModules = 0 %}
+
+{% if footerMessage != blank %}
+  {% assign footerModules = footerModules | plus: 1 %}
+{% endif %}
+
+{% unless settings.twitter-url.size == 0 and settings.facebook-url.size == 0 and settings.pinterest-url.size == 0 and settings.instagram-url.size == 0 %}
+  {% assign footerModules = footerModules | plus: 1 %}
+{% endunless %}
+
+{% if mailingList %}
+  {% assign footerModules = footerModules | plus: 1 %}
+{% endif %}
+
+<footer class="main-footer content-area" id="main-footer">
+
+  <ul class="connect clearfix module-count-{{ footerModules }}">
+    {% if footerMessage != blank %}
+      <li class="contact first">
+        {% if section.settings.footer-message-title != blank %}
+          <h2 class="title">{{ section.settings.footer-message-title | escape }}</h2>
+        {% endif %}
+        <div class="footer-message">{{ footerMessage }}</div>
+      </li>
+    {% endif %}
+
+    {% unless settings.twitter-url.size == 0 and settings.facebook-url.size == 0 and settings.pinterest-url.size == 0 and settings.google-plus-url.size == 0 and settings.instagram-url.size == 0 and settings.tumblr-url.size == 0 and settings.youtube-url.size == 0 and settings.vimeo-url.size == 0 %}
+      <li class="social">
+        <h2 class="title">{{ 'layout.footer.social_title' | t }}</h2>
+        {% include 'social-links' %}
+      </li>
+    {% endunless %}
+
+    {% if mailingList %}
+      <li class="newsletter">
+        <h2 class="title">{{ 'layout.footer.newsletter_title' | t }}</h2>
+        {% form 'customer' %}
+          <div class="wrap">
+            <input class="email" name="contact[email]" type="email" placeholder="{{ 'layout.footer.email' | t }}" value="">
+            <input type="hidden" id="contact_tags" name="contact[tags]" value="prospect,newsletter"/>
+            <input class="submit" name="subscribe" type="submit" value="{{ 'general.submit' | t }}">
+          </div>
+        {% endform %}
+      </li>
+    {% endif %}
+  </ul>
+
+  <div class="sub-footer">
+    {% if linklists.footer.links.size > 0 %}
+    <nav class="footer-nav">
+      <ul>
+        {% for link in linklists.footer.links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+    {% endif %}
+    <p><a href="http://www.pixelunion.net/themes/shopify/atlantic">Atlantic Theme</a> by <a href="http://www.pixelunion.net">Pixel Union</a>. {{ powered_by_link }}.</p>
+
+    {% include 'footer-payments' %}
+  </div>
+
+</footer>

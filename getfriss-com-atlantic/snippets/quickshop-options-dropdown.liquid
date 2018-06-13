@@ -1,0 +1,31 @@
+{% for option in itemType.options_with_values %}
+  {% assign option_index = forloop.index0 %}
+  {%- capture option_id -%}
+    single-option-{{ qs_form_id }}-{{ option_index }}
+  {%- endcapture -%}
+
+  <div class="inline-field-wrapper js-required">
+    <label><strong>{{ option.name }}:</strong></label>
+    <div class="select-wrapper">
+      <label
+        class="select-text"
+        for="{{ option_id }}"
+        data-select-text>
+        <span data-selected-option></span>
+      </label>
+      <select
+        class="single-option-selector"
+        id="{{ option_id }}"
+        data-option-select="{{ qs_form_id }}"
+        data-option-index="{{ option_index }}">
+        {% for value in option.values %}
+          <option
+            value="{{ value | escape }}"
+            {% if option.selected_value == value %}selected="selected"{% endif %}>
+            {{ value }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+{% endfor %}

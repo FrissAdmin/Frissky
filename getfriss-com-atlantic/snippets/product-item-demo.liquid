@@ -1,0 +1,39 @@
+{% if altProductCard %}
+  {% capture cardType %}product-card-alt{% endcapture %}
+{% endif %}
+
+{% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+{% assign placeholder = 'product-' | append: current %}
+{% assign color = settings.primary-border-colour %}
+{% assign color_string = 'fill="' | append: color | append: '" xmlns' %}
+{% capture demo_image %}{%- include 'placeholder_svg_uri', placeholder: placeholder, color_string: color_string -%}{% endcapture %}
+
+<li class="product {% include 'for-looper' %} {% cycle 'flush', '', '', '' %}">
+  <div class="product-inner {{ cardType }}">
+    <figure style="background-image:url('{{ demo_image }}');" class="placeholder-background">
+      {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+
+      <a href="#" class="{% if imageBorders %}with-border{% endif %}"></a>
+
+      {% if altProductCard %}
+        <a class="centering-wrapper overlay" href="#">
+          <span class="product-card-details-overlay">
+            <h3 class="brand">{{ 'onboarding.product_vendor' | t }}</h3>
+            <h2 class="title">{{ 'onboarding.product_name' | t }}</h2>
+            <p class="price"><span class="money">{{ 'onboarding.product_price' | t }}</span></p>
+          </span>
+        </a>
+      {% elsif enableQuickshop %}
+        <div class="overlay">
+          <span class="label">{{ 'collections.collection.quick_shop' | t }}</span>
+        </div>
+      {% endif %}
+    </figure>
+
+    <div class="product-card-details">
+      <h3 class="brand">{{ 'onboarding.product_vendor' | t }}</h3>
+      <h2 class="title"><a href="#">{{ 'onboarding.product_name' | t }}</a></h2>
+      <p class="price"><span class="money">{{ 'onboarding.product_price' | t }}</span></p>
+    </div>
+  </div>
+</li>

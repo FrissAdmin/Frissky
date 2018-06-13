@@ -1,0 +1,197 @@
+<div data-section-id="{{ section.id }}" data-section-type="slider">
+  <section class="home-section slideshow clearfix
+    {% if section.settings.full-width == false %}content-area{% endif %}"
+    {% if section.settings.autoplay_enable %}
+      data-autoplay="{{ section.settings.autoplay_interval | times: 1000 }}"
+    {% endif %}
+    data-full-width="{{ section.settings.full-width }}">
+
+    {% for block in section.blocks %}
+      {% assign image = block.settings.image %}
+      {% assign inverted = block.settings.inverted %}
+      {% assign link = block.settings.link %}
+      {% assign heading = block.settings.slide_title | escape %}
+      {% assign caption = block.settings.caption %}
+      {% assign button = block.settings.button | escape %}
+      {% assign alignment = block.settings.alignment %}
+
+      {%- capture image_html -%}
+        {% if image %}
+          <img
+            alt="{{ image.alt | escape }}"
+            src="{{ image | img_url: '1440x640' }}"
+            srcset="{{ image | img_url: '1440x640', scale: 2 }} 2x">
+        {% else %}
+          {% capture current %}{% cycle 1, 2 %}{% endcapture %}
+          {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+      {%- endcapture -%}
+
+      <div class="slide
+        {% if inverted %}
+          invert
+        {% endif %}"
+        {{ block.shopify_attributes }}>
+
+        <div class="image-wrap">
+          <span class="prev"><span class="icon">[</span></span>
+          <span class="next"><span class="icon">]</span></span>
+          <ul class="jump-to-slide"></ul>
+
+          {% if link != blank %}
+            <a href="{{ link }}">
+              {{- image_html -}}
+            </a>
+          {% else %}
+            {{- image_html -}}
+          {% endif %}
+        </div>
+
+        {% if heading != blank or caption != blank or button != blank %}
+          <div class="content-outer-wrap">
+            <a class="mobile-link" href="{{ link }}"></a>
+
+            <div class="content-inner-wrap">
+              <div class="content {{ alignment }}">
+                {% if heading != blank %}
+                  <h2 class="title">{{ heading }}</h2>
+                {% endif %}
+                {% if caption != blank %}
+                  <h3 class="tagline">{{ caption }}</h3>
+                {% endif %}
+                {% if button != blank and link != blank %}
+                  <a class="call-to-action" href="{{ link }}">
+                    {{ button }} <span class="arrow">></span>
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+
+    {% endfor %}
+  </section>
+
+</div>
+
+{% schema %}
+{
+  "name": "Slideshow",
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full-width",
+      "label": "Enable full width",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay_enable",
+      "label": "Auto-rotate slides",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "autoplay_interval",
+      "label": "Rotation interval",
+      "unit": "sec",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "default": 5
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "inverted",
+          "label": "Invert color controls",
+          "default": false
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "1440 x 640px .jpg recommended"
+        },
+        {
+          "type": "text",
+          "id": "slide_title",
+          "label": "Heading",
+          "default": "Slideshow"
+        },
+        {
+          "type": "html",
+          "id": "caption",
+          "label": "Caption",
+          "default": "Introduce customers to your shop with lifestyle imagery and product photography."
+        },
+        {
+          "type": "text",
+          "id": "button",
+          "label": "Button text",
+          "default": "Your call to action button"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Text position",
+          "options": [
+            {
+              "value": "center bottom",
+              "label": "Center bottom"
+            },
+            {
+              "value": "center top",
+              "label": "Center top"
+            },
+            {
+              "value": "left bottom",
+              "label": "Left bottom"
+            },
+            {
+              "value": "left top",
+              "label": "Left top"
+            },
+            {
+              "value": "right bottom",
+              "label": "Right bottom"
+            },
+            {
+              "value": "right top",
+              "label": "Right top"
+            }
+          ],
+          "default": "center bottom"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Image",
+      "name": "Slideshow",
+      "blocks": [
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        }
+      ]
+    }
+  ]
+}
+
+{% endschema %}

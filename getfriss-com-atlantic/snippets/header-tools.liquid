@@ -1,0 +1,98 @@
+<div class="main-header--tools tools clearfix">
+  {% if headerFormat == 'expanded' %}{% include 'social-links' %}{% endif %}
+
+  <div class="main-header--tools-group">
+    <div class="main-header--tools-left">
+      <div id="coin-container"></div>
+      {% if settings.show-currency-switcher %}
+        <div class="currency-switcher">
+          <div class="selected-currency"></div><span class="drop-arrow"><</span>
+          <select id="currencies" name="currencies">
+            {% capture codes %},USD,EUR,GBP,CAD,ARS,AUD,BBD,BDT,BSD,BHD,BRL,BOB,BND,BGN,MMK,KYD,CLP,CNY,COP,CRC,HRK,CZK,DKK,DOP,XCD,EGP,XPF,FJD,GHS,GTQ,GYD,GEL,HKD,HUF,ISK,INR,IDR,NIS,JMD,JPY,JOD,KZT,KES,KWD,LVL,LTL,MXN,MYR,MUR,MDL,MAD,MNT,MZN,ANG,NZD,NGN,NOK,OMR,PKR,PYG,PEN,PHP,PLN,QAR,RON,RUB,SAR,RSD,SCR,SGD,SYP,ZAR,KRW,LKR,SEK,CHF,TWD,THB,TZS,TTD,TRY,UAH,AED,UYU,VEB,VND,ZMK,{% endcapture %}
+            {% assign supported_codes = settings.currency-switcher-supported-currencies | escape | split: ' ' %}
+            <option value="{{ shop.currency }}" selected="selected">{{ shop.currency }}</option>
+            {% for code in supported_codes %}
+              {% if code != shop.currency and codes contains code %}
+              <option value="{{ code }}">{{ code }}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+      {% endif %}
+
+      <a class="search" href="#">
+        <span class="main-header--tools-icon">{% include 'icon' with 'search' %}</span>
+        <label>{{ 'general.search_placeholder' | t }}</label>
+      </a>
+
+      {% include 'header-searchform' %}
+    </div>
+
+    <div class="main-header--tools-right">
+      <div class="mini-cart-wrap" href="#">
+        <span class="main-header--tools-icon">
+          {% if cartIcon == "cart" %}
+            {% include 'icon' with 'cart' %}
+          {% else %}
+            {% include 'icon' with 'bag' %}
+          {% endif %}
+        </span>
+        <label><span class="item-count">{{ cart.item_count }}</span> {{ 'layout.header.item_count' | t: count: cart.item_count }}</label>
+        <div class="mini-cart {% if shop.customer_accounts_enabled %}account-enabled{% endif %} {% if cart.items.size == 0 %}empty-cart{% endif %}">
+          <div class="arrow"></div>
+          <div class="mini-cart-items-wrap">
+
+              <p class="no-items">{{ 'layout.header.no_items' | t }}</p>
+
+              {% for item in cart.items %}
+              <div id="item-{{ item.id }}" class="item clearfix">
+                <div class="image-wrap">
+                  <img alt="{{ item.product.title }}" src="{{ item | img_url: 'small' }}">
+                  <a class="{% if imageBorders %}overlay{% endif %}" href="{{ item.url }}"></a>
+                </div>
+                <div class="details">
+                  {% if brandNames %}
+                    <p class="brand">{{ item.vendor | link_to_vendor }}</p>
+                  {% endif %}
+                  <p class="title"><a href="{{ item.url }}">{{ item.product.title }}</a><span class="quantity">× <span class="count">{{ item.quantity }}</span></span></p>
+                  <p class="price"><span class="money">{{ item.line_price | money }}</span></p>
+                  {% unless item.variant.title == 'Default Title' %}<p class="variant">{{ item.variant.title }}</p>{% endunless %}
+                  {% if item.properties %}
+                    {% for property in item.properties %}
+                      {% unless property.last == blank %}
+                        <p class="property">
+                          <span class="property-label">{{ property.first }}:</span>
+                          {% if property.last contains '/uploads/' %}
+                            <a class="property-image" href="{{ property.last }}">{{ property.last | split: '/' | last }}</a>
+                          {% else %}
+                            <span class="property-value">{{ property.last }}</span>
+                          {% endif %}
+                        </p>
+                      {% endunless %}
+                    {% endfor %}
+                  {% endif %}
+                </div>
+              </div>
+              {% endfor %}
+          </div>
+          <div class="options clearfix">
+            <a class="action-button view-cart desaturated" href="/cart">{{ 'layout.header.view_cart' | t }}</a>
+            <a class="action-button checkout" href="/checkout">{{ 'layout.header.checkout' | t }}</a>
+          </div>
+        </div>
+      </div>
+
+      {% if shop.customer_accounts_enabled %}
+
+        {% if customer %}
+          <a class="account-options" href="/account"><span class="icon">a</span><label>{{ 'general.account' | t }}</label></a>
+        {% else %}
+          <a class="account-options" href="/account/login">
+            <span class="icon">a</span>{{ 'layout.header.login' | t }}
+          </a>
+        {% endif %}
+
+      {% endif %}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+{% if itemType.available %}
+
+  <div class="badges-wrapper">
+    {% if itemType.compare_at_price_min > itemType.price_min %}
+      <span class="badge badge-sale">{{ 'products.product.on_sale' | t }}</span>
+    {% endif %}
+
+    {% capture new-tag %}{{ 'products.product.new' | t }}{% endcapture %}
+    {% if product.tags contains new-tag %}
+      <span class="badge badge-new">{{ new-tag }}</span>
+    {% endif %}
+  </div>
+
+{% else %}
+  <div class="centering-wrapper">
+    <span class="badge badge-soldout">{{ 'products.product.sold_out' | t }}</span>
+  </div>
+{% endif %}

@@ -1,0 +1,62 @@
+<div data-section-id="{{ section.id }}" data-section-type="article-template">
+
+  {%- assign recentPosts = section.settings.recent-posts -%}
+  {%- assign tagList = section.settings.tag-list -%}
+
+  <main class="content content-area">
+
+    {% include 'breadcrumbs' %}
+
+    <div class="page-title">
+      <h2 class="label"><a href="{{ blog.url }}">{{ blog.title }}</a></h2>
+    </div>
+
+    <div class="content-wrap clearfix">
+      <section class="articles">
+        {% include 'article-item' %}
+      </section>
+
+      {% if recentPosts or tagList %}
+        {% include 'blog-sidebar' %}
+      {% endif %}
+    </div>
+
+  </main>
+
+</div>
+
+{% schema %}
+{
+  "name": "Article pages",
+  "class": "section-article",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+      "type": "checkbox",
+      "id": "show-breadcrumbs",
+      "label": "Show breadcrumbs",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Sidebar"
+    },
+    {
+      "type": "checkbox",
+      "id": "recent-posts",
+      "label": "Show recent posts",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "tag-list",
+      "label": "Show tags",
+      "default": false
+    }
+  ]
+}
+
+{% endschema %}

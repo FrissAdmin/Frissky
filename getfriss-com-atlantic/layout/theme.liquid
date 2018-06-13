@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie10 lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie10 lt-ie9 ie8"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js lt-ie10 ie9"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>
+    {{ page_title }}
+
+    {% if current_tags %}
+      &ndash; "{{ current_tags | join: ', ' }}"
+    {% endif %}
+
+    {% if current_page != 1 %}
+      &ndash; {{ 'general.pagination.seo_title' | t }} {{ current_page }}
+    {% endif %}
+
+    {% unless page_title contains shop.name %}
+      &ndash; {{ shop.name }}
+    {% endunless %}
+  </title>
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description }}">
+  {% elsif template == 'index' and shop.description != '' %}
+    <meta name="description" content="{{ shop.description }}" />
+  {% endif %}
+
+  <link rel="canonical" href="{{ canonical_url }}" />
+  <meta name="viewport" content="width=device-width" />
+
+  {% if settings.favicon %}
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '16x16' }}" type="image/png" />
+  {% endif %}
+
+  <script src="{{ 'jquery-1.9.min.js' | asset_url }}"></script>
+
+  {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
+
+  {% include 'social-meta' %}
+  {% include 'theme-options' %}
+
+  {{ content_for_header }}
+
+</head>
+
+<body class="
+  {% if template contains 'contact' %}
+    template-contact
+  {% else %}
+    template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}
+  {% endif %}
+
+  product-grid-{{ settings.product_grid_aspect_ratio }}
+
+  {% if settings.meta-font == "'Open Sans' sans-serif" %}font-open-sans{% endif %}
+  {% if settings.main-title-uppercase %}uppercase{% endif %}">
+
+  {% include 'icons-sprite' %}
+
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=187795038002910";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+  {% section 'header' %}
+
+  <div class="page-body-content">
+    {% unless template contains 'collections' %}
+      {{ content_for_layout }}
+    {% else %}
+      {% include 'collections' %}
+    {% endunless %}
+  </div>
+
+  {% section 'footer' %}
+
+  {% if template contains 'index' or template contains 'collection' or template contains 'product' or template contains '404' or template contains 'search' %}
+  <section class="quick-shop">
+
+    <div class="quick-shop-modal">
+      <!-- Content dynamically added -->
+    </div>
+
+  </section>
+  {% endif %}
+
+  {% include 'font-loader' %}
+
+  <!-- Third party JS Assets
+  ///////////////////////////////////////// -->
+  {{ 'modernizr-2.6.2.min.js' | asset_url | script_tag }}
+
+  {{ 'api.jquery.js' | shopify_asset_url | script_tag }}
+
+  {{ "//cdn.shopify.com/s/javascripts/currencies.js" | script_tag }}
+  {{ "jquery.currencies.js" | asset_url | script_tag }}
+
+  {{ 'plugins.js' | asset_url | script_tag }}
+  {{ 'site.js' | asset_url | script_tag }}
+
+  {% if template contains 'customers' %}
+    {{ "shopify_common.js" | shopify_asset_url | script_tag }}
+    {{ "customer_area.js"  | shopify_asset_url | script_tag }}
+  {% endif %}
+
+  {% if template contains 'cart' %}
+    {{ "/services/javascripts/countries.js" | script_tag }}
+    {{ "shopify_common.js" | shopify_asset_url | script_tag }}
+    {{ "jquery.cart.min.js" | asset_url | script_tag }}
+  {% endif %}
+
+  {% if template contains 'addresses' %}
+    <script>
+      // initialize observers on address selectors
+      new Shopify.CountryProvinceSelector('address-country', 'address-province', {hideElement: 'address-province-container'});
+      {% for address in customer.addresses %}
+        new Shopify.CountryProvinceSelector('address-country-{{address.id}}', 'address-province-{{address.id}}', {hideElement: 'address-province-container-{{address.id}}'});
+      {% endfor %}
+    </script>
+  {% endif %}
+
+</body>
+</html>

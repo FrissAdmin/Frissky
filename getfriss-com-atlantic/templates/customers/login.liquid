@@ -1,0 +1,83 @@
+<section class="content content-area customer login">
+
+  {% include 'breadcrumbs' %}
+
+  <div class="page-title">
+    <span class="label">{{ 'customer.login.header' | t }}</span>
+  </div>
+
+  <div id="customer-login" class="account-form">
+    {% form 'customer_login' %}
+
+      {% if form.errors %}
+        <div class="error-message"><span>{{ 'customer.login.error' | t }}</span></div>
+      {% endif %}
+
+      <div class="field-wrap email">
+        <label>{{ 'general.email' | t }}</label>
+        <input type="text" placeholder="{{ 'general.email_placeholder' | t }}" value="" name="customer[email]" class="field">
+      </div>
+
+      <div class="field-wrap password">
+        <label>{{ 'general.password' | t }}</label>
+        <input type="password" name="customer[password]" class="field">
+      </div>
+
+      <input type="submit" class="action-button submit-button" value="{{ 'general.submit' | t }}">
+      <a class="forgot-password helper" href="#recover" onclick="showRecoverPasswordForm()">{{ 'customer.login.forgot_password' | t }}</a>
+
+    {% endform %}
+
+    {% if shop.checkout.guest_login %}
+      <div class="secondary-wrap">
+      {% form 'guest_login' %}
+        <p class="guest-login"><a href="#">{{ 'customer.guest_login.submit' | t }}</a> {{ 'customer.guest_login.no_login' | t }}</p>
+      {% endform %}
+      </div>
+    {% else %}
+      <div class="secondary-wrap">
+        <p>{{ 'customer.login.new_customer' | t }} <a href="/account/register">{{ 'customer.login.sign_up' | t }}</a></p>
+      </div>
+    {% endif %}
+  </div>
+
+  <div id="recover-password" class="account-form">
+    {% form 'recover_customer_password' %}
+
+      <p class="message">{{ 'customer.reset_password.subtext' | t }}</p>
+
+      {% if form.errors %}
+        <div class="error-message"><span>{{ form.errors | default_errors }}</span></div>
+      {% endif %}
+
+      <div class="field-wrap email">
+        <label>{{ 'general.email' | t }}</label>
+        <input type="text" placeholder="{{ 'general.email_placeholder' | t }}" value="" name="email" class="field">
+      </div>
+
+      <input type="submit" class="action-button submit-button" value="{{ 'general.submit' | t }}">
+      <a class="forgot-password helper" href="#recover" onclick="hideRecoverPasswordForm()"><span>{{ 'customer.general.or' | t }} </span>{{ 'customer.general.cancel' | t }}</a>
+
+    {% endform %}
+  </div>
+
+  <script type="text/javascript">
+
+    if (window.location.hash == '#recover') { showRecoverPasswordForm() }
+
+    function showRecoverPasswordForm() {
+      document.getElementById('recover-password').style.display = 'block';
+      document.getElementById('customer-login').style.display='none';
+      window.location.hash = '#recover';
+      return false;
+    }
+
+    function hideRecoverPasswordForm() {
+      document.getElementById('recover-password').style.display = 'none';
+      document.getElementById('customer-login').style.display = 'block';
+      return false;
+    }
+
+  </script>
+
+</section>

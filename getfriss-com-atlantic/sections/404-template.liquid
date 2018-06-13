@@ -1,0 +1,61 @@
+<div data-section-id="{{ section.id }}" data-section-type="404-template">
+
+  {%- assign brandNames = settings.show-brand-names -%}
+  {%- assign productsCollection = section.settings.products-collection -%}
+  {%- assign altProductCard = settings.alt-product-card -%}
+  {%- assign imageBorders = settings.image-borders -%}
+  {%- assign enableQuickshop = settings.enable-quick-shop -%}
+
+  <main class="content content-area">
+
+    {% include 'breadcrumbs' %}
+
+    <div class="page-title">
+      <h1 class="label">{{ 'general.404.title' | t }}</h1>
+    </div>
+
+    {%- capture link -%}
+      <a href="/">{{ 'general.404.home_link' | t }}</a>
+    {%- endcapture -%}
+
+    <p class="message empty">
+      {% if productsCollection != blank %}
+        {{ 'general.404.subtext_collection_html' | t: link: link }}
+      {% else %}
+        {{ 'general.404.subtext_html' | t }}
+      {% endif %}
+    </p>
+
+    {% if productsCollection != "" %}
+      <section class="products">
+        <ul class="product-list">
+          {% for product in collections[productsCollection].products limit: 4 %}
+            {% include 'product-item' %}
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+
+  </main>
+
+</div>
+
+{% schema %}
+{
+  "name": "404 pages",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show-breadcrumbs",
+      "label": "Show breadcrumbs",
+      "default": true
+    },
+    {
+      "type": "collection",
+      "id": "products-collection",
+      "label": "Collection"
+    }
+  ]
+}
+
+{% endschema %}

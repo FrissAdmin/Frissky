@@ -1,0 +1,49 @@
+{% assign default_country = '' %}
+{% assign default_province = '' %}
+{% assign default_zip = '' %}
+
+{% if shippingCalculatorDefaultCountry != '' %}
+  {% assign default_country = shippingCalculatorDefaultCountry %}
+{% endif %}
+
+{% if customer %}
+  {% if customer.default_address.country != '' %}
+    {% assign default_country = customer.default_address.country %}
+  {% endif %}
+
+  {% if customer.default_address.province != '' %}
+    {% assign default_province = customer.default_address.province %}
+  {% endif %}
+
+  {% if customer.default_address.zip != '' %}
+    {% assign default_zip = customer.default_address.zip %}
+  {% endif %}
+{% endif %}
+
+<div id="shipping-calculator" class="clearfix">
+
+  <div class="wrapper-setup">
+    <p>
+      <label for="address_country">{{ 'customer.addresses.country' | t }}</label><select class="styled-select address-country" id="address_country" name="address[country]" data-default="{{ default_country }}">{{ country_option_tags }}</select>
+    </p>
+    <p id="address_province_container" style="display:none;">
+      <label for="address_province" id="address_province_label">{{ 'customer.addresses.province' | t }}</label><select class="styled-select address-province" id="address_province" name="address[province]" data-default="{{ default_province }}"></select>
+    </p>
+    <p>
+      <label for="address_zip">{{ 'customer.addresses.zip' | t }}</label><input type="text" class="field address-zip" id="address_zip" name="address[zip]" {% if default_zip != blank %}value="{{ default_zip }}"{% endif %}>
+    </p>
+
+    <p class="clearfix"><span class="input-wrap"><input type="button" class="get-rates action-button desaturated" value="{{ 'cart.shipping_calculator.submit' | t }}" /></span></p>
+
+  </div><div class="wrapper-response"></div>
+
+</div>
+
+<script type="application/json" data-shipping-calculator-strings>
+  {
+    "customerIsLoggedIn": {{ customer.default_address.country | default: false | json }},
+    "submitButton": {{ 'cart.shipping_calculator.submit' | t | json }},
+    "submitButtonDisabled": {{ 'cart.shipping_calculator.working' | t | json}},
+    "moneyFormat": {{ shop.money_with_currency_format | json }}
+  }
+</script>

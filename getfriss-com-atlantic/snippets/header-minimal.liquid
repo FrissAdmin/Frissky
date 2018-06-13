@@ -1,0 +1,11 @@
+
+<div class="header-minimal {% if headerCenter %}header-minimal-centered{% endif %}">
+  {% if headerCenter %}
+    {% include 'header-fullnav' %}
+    {% include 'header-storetitle' %}
+  {% else %}
+    {% include 'header-storetitle' %}
+    {% include 'header-fullnav' %}
+  {% endif %}
+  {% include 'header-tools' %}
+</div>

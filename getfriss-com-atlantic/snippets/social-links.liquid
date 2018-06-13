@@ -1,0 +1,10 @@
+<aside class="social-links">
+  {% if settings.twitter-url.size > 0 %}<a href="{{ settings.twitter-url | escape }}" class="social-link twitter" target="_blank">{% include 'icon' with 'twitter' %}</a>{% endif %}
+  {% if settings.facebook-url.size > 0 %}<a href="{{ settings.facebook-url | escape }}" class="social-link facebook" target="_blank">{% include 'icon' with 'facebook' %}</a>{% endif %}
+  {% if settings.pinterest-url.size > 0 %}<a href="{{ settings.pinterest-url | escape }}" class="social-link pinterest" target="_blank">{% include 'icon' with 'pinterest' %}</a>{% endif %}
+  {% if settings.google-plus-url.size > 0 %}<a href="{{ settings.google-plus-url | escape }}" class="social-link google-plus" target="_blank">{% include 'icon' with 'google-plus' %}</a>{% endif %}
+  {% if settings.instagram-url.size > 0 %}<a href="{{ settings.instagram-url | escape }}" class="social-link instagram" target="_blank">{% include 'icon' with 'instagram' %}</a>{% endif %}
+  {% if settings.tumblr-url.size > 0 %}<a href="{{ settings.tumblr-url | escape }}" class="social-link tumblr" target="_blank">{% include 'icon' with 'tumblr' %}</a>{% endif %}
+  {% if settings.youtube-url.size > 0 %}<a href="{{ settings.youtube-url | escape }}" class="social-link youtube" target="_blank">{% include 'icon' with 'youtube' %}</a>{% endif %}
+  {% if settings.vimeo-url.size > 0 %}<a href="{{ settings.vimeo-url | escape }}" class="social-link vimeo" target="_blank">{% include 'icon' with 'vimeo' %}</a>{% endif %}
+</aside>

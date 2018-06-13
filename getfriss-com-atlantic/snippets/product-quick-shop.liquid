@@ -1,0 +1,154 @@
+{%- assign quickshopFirstVariant = itemType.selected_or_first_available_variant -%}
+{%- assign quickshopquickshopFirstVariantImage = quickshopFirstVariant.featured_image | default: itemType.featured_image -%}
+{%- assign quickshopProductQuantityOption = settings.quickshop-product-quantity-option -%}
+{%- assign quickshopProductEmailLink = settings.quickshop-product-email-link -%}
+{%- assign quickshopImageBorders = settings.image-borders -%}
+{%- assign quickshopBrandNames = settings.show-brand-names -%}
+{%- assign quickshopProductQuickAdd = settings.quickshop-product-quick-add -%}
+{%- assign has_variants = false -%}
+{%- unless product.has_only_default_variant -%}
+  {%- assign has_variants = true %}
+{%- endunless -%}
+
+<div id="quick-shop-{{ itemType.id }}"
+  class="quick-shop-content clearfix"
+  data-product-quick-add="{{ quickshopProductQuickAdd }}"
+  {% if itemType.options.size == 1 %}data-option="{{ itemType.options.first | escape }}"{% endif %}>
+
+  <div class="showcase {% if itemType.images.size == 1 %}wide{% endif %}">
+    <div class="container {% if itemType.images.size == 1 or settings.quickshop-thumb-orientation == 'below' %}wide{% endif %}">
+      <div class="wrap">
+        <img alt="{{ quickshopquickshopFirstVariantImage.alt }}" src="{{ quickshopquickshopFirstVariantImage | product_img_url: 'large' }}">
+        {% if quickshopImageBorders %}<span class="overlay"></span>{% endif %}
+      </div>
+    </div>
+
+    {% if itemType.images.size > 1 %}
+      <div class="pager {% if settings.quickshop-thumb-orientation == 'below' %}below-main-image{% endif %}">
+        <div class="inner">
+          {% for image in itemType.images %}
+            <div class="wrap thumb {% include 'for-looper' %} {% if forloop.first %}active{% endif %}">
+              <img
+                alt="{{ image.alt }}"
+                src="{{ image.src | product_img_url: 'small' }}"
+                data-high-res-url="{{ image.src | product_img_url: 'large' }}"
+                data-image-id="{{ image.id }}"
+              >
+              <span class="overlay"></span>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if quickshopProductEmailLink %}
+      <div class="notes">
+        <a href="mailto:{{ shop.email }}?subject={{ itemType.title | escape }}" class="email-us">
+          <span class="icon">j</span>{{ 'products.product.email_us' | t }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="product-details-wrapper {% if has_variants == false and quickshopProductQuantityOption == false %}no-options{% endif %}">
+
+    <div class="module header">
+      <span class="close-modal">v</span>
+      {% if quickshopBrandNames %}
+        <p class="brand">{{ itemType.vendor }}</p>
+      {% endif %}
+      <p class="title"><a href="{{ itemType.url | within: collection }}">{{ itemType.title }}</a></p>
+      <p class="price sale">
+        <span class="original money">{{ quickshopFirstVariant.compare_at_price | money }}</span>
+        <span class="money">{{ quickshopFirstVariant.price | money }}</span>
+      </p>
+    </div>
+
+    {% assign qs_form_id = itemType.id %}
+    {% assign selectedVariant = itemType.selected_or_first_available_variant | default: itemType %}
+
+    <form class="module options quick-shop-form {% unless itemType.available %}unavailable{% endunless %}" action="/cart/add" method="post" id="quick-shop-form-{{ itemType.id }}" data-quickshop-form="{{ qs_form_id }}" data-product-id="{{ itemType.id }}">
+
+      {% if itemType.available %}
+
+        {% if has_variants %}
+          <div class="product-options">
+            {% include 'quickshop-options-dropdown' %}
+
+            <div class="selector-wrapper no-js-required">
+              <label for="product-select-{{ qs_form_id }}"></label>
+              <select
+                class="product-select"
+                name="id"
+                id="product-select-{{ qs_form_id }}">
+                {% for variant in itemType.variants %}
+                  {% if variant.available %}
+                    <option
+                      {% if variant.id == selectedVariant.id %}selected="selected"{% endif %}
+                      value="{{ variant.id }}" data-variant-id="{{ variant.id }}">
+                      {{ variant.title }} - {{ variant.price | money }}
+                    </option>
+                  {% else %}
+                    <option disabled="disabled" value="{{ variant.id }}" data-variant-id="{{ variant.id }}">
+                      {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+                    </option>
+                  {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        {% else %}
+          <input
+            class="product-select"
+            name="id"
+            value="{{ itemType.variants[0].id }}"
+            type="hidden"
+            data-variant-title="{{ itemType.variants[0].title }}" />
+        {% endif %}
+
+        {% if quickshopProductQuantityOption %}
+          <div class="selector-wrapper quantity">
+            <label>{{ 'general.quantity' | t }}</label>
+            <input type="text" name="quantity" class="product-quantity field" value="1">
+          </div>
+        {% else %}
+          <input type="hidden" name="quantity" class="product-quantity field" value="1">
+        {% endif %}
+
+        <div class="selector-wrapper">
+          <input class="action-button submit" type="submit" value="{{ 'products.product.add_to_cart' | t }}" />
+        </div>
+
+        <div class="error-wrap"></div>
+
+      {% else %}
+
+        <span class="action-button unavailable disabled">{{ 'products.product.sold_out' | t }}</span>
+
+      {% endif %}
+
+    </form>
+
+    <div class="module description">
+      {% if itemType.description.size > 0 %}
+        <div class="rte special">{{ itemType.description }}</div>
+      {% endif %}
+      <a class="go-to-product" href="{{ itemType.url | within: collection }}">{{ 'products.product.visit_page' | t }} <span>→</span></a>
+    </div>
+
+  </div>
+
+  {% assign add_to_cart_text = 'products.product.add_to_cart' | t %}
+
+  {%
+    include 'quickshop-json',
+    id: itemType.id,
+    add_to_cart_text: add_to_cart_text,
+    enable_history: true
+  %}
+
+</div>
+
+<script>
+  Theme.products["{{ itemType.id }}"] = {{ itemType | json }};
+</script>

@@ -1,0 +1,91 @@
+{% assign menu = linklists[section.settings.menu] %}
+
+{% for link in menu.links %}
+  {% include 'is-dropdown-or-meganav', first_tier_link: link %}
+  {% if is_meganav == false %}{% continue %}{% endif %}
+
+  <section
+    class="mega-nav"
+    id="header-dropdown-{{ link.handle }}"
+    role="navigation"
+    aria-hidden="true"
+  >
+    <div class="mega-nav-wrap content-area">
+
+      {% comment %} First level {% endcomment %}
+      <ul class="main-list mega-nav-list clearfix">
+        {%- for link in link.links -%}
+          <li class="
+            list
+            clearfix
+            {% if forloop.first %}first{% endif %}
+            {% if forloop.last %}last{% endif %}
+          ">
+            <h2 class="label">
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            </h2>
+
+            <ul class="list-wrap" data-list="{{ link.handle }}">
+              {% for link in link.links %}
+                {% include 'is-dropdown-or-meganav', first_tier_link: link %}
+
+                {% if forloop.index < meganavLimit %}
+                  <li class="list-item {{ topLevelColumns }}">
+                    <a
+                      class="item"
+                      href="{{ link.url }}"
+                      data-category="{{ link.handle }}"
+                    >
+                      {{ link.title }}
+                      {% if is_dropdown %}<span class="more-icon">+</span>{% endif %}
+                    </a>
+                  </li>
+                {% elsif forloop.index == meganavLimit %}
+                  <li class="list-item {{ topLevelColumns }}">
+                    <a class="item show-more" href="#">{{ 'layout.header.more' | t }}</a>
+                  </li>
+                {% endif %}
+
+              {% endfor %}
+            </ul>
+          </li>
+        {%- endfor -%}
+      </ul>
+
+      {% comment %} Expanded levels (show more) {% endcomment %}
+      <ul class="expanded-list mega-nav-list clearfix">
+        {% for link in link.links %}
+          <li class="back"></li>
+          <li
+            class="
+              list
+              clearfix
+              {% if forloop.first %}first{% endif %}
+              {% if forloop.last %}last{% endif %}
+            "
+            data-list="{{ link.handle }}"
+          >
+            <h2 class="label">{{ link.title }}</h2>
+            <ul class="list-wrap">
+              {% for link in link.links %}
+                {% include 'is-dropdown-or-meganav', first_tier_link: link %}
+
+                <li class="list-item">
+                  <a
+                    data-category="{{ link.handle }}"
+                    class="item"
+                    href="{{ link.url }}"
+                  >
+                    {{ link.title }}
+                    {% if is_dropdown %}<span class="more-icon">+</span>{% endif %}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </li>
+        {% endfor %}
+      </ul>
+
+    </div>
+  </section>
+{% endfor %}

@@ -1,0 +1,77 @@
+<div data-section-id="{{ section.id }}" data-section-type="search-template">
+
+  {%- assign imageBorders = settings.image-borders -%}
+  {%- assign paginationStyle = section.settings.pagination-style -%}
+  {%- assign brandNames = settings.show-brand-names -%}
+
+  <section class="content-area">
+    {% include 'breadcrumbs' %}
+
+    <div class="page-title">
+      <h1 class="label">{{ 'general.search.header' | t }}</h1>
+    </div>
+
+    {% paginate search.results by 10 %}
+
+      <main class="results">
+
+        {% capture results %}
+          {{ 'general.search.results' | t: count: search.results_count }}
+        {% endcapture %}
+
+        <p class="results-label">{{ 'general.search.results_text' | t: results: results, results_count: search.results_count, search_terms: search.terms }}</p>
+
+        {% for item in search.results %}
+          {% include 'search-result' %}
+        {% endfor %}
+
+        {% if paginate.previous or paginate.next %}
+          {% include 'pagination' %}
+        {% endif %}
+
+      </main>
+
+    {% endpaginate %}
+
+  </section>
+
+</div>
+
+{% schema %}
+{
+  "name": "Search result pages",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+      "type": "checkbox",
+      "id": "show-breadcrumbs",
+      "label": "Show breadcrumbs",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Pagination"
+    },
+    {
+      "type": "select",
+      "id": "pagination-style",
+      "label": "Style",
+      "options": [
+        {
+          "value": "standard",
+          "label": "Standard pagination"
+        },
+        {
+          "value": "jump-to-page",
+          "label": "Jump-to-page pagination"
+        }
+      ],
+      "default": "standard"
+    }
+  ]
+}
+
+{% endschema %}

@@ -1,0 +1,798 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Atlantic",
+    "theme_author": "Pixel Union",
+    "theme_version": "11.3.1",
+    "theme_documentation_url": "https://www.pixelunion.net/support/atlantic-theme-manual/",
+    "theme_support_email": "support@pixelunion.net"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "General"
+      },
+      {
+        "type": "color",
+        "id": "background-colour",
+        "label": "Background"
+      },
+      {
+        "type": "color",
+        "id": "primary-border-colour",
+        "label": "Border"
+      },
+      {
+        "type": "color",
+        "id": "text-colour",
+        "label": "Text"
+      },
+      {
+        "type": "color",
+        "id": "title-colour",
+        "label": "Heading"
+      },
+      {
+        "type": "color",
+        "id": "accent-colour",
+        "label": "Accent"
+      },
+      {
+        "type": "color",
+        "id": "accent-hover-colour",
+        "label": "Accent hover"
+      },
+      {
+        "type": "color",
+        "id": "button-text-colour",
+        "label": "Button text"
+      },
+      {
+        "type": "header",
+        "content": "Header"
+      },
+      {
+        "type": "color",
+        "id": "logotype-link-colour",
+        "label": "Logo text"
+      },
+      {
+        "type": "color",
+        "id": "logotype-link-hover-colour",
+        "label": "Logo text hover"
+      },
+      {
+        "type": "color",
+        "id": "header-action-link-colour",
+        "label": "Header action links"
+      },
+      {
+        "type": "color",
+        "id": "header-action-link-hover-colour",
+        "label": "Header action links hover"
+      },
+      {
+        "type": "header",
+        "content": "Navigation"
+      },
+      {
+        "type": "color",
+        "id": "nav-link-colour",
+        "label": "Links"
+      },
+      {
+        "type": "color",
+        "id": "nav-link-hover-colour",
+        "label": "Links hover"
+      },
+      {
+        "type": "color",
+        "id": "nav-link-dropdown-colour",
+        "label": "Dropdown links",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "nav-background-colour",
+        "label": "Background"
+      },
+      {
+        "type": "color",
+        "id": "nav-border-colour",
+        "label": "Border"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Body text"
+      },
+      {
+        "type": "select",
+        "id": "body-font",
+        "label": "Font",
+        "options": [
+          {
+            "value": "'butlerbold', 'PT Serif', 'Times New Roman', Times, serif",
+            "label": "Butler",
+            "group": "Serif"
+          },
+          {
+            "value": "'PT Serif', 'Times New Roman', Times, serif",
+            "label": "PT Serif",
+            "group": "Serif"
+          },
+          {
+            "value": "Palatino, 'Palatino Linotype', 'Book Antiqua', serif",
+            "label": "Palatino",
+            "group": "Serif"
+          },
+          {
+            "value": "Garamond, Baskerville, Caslon, serif",
+            "label": "Garamond",
+            "group": "Serif"
+          },
+          {
+            "value": "Georgia, Utopia, 'Times New Roman', Times, serif",
+            "label": "Georgia",
+            "group": "Serif"
+          },
+          {
+            "value": "'Times New Roman', Times, serif",
+            "label": "Times New Roman",
+            "group": "Serif"
+          },
+          {
+            "value": "'Arvo', serif",
+            "label": "Arvo",
+            "group": "Slab"
+          },
+          {
+            "value": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+            "label": "Helvetica",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Open Sans', sans-serif",
+            "label": "Open Sans",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Source Sans Pro', sans-serif",
+            "label": "Source Sans Pro",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Raleway', sans-serif",
+            "label": "Raleway",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "Verdana, Helvetica, Arial, sans-serif",
+            "label": "Verdana",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "Tahoma, Verdana, Geneva, sans-serif",
+            "label": "Tahoma",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "Karla, 'Helvetica Neue', Helvetica, Arial, Sans-serif",
+            "label": "Karla",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Droid Sans', 'Helvetica Neue', Helvetica, Arial, Sans-serif",
+            "label": "Droid Sans",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "Montserrat, 'Helvetica Neue', Helvetica, Arial, Sans-serif",
+            "label": "Montserrat",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Droid Serif', 'Times New Roman', Times, serif",
+            "label": "Droid Serif",
+            "group": "Serif"
+          },
+          {
+            "value": "Poppins, 'Helvetica Neue', Helvetica, Arial, Sans-serif",
+            "label": "Poppins",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Work Sans', 'Helvetica Neue', Helvetica, Arial, Sans-serif",
+            "label": "Work Sans",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Courier New', Courier, monospace",
+            "label": "Courier New",
+            "group": "Monospace"
+          },
+          {
+            "value": "Monaco, 'Lucida Console', 'DejaVu Sans Mono', monospace",
+            "label": "Monaco\/Lucida Console",
+            "group": "Monospace"
+          }
+        ],
+        "default": "'Helvetica Neue', Helvetica, Arial, sans-serif"
+      },
+      {
+        "type": "header",
+        "content": "Headings"
+      },
+      {
+        "type": "select",
+        "id": "main-title-font",
+        "label": "Font",
+        "options": [
+          {
+            "value": "'butlerbold', 'PT Serif', 'Times New Roman', Times, serif",
+            "label": "Butler",
+            "group": "Serif"
+          },
+          {
+            "value": "'PT Serif', 'Times New Roman', Times, serif",
+            "label": "PT Serif",
+            "group": "Serif"
+          },
+          {
+            "value": "'TheanoDidotRegular', serif",
+            "label": "Didot",
+            "group": "Serif"
+          },
+          {
+            "value": "Palatino, 'Palatino Linotype', 'Book Antiqua', serif",
+            "label": "Palatino",
+            "group": "Serif"
+          },
+          {
+            "value": "Garamond, Baskerville, Caslon, serif",
+            "label": "Garamond",
+            "group": "Serif"
+          },
+          {
+            "value": "Georgia, Utopia, 'Times New Roman', Times, serif",
+            "label": "Georgia",
+            "group": "Serif"
+          },
+          {
+            "value": "'Times New Roman', Times, serif",
+            "label": "Times New Roman",
+            "group": "Serif"
+          },
+          {
+            "value": "'Arvo', serif",
+            "label": "Arvo",
+            "group": "Slab"
+          },
+          {
+            "value": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+            "label": "Helvetica",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Open Sans', sans-serif",
+            "label": "Open Sans",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Source Sans Pro', sans-serif",
+            "label": "Source Sans Pro",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Raleway', sans-serif",
+            "label": "Raleway",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "Verdana, Helvetica, Arial, sans-serif",
+            "label": "Verdana",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "Tahoma, Verdana, Geneva, sans-serif",
+            "label": "Tahoma",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "Karla, 'Helvetica Neue', Helvetica, Arial, Sans-serif",
+            "label": "Karla",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Droid Sans', 'Helvetica Neue', Helvetica, Arial, Sans-serif",
+            "label": "Droid Sans",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "Montserrat, 'Helvetica Neue', Helvetica, Arial, Sans-serif",
+            "label": "Montserrat",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Droid Serif', 'Times New Roman', Times, serif",
+            "label": "Droid Serif",
+            "group": "Serif"
+          },
+          {
+            "value": "Poppins, 'Helvetica Neue', Helvetica, Arial, Sans-serif",
+            "label": "Poppins",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Work Sans', 'Helvetica Neue', Helvetica, Arial, Sans-serif",
+            "label": "Work Sans",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Courier New', Courier, monospace",
+            "label": "Courier New",
+            "group": "Monospace"
+          },
+          {
+            "value": "Monaco, 'Lucida Console', 'DejaVu Sans Mono', monospace",
+            "label": "Monaco\/Lucida Console",
+            "group": "Monospace"
+          }
+        ],
+        "default": "'Helvetica Neue', Helvetica, Arial, sans-serif"
+      },
+      {
+        "type": "checkbox",
+        "id": "main-title-uppercase",
+        "label": "Capitalize"
+      },
+      {
+        "type": "select",
+        "id": "secondary-header-font",
+        "label": "Secondary font",
+        "options": [
+          {
+            "value": "'butlerbold', 'PT Serif', 'Times New Roman', Times, serif",
+            "label": "Butler",
+            "group": "Serif"
+          },
+          {
+            "value": "'PT Serif', 'Times New Roman', Times, serif",
+            "label": "PT Serif",
+            "group": "Serif"
+          },
+          {
+            "value": "Palatino, 'Palatino Linotype', 'Book Antiqua', serif",
+            "label": "Palatino",
+            "group": "Serif"
+          },
+          {
+            "value": "Garamond, Baskerville, Caslon, serif",
+            "label": "Garamond",
+            "group": "Serif"
+          },
+          {
+            "value": "Georgia, Utopia, 'Times New Roman', Times, serif",
+            "label": "Georgia",
+            "group": "Serif"
+          },
+          {
+            "value": "'Times New Roman', Times, serif",
+            "label": "Times New Roman",
+            "group": "Serif"
+          },
+          {
+            "value": "'Arvo', serif",
+            "label": "Arvo",
+            "group": "Slab"
+          },
+          {
+            "value": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+            "label": "Helvetica",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Open Sans', sans-serif",
+            "label": "Open Sans",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Source Sans Pro', sans-serif",
+            "label": "Source Sans Pro",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Raleway', sans-serif",
+            "label": "Raleway",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "Verdana, Helvetica, Arial, sans-serif",
+            "label": "Verdana",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "Tahoma, Verdana, Geneva, sans-serif",
+            "label": "Tahoma",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "Karla, 'Helvetica Neue', Helvetica, Arial, Sans-serif",
+            "label": "Karla",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Droid Sans', 'Helvetica Neue', Helvetica, Arial, Sans-serif",
+            "label": "Droid Sans",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "Montserrat, 'Helvetica Neue', Helvetica, Arial, Sans-serif",
+            "label": "Montserrat",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Droid Serif', 'Times New Roman', Times, serif",
+            "label": "Droid Serif",
+            "group": "Serif"
+          },
+          {
+            "value": "Poppins, 'Helvetica Neue', Helvetica, Arial, Sans-serif",
+            "label": "Poppins",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Work Sans', 'Helvetica Neue', Helvetica, Arial, Sans-serif",
+            "label": "Work Sans",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Courier New', Courier, monospace",
+            "label": "Courier New",
+            "group": "Monospace"
+          },
+          {
+            "value": "Monaco, 'Lucida Console', 'DejaVu Sans Mono', monospace",
+            "label": "Monaco\/Lucida Console",
+            "group": "Monospace"
+          }
+        ],
+        "default": "'Helvetica Neue', Helvetica, Arial, sans-serif"
+      },
+      {
+        "type": "header",
+        "content": "Accent text"
+      },
+      {
+        "type": "select",
+        "id": "meta-font",
+        "label": "Font",
+        "options": [
+          {
+            "value": "'butlerbold', 'PT Serif', 'Times New Roman', Times, serif",
+            "label": "Butler",
+            "group": "Serif"
+          },
+          {
+            "value": "'PT Serif', 'Times New Roman', Times, serif",
+            "label": "PT Serif",
+            "group": "Serif"
+          },
+          {
+            "value": "Palatino, 'Palatino Linotype', 'Book Antiqua', serif",
+            "label": "Palatino",
+            "group": "Serif"
+          },
+          {
+            "value": "Garamond, Baskerville, Caslon, serif",
+            "label": "Garamond",
+            "group": "Serif"
+          },
+          {
+            "value": "Georgia, Utopia, 'Times New Roman', Times, serif",
+            "label": "Georgia",
+            "group": "Serif"
+          },
+          {
+            "value": "'Times New Roman', Times, serif",
+            "label": "Times New Roman",
+            "group": "Serif"
+          },
+          {
+            "value": "'Arvo', serif",
+            "label": "Arvo",
+            "group": "Slab"
+          },
+          {
+            "value": "'Helvetica Neue', Helvetica, Arial, sans-serif",
+            "label": "Helvetica",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Open Sans', sans-serif",
+            "label": "Open Sans",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Source Sans Pro', sans-serif",
+            "label": "Source Sans Pro",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Raleway', sans-serif",
+            "label": "Raleway",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "Verdana, Helvetica, Arial, sans-serif",
+            "label": "Verdana",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "Tahoma, Verdana, Geneva, sans-serif",
+            "label": "Tahoma",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "Karla, 'Helvetica Neue', Helvetica, Arial, Sans-serif",
+            "label": "Karla",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Droid Sans', 'Helvetica Neue', Helvetica, Arial, Sans-serif",
+            "label": "Droid Sans",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "Montserrat, 'Helvetica Neue', Helvetica, Arial, Sans-serif",
+            "label": "Montserrat",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Droid Serif', 'Times New Roman', Times, serif",
+            "label": "Droid Serif",
+            "group": "Serif"
+          },
+          {
+            "value": "Poppins, 'Helvetica Neue', Helvetica, Arial, Sans-serif",
+            "label": "Poppins",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Work Sans', 'Helvetica Neue', Helvetica, Arial, Sans-serif",
+            "label": "Work Sans",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'Courier New', Courier, monospace",
+            "label": "Courier New",
+            "group": "Monospace"
+          },
+          {
+            "value": "Monaco, 'Lucida Console', 'DejaVu Sans Mono', monospace",
+            "label": "Monaco\/Lucida Console",
+            "group": "Monospace"
+          }
+        ],
+        "default": "'Helvetica Neue', Helvetica, Arial, sans-serif"
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Icon",
+        "info": "16 x 16px .png required"
+      }
+    ]
+  },
+  {
+    "name": "Product grid",
+    "settings": [
+      {
+        "type": "header",
+        "content": "General"
+      },
+      {
+        "type": "checkbox",
+        "id": "show-brand-names",
+        "label": "Show brand names / links",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Products"
+      },
+      {
+        "type": "checkbox",
+        "id": "image-borders",
+        "label": "Show product image borders",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "alt-product-card",
+        "label": "Enable product details overlay",
+        "default": false
+      },
+      {
+        "type": "select",
+        "id": "product_grid_aspect_ratio",
+        "label": "Product grid aspect ratio",
+        "options": [
+          {
+            "value": "default",
+            "label": "Default"
+          },
+          {
+            "value": "square",
+            "label": "Square"
+          },
+          {
+            "value": "tall",
+            "label": "Tall"
+          },
+          {
+            "value": "taller",
+            "label": "Taller"
+          },
+          {
+            "value": "wide",
+            "label": "Wide"
+          }
+        ],
+        "default": "default"
+      },
+      {
+        "type": "header",
+        "content": "Quick shop"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable-quick-shop",
+        "label": "Enable quick shop",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "quickshop-product-quantity-option",
+        "label": "Show quantity selector",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "quickshop-product-email-link",
+        "label": "Show email link",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "quickshop-product-quick-add",
+        "label": "Enable quick add-to-cart",
+        "default": false
+      },
+      {
+        "type": "paragraph",
+        "content": "Stay on the current page when an item is added to the cart"
+      },
+      {
+        "type": "select",
+        "id": "quickshop-thumb-orientation",
+        "label": "Product thumbnail position",
+        "options": [
+          {
+            "value": "right",
+            "label": "Right of main image"
+          },
+          {
+            "value": "below",
+            "label": "Below main image"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "twitter-url",
+        "label": "Twitter",
+        "info": "http://twitter.com/shopify"
+      },
+      {
+        "type": "text",
+        "id": "facebook-url",
+        "label": "Facebook",
+        "info": "https://www.facebook.com/shopify"
+      },
+      {
+        "type": "text",
+        "id": "pinterest-url",
+        "label": "Pinterest",
+        "info": "https://www.pinterest.com/shopify"
+      },
+      {
+        "type": "text",
+        "id": "google-plus-url",
+        "label": "Google Plus",
+        "info": "https://plus.google.com/+shopify"
+      },
+      {
+        "type": "text",
+        "id": "instagram-url",
+        "label": "Instagram",
+        "info": "https://instagram.com/shopify"
+      },
+      {
+        "type": "text",
+        "id": "tumblr-url",
+        "label": "Tumblr",
+        "info": "http://shopify.tumblr.com"
+      },
+      {
+        "type": "text",
+        "id": "youtube-url",
+        "label": "YouTube",
+        "info": "https://www.youtube.com/user/shopify"
+      },
+      {
+        "type": "text",
+        "id": "vimeo-url",
+        "label": "Vimeo",
+        "info": "https://vimeo.com/shopify"
+      }
+    ]
+  },
+  {
+    "name": "Currency converter",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show-currency-switcher",
+        "label": "Enable currency conversion",
+        "default": true,
+        "info": "Even though prices are displayed in different currencies, orders will still be processed in your store's currency."
+      },
+      {
+        "type": "select",
+        "id": "currency-switcher-format",
+        "label": "Format",
+        "options": [
+          {
+            "value": "money_format",
+            "label": "Without currency ($10.00)"
+          },
+          {
+            "value": "money_with_currency_format",
+            "label": "With currency ($10.00 CAD)"
+          }
+        ],
+        "default": "money_with_currency_format"
+      },
+      {
+        "type": "text",
+        "id": "currency-switcher-supported-currencies",
+        "label": "Supported currencies",
+        "default": "INR GBP CAD USD AUD EUR JPY",
+        "info": "Use the country's ISO [currency code](http://www.xe.com/iso4217.php). Separate your currency codes with a space."
+      },
+      {
+        "type": "text",
+        "id": "currency-switcher-default",
+        "label": "Default currency",
+        "default": "USD"
+      }
+    ]
+  }
+]

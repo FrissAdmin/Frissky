@@ -1,0 +1,31 @@
+{% comment %}
+  @param add_to_cart_text {string}
+    Sets the button text for the Product button
+
+  @param id {number}
+    Sets the ID of the JSON fields for ProduceView to parse
+
+  @param section_onboarding {boolean}
+    Used to prevent onboarding content from activating ProductView
+
+  @param enable_history {boolean}
+    Used to allow deeplinking on product variants
+{% endcomment %}
+
+{% unless id %}
+  {% assign id = product.id %}
+{% endunless %}
+
+<script type="application/json" data-product-settings-{{ id }}>
+  {
+    "addToCartText": {{ add_to_cart_text | json }},
+    "enableHistory": {{ enable_history | json }},
+    "imageZoom": {{ section.settings.image-zoom }},
+    "linkedOptions": true,
+    "ajaxAddProduct": {{ section.settings.product-quick-add }},
+    "soldOutText": {{ 'products.product.sold_out' | t | json }},
+    "unavailableText": {{ 'products.product.unavailable' | t | json }}
+  }
+</script>
+
+<script type="application/json" data-product-json-{{ id }}>{{ product | json }}</script>

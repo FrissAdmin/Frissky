@@ -1,0 +1,62 @@
+<div data-section-id="{{ section.id }}" data-section-type="instagram-feed">
+
+  {%- assign sectionHeading = section.settings.title | escape -%}
+  {%- assign border = section.settings.border -%}
+  {%- assign accessToken = section.settings.access-token | escape -%}
+
+  <section class="home-section instagram-widget content-area
+    {% if sectionHeading != blank %}has-heading{% endif %}
+    {% if border %}has-border{% endif %}"
+    data-instagram-token="{{ accessToken }}">
+
+    {% if sectionHeading != blank %}
+      <h2 class="section-title">{{ sectionHeading }}</h2>
+    {% endif %}
+
+    {% if accessToken != blank %}
+      <div class="instagram-photos" data-instagram-photos></div>
+    {% else %}
+      <div class="instagram-photos visible" style="height: auto;">
+        {% for i in (1..6) %}
+          <a class="instagram-photo" href="#">
+            {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+            {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+          </a>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </section>
+
+</div>
+
+{% schema %}
+{
+  "name": "Instagram feed",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Instagram feed"
+    },
+    {
+      "type": "checkbox",
+      "id": "border",
+      "label": "Show border",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "access-token",
+      "label": "Access token ([?](http:\/\/instagram.pixelunion.net))"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Social",
+      "name": "Instagram feed"
+    }
+  ]
+}
+
+{% endschema %}

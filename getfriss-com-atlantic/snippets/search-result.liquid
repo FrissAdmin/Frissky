@@ -1,0 +1,42 @@
+<article class="result {% include 'for-looper' %} {% if item.object_type == 'product' %}item-product{% else %}item-article{% endif %}" data-type="{{ item.type }}">
+
+  {% if item.object_type == 'product' %}
+
+    <figure>
+      <img alt="{{ item.featured_image.alt }}" src="{{ item.featured_image | product_img_url: 'large' }}">
+      <a class="{% if imageBorders %}overlay{% endif %}" href="{{ item.url }}"></a>
+    </figure>
+
+    <div class="details">
+      {% if brandNames %}
+        <p class="brand">{{ item.vendor | link_to_vendor }}</p>
+      {% endif %}
+
+      <p class="title"><a href="{{ item.url }}">{{ item.title }}</a></p>
+
+      {% if item.compare_at_price_min > item.price_min %}
+        <p class="price sale"><span class="label">{{ 'products.product.on_sale' | t }}</span> <span class="original money">{{ item.compare_at_price_min | money }}</span> <span class="money">{{ item.price_min | money }}</span></p>
+      {% else %}
+        <p class="price"><span class="money">{{ item.price_min | money }}</span></p>
+      {% endif %}
+    </div>
+
+  {% else %}
+
+    <h2 class="title"><a href="{{ item.url }}">{{ item.title }}</a></h2>
+    {% if item.image %}
+      <div class="item-image">
+        <img src="{{ item.image | img_url: 'grande' }}" alt="{{ item.title }}">
+      </div>
+    {% endif %}
+    <div class="rte clearfix">
+      {% if item.object_type == 'article' %}
+        <p>{{ item.excerpt_or_content | strip_html | truncatewords: 50 }}</p>
+      {% elsif item.object_type == 'page' %}
+        <p>{{ item.content | strip_html | truncatewords: 50 }}</p>
+      {% endif %}
+    </div>
+
+  {% endif %}
+
+</article>

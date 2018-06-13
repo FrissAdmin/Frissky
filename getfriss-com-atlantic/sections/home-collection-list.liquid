@@ -1,0 +1,100 @@
+<div data-section-id="{{ section.id }}" data-section-type="collection-list">
+
+  {%- assign sectionHeading = section.settings.title | escape -%}
+  {%- assign border = section.settings.border -%}
+
+  <section class="home-section featured-collections content-area
+    {% if sectionHeading != blank %}has-heading{% endif %}
+    {% if border %}has-border{% endif %}">
+
+    {% if sectionHeading != blank %}
+      <h2 class="section-title">{{ sectionHeading }}</h2>
+    {% endif %}
+
+    <div class="wrap">
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          {%- assign featuredCollection = block.settings.collection -%}
+          {%- assign collectionImage = collections[featuredCollection].image.src -%}
+          {%- assign productImage = collections[featuredCollection].products.first.featured_image -%}
+
+          {% if collections[featuredCollection].products.size > 0 %}
+            {% if collectionImage %}
+              {% assign imgSrc = collectionImage | collection_img_url: 'large' %}
+            {% else %}
+              {% assign imgSrc = productImage | product_img_url: 'large' %}
+            {% endif %}
+
+            <div class="collection-wrap">
+              <div class="collection" style="background-image:url({{ imgSrc }});">
+                <a href="{{ collections[featuredCollection].url }}">
+                  <h3 class="label preload">{{ collections[featuredCollection].title }}</h3>
+                  <span class="browse">{{ 'collections.collection.browse' | t }}</span>
+                </a>
+              </div>
+            </div>
+          {% else %}
+            {% include 'collection-list-onboarding' %}
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        {% for i in (1..3) %}
+          {% include 'collection-list-onboarding' %}
+        {% endfor %}
+      {% endif %}
+    </div>
+  </section>
+
+</div>
+
+{% schema %}
+{
+  "name": "Collections list",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Collection list"
+    },
+    {
+      "type": "checkbox",
+      "id": "border",
+      "label": "Show border",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Collection",
+      "name": "Collections list",
+      "blocks": [
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        }
+      ]
+    }
+  ]
+}
+
+{% endschema %}

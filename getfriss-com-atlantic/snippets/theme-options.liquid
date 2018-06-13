@@ -1,0 +1,32 @@
+
+<script>
+  Theme = {}
+  Theme.version = "11.3.1";
+  Theme.products = new Array();
+  Theme.currency = '{{ shop.currency }}';
+  Theme.currencyFormat = "{{ shop.money_with_currency_format }}";
+  Theme.moneyFormat = {{ shop.money_format | strip_html | json }};
+  Theme.moneyFormatCurrency = {{ shop.money_with_currency_format | strip_html | json }};
+  Theme.shippingCalcErrorMessage = "{{ 'cart.shipping_calculator.error' | t | replace: '"','\\"' }}";
+  Theme.shippingCalcMultiRates = "{{ 'cart.shipping_calculator.rates_html' | t | replace: '"','\\"' }}";
+  Theme.shippingCalcOneRate = "{{ 'cart.shipping_calculator.rate' | t | replace: '"','\\"' }}";
+  Theme.shippingCalcNoRates = "{{ 'cart.shipping_calculator.no_rates' | t | replace: '"','\\"' }}";
+  Theme.shippingCalcRateValues = "{{ 'cart.shipping_calculator.rate_values_html' | t | replace: '"','\\"' }}";
+  Theme.addedToCart = "{{ 'products.product.added_to_cart' | t }}";
+  Theme.pleaseWait = "{{ 'products.product.please_wait' | t }}";
+  Theme.userLoggedIn = {% if shop.customer_accounts_enabled and customer %}true{% else %}false{% endif %};
+  Theme.userAddress = '{% if shop.customer_accounts_enabled and customer %}{{ customer.default_address }}{% endif %}';
+  Theme.centerHeader = {% if settings.center-header %}true{% else %}false{% endif %};
+
+  Theme.cartItemsOne = "{{ 'layout.header.item_count.one' | t | escape }}";
+  Theme.cartItemsOther = "{{ 'layout.header.item_count.other' | t | escape }}";
+
+  Theme.addToCart = "{{ 'products.product.add_to_cart' | t | escape }}";
+  Theme.soldOut = "{{ 'products.product.sold_out' | t | escape }}";
+  Theme.unavailable = "{{ 'products.product.unavailable' | t | escape }}";
+
+  Theme.currencySwitcherFormat = "money_with_currency_format";
+  Theme.defaultCurrency = Theme.currency;
+
+  shopCurrency = Theme.currency;
+</script>

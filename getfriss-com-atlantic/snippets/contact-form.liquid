@@ -1,0 +1,31 @@
+{% form 'contact' %}
+
+  {% if form.errors %}
+    <div class="alert-message error"><span>{{ 'contact.error' | t }}</span></div>
+  {% endif %}
+
+  {% if form.posted_successfully? %}
+    <div class="alert-message success"><span>{{ 'contact.success' | t }}</span></div>
+  {% else %}
+
+    <div class="field-wrap author">
+      <label>{{ 'general.name' | t }}</label>
+      <input type="text" placeholder="{{ 'general.name_placeholder' | t }}" value="" name="contact[name]" class="field {% if form.errors contains "author" %}error{% endif %}">
+    </div>
+
+    <div class="field-wrap email">
+      <label>{{ 'general.email' | t }}</label>
+      <input type="text" placeholder="{{ 'general.email_placeholder' | t }}" value="" name="contact[email]" class="field {% if form.errors contains "email" %}error{% endif %}">
+    </div>
+
+    <div class="field-wrap body">
+      <label>{{ 'general.message' | t }}</label>
+      <textarea name="contact[body]" class="field {% if form.errors contains "body" %}error{% endif %}"></textarea>
+    </div>
+
+    <input type="hidden" class="comment-check" value="">
+    <input type="submit" class="action-button submit-button" value="{{ 'general.submit' | t }}">
+
+  {% endif %}
+
+{% endform %}

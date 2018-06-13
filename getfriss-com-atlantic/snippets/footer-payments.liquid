@@ -1,0 +1,13 @@
+{% if shop.enabled_payment_types.size > 0 and paymentOptions %}
+  {% include 'icon-sprite.svg' %}
+  {% assign available_payment_types = 'apple_pay|amazon_payments|american_express|bitcoin|dankort|diners_club|discover|dwolla|forbrugsforeningen|jcb|laser|maestro|master|paypal|solo|shopify_pay|switch|visa' %}
+  <ul class="payment-options">
+    {% for type in shop.enabled_payment_types %}
+      {% if available_payment_types contains type %}
+        <li class="{{ type | replace: '_','-' }}">
+          <svg><use xlink:href="#payment-{{ type }}"/></svg>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+{% endif %}

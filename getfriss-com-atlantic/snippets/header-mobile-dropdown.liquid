@@ -1,0 +1,78 @@
+<section class="mobile-dropdown" id="main-header--mobile-nav">
+
+  {% comment %} First level {% endcomment %}
+  {% assign menu = linklists[section.settings.menu] %}
+
+  <ul class="list primary">
+    {% for link in menu.links %}
+      {% include 'is-dropdown-or-meganav', first_tier_link: link %}
+
+      <li
+        class="
+          list-item
+          {% if forloop.first %}first{% endif %}
+          {% if forloop.last %}last{% endif %}
+          {% if is_meganav or is_dropdown %}dropdown{% endif %}
+        "
+        {% if is_dropdown or is_meganav %}
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-controls="header-mobile-dropdown-{{ link.handle }}"
+        {% endif %}
+      >
+        <a href="{{ link.url }}">
+          {{ link.title }}
+          {% if is_meganav or is_dropdown %}<span class="icon"></span>{% endif %}
+        </a>
+
+        {% comment %} Second level {% endcomment %}
+        {% if is_meganav or is_dropdown %}
+          <ul
+            class="list secondary"
+            id="header-mobile-dropdown-{{ link.handle }}"
+          >
+            {% for link in link.links %}
+              {% include 'is-dropdown-or-meganav', first_tier_link: link %}
+
+              <li
+                class="list-item {% if is_dropdown %}dropdown{% endif %}"
+                {% if is_dropdown %}
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  aria-controls="header-mobile-dropdown-{{ link.handle }}"
+                {% endif %}
+              >
+                <a href="{{ link.url }}">
+                  {{ link.title }}
+                  {% if is_dropdown %}<span class="icon"></span>{% endif %}
+                </a>
+
+                {% comment %} Third level {% endcomment %}
+                {% if is_dropdown %}
+                  <ul
+                    class="list tertiary"
+                    id="header-mobile-dropdown-{{ link.handle }}"
+                  >
+                    {% for link in link.links %}
+                      <li class="list-item">
+                        <a href="{{ link.url }}">{{ link.title }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+                {% comment %} End third level {% endcomment %}
+
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        {% comment %} End second level {% endcomment %}
+
+      </li>
+    {% endfor %}
+
+    <li class="list-item" id="coin-container"></li>
+  </ul>
+  {% comment %} End first level {% endcomment %}
+
+</section>

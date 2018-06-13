@@ -1,0 +1,156 @@
+<div data-section-id="{{ section.id }}" data-section-type="cart-template">
+
+  {%- assign imageBorders = settings.image-borders -%}
+  {%- assign brandNames = settings.show-brand-names -%}
+  {%- assign shippingCalculator = section.settings.shipping-calculator -%}
+  {%- assign shippingCalculatorDefaultCountry = section.settings.shipping-calculator-default-country | escape -%}
+
+  <main class="content content-area">
+
+    {% include 'breadcrumbs' %}
+
+    <div class="page-title">
+      <h1 class="label">{{ 'cart.header' | t }}</h1>
+    </div>
+
+    {% if cart.item_count > 0 %}
+
+      <form action="/cart" method="post" id="cart-form">
+
+        <table class="table">
+
+          <thead>
+            <tr class="table-header">
+              <th class="first">{{ 'general.product' | t }}</th>
+              <th>{{ 'general.price' | t }}</th>
+              <th>{{ 'general.quantity' | t }}</th>
+              <th>{{ 'general.total' | t }}</th>
+              <th class="last"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for item in cart.items %}
+              <tr class="table-row {% include 'for-looper' %}" data-cart-item>
+                <td class="product-item first">
+                  <div class="image-wrap">
+                    <a class="image" href="{{ item.url }}">
+                      {{ item | img_url: 'compact' | img_tag }}
+                      {% if imageBorders %}<span class="outline"></span>{% endif %}
+                    </a>
+                  </div>
+                  <div class="wrap">
+                    {% if brandNames %}
+                      <span class="label vendor">{{ item.vendor }}</span>
+                    {% endif %}
+                    <span class="label title">{{ item.product.title | link_to: item.url }}</span>
+                      {% unless item.product.has_only_default_variant %}
+                        <span class="label variant">
+                          {{ item.variant.title }}
+                        </span>
+                      {% endunless %}
+
+                    {% if item.properties %}
+                      <div class="item-properties">
+                        {% for property in item.properties %}
+                          {% unless property.last == blank %}
+                            <div class="item-property">
+                              <span class="item-property-label">{{ property.first }}:</span>
+                              {% if property.last contains '/uploads/' %}
+                                <a class="item-property-image" href="{{ property.last }}">{{ property.last | split: '/' | last }}</a>
+                              {% else %}
+                                <span class="item-property-value">{{ property.last }}</span>
+                              {% endif %}
+                            </div>
+                          {% endunless %}
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+
+                  </div>
+                </td>
+                <td class="price"><span class="money">{{ item.price | money }}</span></td>
+                <td class="quantity"><input type="text" name="updates[]" class="field" value="{{ item.quantity }}" data-id="{{ item.variant.id }}"></td>
+                <td class="total"><span class="money">{{ item.quantity | times: item.price | money }}</span></td>
+                <td class="remove last"><a href="/cart/change/{{ item.variant.id }}?line={{ forloop.index }}&quantity=0">v</a></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+
+        </table>
+
+        <div class="cart-tools clearfix">
+          <div class="instructions">
+            <p>{{ 'cart.note' | t }}</p>
+            <textarea class="field" name="note">{{ cart.note }}</textarea>
+          </div>
+          <div class="totals">
+            <p class="price"><span class="money">{{ cart.total_price | money }}</span></p>
+            <p class="message">{{ 'cart.tax_and_shipping' | t }}</p>
+            <div class="checkout">
+              <input class="action-button desaturated cart-update" type="submit" name="update" value="{{ 'cart.update' | t }}" />
+              <input class="action-button" type="submit" name="checkout" value="{{ 'cart.submit' | t }}" />
+              {% if additional_checkout_buttons %}
+                <div class="additional-checkout-buttons clearfix">
+                  {{ content_for_additional_checkout_buttons }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        {% if shippingCalculator %}
+          {% include 'shipping-calculator' %}
+        {% endif %}
+
+      </form>
+
+    {% else %}
+
+      <p class="empty">{{ 'cart.empty' | t }} <a href="{{ shop.url }}/collections/all">{{ 'cart.continue' | t }}</a></p>
+
+    {% endif %}
+
+  </main>
+
+</div>
+
+{% schema %}
+{
+  "name": "Cart pages",
+  "class": "section-cart",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+      "type": "checkbox",
+      "id": "show-breadcrumbs",
+      "label": "Show breadcrumbs",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Shipping calculator"
+    },
+    {
+      "type": "checkbox",
+      "id": "shipping-calculator",
+      "label": "Enable shipping calculator",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "shipping-calculator-default-country",
+      "label": "Default country selection",
+      "default": "United States"
+    },
+    {
+      "type": "paragraph",
+      "content": "If your customer is logged in, the country in his or her default shipping address will be selected."
+    }
+  ]
+}
+
+{% endschema %}
