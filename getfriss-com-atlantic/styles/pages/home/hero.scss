@@ -1,0 +1,32 @@
+.homepage__hero__container {
+  @include background-image;
+  padding: 100px 10%;
+}
+
+.homepage__hero__text-container {
+  display: block;
+  max-width: 45%;
+}
+
+.homepage__hero__title {
+  @include font(sans-serif, 900);
+  color: color(Loulou);
+  font-size: 52px;
+  line-height: 1;
+}
+
+.homepage__hero__text {
+  @include font(serif, 400);
+  color: color(Loulou);
+  font-size: 24px;
+}
+
+.homepage__hero__button {
+  @include font(sans-serif, 900);
+  background-color: color(Loulou);
+  border: none;
+  color: color(White);
+  font-size: 24px;
+  padding: 20px 40px;
+  text-transform: uppercase;
+}

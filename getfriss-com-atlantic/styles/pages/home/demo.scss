@@ -1,0 +1,51 @@
+.homepage__demo__container {
+  align-items: stretch;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.homepage__demo__filler {
+  background-color: color(Iron);
+  flex: 0 0 50%;
+}
+
+.homepage__demo__text {
+  background-color: color(Maverick);
+  flex: 0 0 50%;
+  padding: 100px;
+
+  > h2 {
+    @include font(sans-serif, 900);
+    color: color(Loulou);
+    font-size: 52px;
+  }
+
+  > p {
+    @include font(serif, 400);
+    color: color(Loulou);
+    font-size: 24px;
+    margin: 0 0 20px;
+  }
+
+  > button {
+    @include font(sans-serif, 900);
+    background-color: color(Loulou);
+    border: none;
+    color: color(White);
+    font-size: 24px;
+    padding: 20px 40px;
+    text-transform: uppercase;
+  }
+}
+
+.homepage__demo__image {
+  background-color: color(Norway);
+  height: 900px;
+  left: 50%;
+  margin-left: -150px;
+  position: absolute;
+  top: 100px;
+  width: 300px;
+}

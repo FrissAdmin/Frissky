@@ -1,0 +1,14 @@
+@mixin font($face: sans-serif, $weight: 300) {
+  @if $face == sans-serif {
+    font-family: 'Montserrat', sans-serif;
+  }
+  @else {
+    font-family: 'PT Serif', serif;
+  }
+
+  font-weight: $weight;
+
+  @if $weight == 900 {
+    letter-spacing: 0.02em;
+  }
+}

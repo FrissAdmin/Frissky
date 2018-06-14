@@ -1,0 +1,80 @@
+.homepage__intro__wrapper {
+  background-color: color(Maverick);
+  padding: 100px 10%;
+}
+
+$borderWidth: 4px;
+
+.homepage__intro__boxes-container {
+  align-items: flex-start;
+  border-bottom: 0;
+  border: $borderWidth solid color(Loulou);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding: 40px 60px;
+  position: relative;
+
+  &:before {
+    border: $borderWidth solid color(Loulou);
+    border-bottom: 0;
+    bottom: -$borderWidth;
+    content: '';
+    left: -$borderWidth * 3;
+    position: absolute;
+    right: -$borderWidth * 3;
+    top: -$borderWidth * 3;
+  }
+}
+
+.homepage__intro__boxes-title {
+  @include font(sans-serif, 900);
+  background-color: color(Maverick);
+  color: color(Loulou);
+  font-size: 30px;
+  left: 50%;
+  padding: 0 10px;
+  position: absolute;
+  text-align: center;
+  top: -28px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.homepage__intro__box {
+  @include aspect-ratio(2);
+  background-color: color(Iron);
+  display: block;
+  flex: 0 0 calc(50% - 10px);
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.homepage__intro__box-title {
+  @include font(serif, 400);
+  background-color: color(Loulou, 0.8);
+  color: color(White);
+  font-size: 24px;
+  left: 0;
+  padding: 10px 30px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+}
+
+.homepage__intro__title {
+  @include font(sans-serif, 900);
+  color: color(Loulou);
+  font-size: 100px;
+  margin: 80px 0 0;
+  text-align: center;
+}
+
+.homepage__intro__text {
+  @include font(serif, 400);
+  color: color(Loulou);
+  font-size: 30px;
+  margin: 30px 0 0;
+  text-align: center;
+}

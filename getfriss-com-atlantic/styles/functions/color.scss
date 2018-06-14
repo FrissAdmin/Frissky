@@ -1,0 +1,17 @@
+$colors: (
+  Alabaster: #f8f8f8,
+  Black: #000000,
+  Iron: #dcddde,
+  Loulou: #4f0f30,
+  Maverick: #cab7c0,
+  Norway: #9bb380,
+  White: #ffffff,
+);
+
+@function color($name, $rgba: false) {
+  @if $rgba == false {
+    @return map-get($colors, $name);
+  } @else {
+    @return rgba(map-get($colors, $name), $rgba);
+  }
+}

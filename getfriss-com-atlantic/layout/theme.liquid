@@ -36,6 +36,8 @@
 
   <script src="{{ 'jquery-1.9.min.js' | asset_url }}"></script>
 
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|PT+Serif:400,400i,700,700i" rel="stylesheet">
+
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
   {{ 'custom.css' | asset_url | stylesheet_tag }}
 
@@ -81,7 +83,7 @@
 
   {% section 'footer' %}
 
-  {% if template contains 'index' or template contains 'collection' or template contains 'product' or template contains '404' or template contains 'search' %}
+  {% if template contains 'collection' or template contains 'product' or template contains '404' or template contains 'search' %}
   <section class="quick-shop">
 
     <div class="quick-shop-modal">

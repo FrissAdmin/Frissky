@@ -1,0 +1,61 @@
+.homepage__why__wrapper {
+  background-color: color(Iron);
+  padding: 100px 10%;
+}
+
+.homepage__why__container {
+  align-items: stretch;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.homepage__why__text-container {
+  display: block;
+  flex: 0 0 50%;
+
+  p {
+    @include font(serif, 400);
+    color: color(Loulou);
+    font-size: 24px;
+    margin: 0 0 20px;
+  }
+}
+
+$borderWidth: 4px;
+
+.homepage__why__title-container {
+  border: $borderWidth solid color(Loulou);
+  display: block;
+  flex: 0 0 40%;
+  position: relative;
+  text-align: center;
+
+  &:before {
+    border: $borderWidth solid color(Loulou);
+    bottom: -$borderWidth * 3;
+    content: '';
+    left: -$borderWidth * 3;
+    position: absolute;
+    right: -$borderWidth * 3;
+    top: -$borderWidth * 3;
+  }
+}
+
+.homepage__why__title {
+  @include font(sans-serif, 900);
+  color: color(White);
+  font-size: 120px;
+  line-height: 1;
+}
+
+.homepage__why__button {
+  @include font(sans-serif, 900);
+  background-color: color(Loulou);
+  border: none;
+  color: color(White);
+  display: inline-block;
+  font-size: 24px;
+  padding: 20px 40px;
+  text-transform: uppercase;
+}
