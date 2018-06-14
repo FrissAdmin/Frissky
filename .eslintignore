@@ -1,0 +1,5 @@
+getfriss-com-atlantic/assets/**
+getfriss-com-atlantic/webpack.config.dev.js
+getfriss-com-atlantic/webpack.config.prod.js
+node_modules/**
+old_site/**
