@@ -1,0 +1,250 @@
+$transitionDelay: 0.3s;
+$transitionDuration: 0.5s;
+$transitionStagger: 0.1s;
+
+@mixin animate-in {
+  .Title,
+  .SubTitle,
+  .Input,
+  .ChoiceWrapper,
+  .SaveButton {
+    transition: opacity $transitionDuration ease-in-out, transform $transitionDuration ease-in-out;
+  }
+
+  .Title,
+  .SubTitle,
+  .Input {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  .ChoiceWrapper {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.9);
+  }
+
+  .SaveButton {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+@mixin animate-in-active {
+  .Title,
+  .SubTitle,
+  .Input,
+  .ChoiceWrapper,
+  .SaveButton {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@mixin animate-out {
+  .Title,
+  .SubTitle,
+  .Input,
+  .ChoiceWrapper,
+  .SaveButton {
+    opacity: 1;
+    transform: none;
+    transition: opacity $transitionDuration ease-in-out, transform $transitionDuration ease-in-out;
+  }
+}
+
+@mixin animate-out-active {
+  .Title,
+  .SubTitle,
+  .Input {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  .ChoiceWrapper {
+    opacity: 0;
+    transform: translateY(10px) scale(0.9);
+  }
+
+  .SaveButton {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+:global(.css-transition-appear) {
+  @include animate-in;
+
+  .SubTitle {
+    transition-delay: $transitionStagger;
+  }
+
+  .Input {
+    transition-delay: $transitionStagger * 2;
+  }
+
+  .ChoiceWrapper {
+    @include successive-delay(13, $transitionStagger * 3, 0.075, transition);
+  }
+
+  .SaveButton {
+    transition-delay: $transitionStagger * 3;
+  }
+}
+
+:global(.css-transition-appearActive) {
+  @include animate-in-active;
+}
+
+:global(.css-transition-enter) {
+  @include animate-in;
+
+  .Title {
+    transition-delay: ($transitionDuration + $transitionDelay);
+  }
+
+  .SubTitle {
+    transition-delay: ($transitionDuration + $transitionDelay) + $transitionStagger;
+  }
+
+  .Input {
+    transition-delay: ($transitionDuration + $transitionDelay) + ($transitionStagger * 2);
+  }
+
+  .ChoiceWrapper {
+    @include successive-delay(13, ($transitionDuration + $transitionDelay) + ($transitionStagger * 3), 0.075, transition);
+  }
+
+  .SaveButton {
+    transition-delay: ($transitionDuration + $transitionDelay) + ($transitionStagger * 3);
+  }
+}
+
+:global(.css-transition-enterActive) {
+  @include animate-in-active;
+}
+
+:global(.css-transition-leave) {
+  @include animate-out;
+
+  .Title {
+    transition-delay: $transitionDelay;
+  }
+
+  .SubTitle {
+    transition-delay: $transitionStagger;
+  }
+
+  .Input {
+    transition-delay: $transitionStagger * 2;
+  }
+
+  .ChoiceWrapper {
+    @include successive-delay(10, $transitionStagger * 3, 0.1, transition-delay);
+  }
+
+  .SaveButton {
+    transition-delay: $transitionStagger * 3;
+  }
+}
+
+:global(.css-transition-leaveActive) {
+  @include animate-out-active;
+}
+
+.Root {
+  left: 0;
+  padding: 100px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.Title {
+  @include font(sans-serif, 400);
+  color: color(Loulou);
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.SubTitle {
+  @include font(sans-serif, 600);
+  color: color(Loulou);
+  font-size: 10px;
+  margin: 10px 0;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.Input {
+  border: 2px solid color(Maverick, 0.5);
+  @include font(sans-serif, 300);
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: color(Loulou);
+  display: block;
+  font-size: 16px;
+  margin: 0 auto;
+  max-width: 50%;
+  padding: 5px;
+  width: 100%;
+}
+
+.ChoiceGroup {
+  list-style-type: none;
+  text-align: center;
+}
+
+$choiceSize: 40px;
+
+.ChoiceWrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.ChoiceInput {
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+}
+
+.Choice {
+  @include font(sans-serif, 400);
+  border: 2px solid color(Loulou, 0.5);
+  border-radius: $choiceSize / 2;
+  // box-shadow: 0 2px 4px color(Loulou, 0.1);
+  color: color(Loulou);
+  cursor: pointer;
+  display: block;
+  font-size: 14px;
+  height: $choiceSize;
+  line-height: $choiceSize - 4px;
+  margin: 5px;
+  padding: 0 20px;
+  width: auto;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+
+  &:hover {
+    border-color: color(Loulou, 0.8);
+    background-color: color(Maverick, 0.5);
+  }
+}
+
+.ChoiceInput:checked + .Choice {
+  border-color: color(Loulou, 1);
+  // box-shadow: 0 0 0 1px color(Loulou, 1), 0 2px 4px 1px color(Loulou, 0.1);
+
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+.SaveButton {
+  background-color: color(Loulou);
+  border: 0;
+  color: color(White);
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+}

@@ -1,11 +1,13 @@
-import containerFactory         from 'containers/factory';
 import React, { PureComponent } from 'react';
 import styles                   from './styles';
+import Survey                   from 'components/pages/Survey';
 
-export default containerFactory(class Layout extends PureComponent {
+export default class Layout extends PureComponent {
   render() {
     return (
-      <div className={ styles.Root } />
+      <div className={ styles.Root }>
+        <Survey />
+      </div>
     );
   }
-}, true);
+}

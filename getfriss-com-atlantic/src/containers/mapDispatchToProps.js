@@ -1,6 +1,8 @@
-import { bindActionCreators }      from 'redux';
-import surveyAnswersActionCreators from 'actionCreators/surveyAnswers';
+import { bindActionCreators } from 'redux';
+import surveyActionCreators   from 'actionCreators/survey';
+import userActionCreators     from 'actionCreators/user';
 
 export default (dispatch) => ({
-  surveyAnswersActions : bindActionCreators(surveyAnswersActionCreators, dispatch),
+  surveyActions : bindActionCreators(surveyActionCreators, dispatch),
+  userActions   : bindActionCreators(userActionCreators, dispatch),
 });

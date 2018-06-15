@@ -54,6 +54,19 @@ module.exports = {
           // use style-loader in development
           fallback: 'style-loader'
         })
+      },
+      {
+        test: /\.graphql$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'webpack-graphql-loader',
+            options: {
+              output: 'string',
+              removeUnusedFragments: true
+            }
+          }
+        ]
       }
     ]
   },
@@ -70,7 +83,7 @@ module.exports = {
     extractSass
   ],
   resolve: {
-    extensions: ['.js', '.scss'],
+    extensions: ['.js', '.scss', '.graphql'],
     modules: [
       path.resolve(__dirname, 'src'),
       'node_modules'

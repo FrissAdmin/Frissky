@@ -51,6 +51,19 @@ module.exports = {
             },
           },
         ]
+      },
+      {
+        test: /\.graphql$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'webpack-graphql-loader',
+            options: {
+              output: 'string',
+              removeUnusedFragments: true
+            }
+          }
+        ]
       }
     ]
   },
@@ -58,7 +71,7 @@ module.exports = {
     new webpack.NamedModulesPlugin()
   ],
   resolve: {
-    extensions: ['.js', '.scss'],
+    extensions: ['.js', '.scss', '.graphql'],
     modules: [
       path.resolve(__dirname, 'src'),
       'node_modules'
