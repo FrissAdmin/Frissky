@@ -1,11 +1,11 @@
-.homepage__intro__wrapper {
+.homepage__mission__wrapper {
   background-color: color(Maverick);
   padding: 100px 10%;
 }
 
 $borderWidth: 4px;
 
-.homepage__intro__boxes-container {
+.homepage__mission__boxes-container {
   align-items: flex-start;
   border-bottom: 0;
   border: $borderWidth solid color(Loulou);
@@ -27,7 +27,7 @@ $borderWidth: 4px;
   }
 }
 
-.homepage__intro__boxes-title {
+.homepage__mission__boxes-title {
   @include font(sans-serif, 900);
   background-color: color(Maverick);
   color: color(Loulou);
@@ -41,8 +41,9 @@ $borderWidth: 4px;
   white-space: nowrap;
 }
 
-.homepage__intro__box {
+.homepage__mission__box {
   @include aspect-ratio(2);
+  @include background-image;
   background-color: color(Iron);
   display: block;
   flex: 0 0 calc(50% - 10px);
@@ -50,7 +51,7 @@ $borderWidth: 4px;
   position: relative;
 }
 
-.homepage__intro__box-title {
+.homepage__mission__box-title {
   @include font(serif, 400);
   background-color: color(Loulou, 0.8);
   color: color(White);
@@ -63,7 +64,7 @@ $borderWidth: 4px;
   width: 100%;
 }
 
-.homepage__intro__title {
+.homepage__mission__title {
   @include font(sans-serif, 900);
   color: color(Loulou);
   font-size: 100px;
@@ -71,7 +72,7 @@ $borderWidth: 4px;
   text-align: center;
 }
 
-.homepage__intro__text {
+.homepage__mission__text {
   @include font(serif, 400);
   color: color(Loulou);
   font-size: 30px;

@@ -1,5 +1,6 @@
 .homepage__process__wrapper {
   padding: 60px 10%;
+  text-align: center;
 }
 
 .homepage__process__title {
@@ -15,6 +16,7 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 .homepage__process {
@@ -23,10 +25,16 @@
 }
 
 .homepage__process__icon {
-  @include font(sans-serif, 100);
-  font-size: 150px;
-  color: color(Norway);
+  height: 150px;
+  margin-bottom: 20px;
   text-align: center;
+  width: auto;
+
+  svg {
+    height: 100%;
+    max-width: 100%;
+    width: auto;
+  }
 }
 
 .homepage__process__text {

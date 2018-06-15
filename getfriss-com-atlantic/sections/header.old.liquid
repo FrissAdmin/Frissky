@@ -1,0 +1,176 @@
+<div data-section-id="{{ section.id }}" data-section-type="header">
+
+  {%- assign headerFormat = section.settings.header-format -%}
+  {%- assign headerCenter = section.settings.center-header -%}
+  {%- assign logo = section.settings.image -%}
+  {%- assign logoWidth = section.settings.logo-width | escape -%}
+  {%- assign cartIcon = section.settings.cart-icon -%}
+  {%- assign meganavLimit = section.settings.meganav-limit-range | times: 1 | plus: 1 -%}
+  {%- assign topLevelColumns = section.settings.top-level-columns -%}
+  {%- assign brandNames = settings.show-brand-names -%}
+  {%- assign imageBorders = settings.image-borders -%}
+
+  <header
+    class="
+      main-header-wrap
+      main-header--{{ headerFormat }}
+      {% if headerCenter %}main-header--centered{% endif %}
+    "
+    data-header-format="{{ headerFormat }}"
+    data-header-alignment="{{ headerCenter }}"
+  >
+    <section class="main-header">
+
+      {% if headerFormat != 'minimal' %}
+        <div
+          class="
+            action-links
+            clearfix
+            {% unless headerCenter %}content-area{% endunless %}
+          "
+        >
+          {% include 'header-tools' %}
+          {% include 'header-storetitle' %}
+        </div>
+      {% endif %}
+
+      {% if headerFormat == 'minimal' %}
+        {% include 'header-minimal' %}
+      {% else %}
+        {% include 'header-fullnav' %}
+      {% endif %}
+
+      {% include 'header-compactnav' %}
+      {% include 'header-meganav' %}
+
+    </section>
+  </header>
+
+  <script>
+    window.headerJSON = {{ section.settings | json }};
+
+    {% if settings.show-currency-switcher %}
+      Theme.currencySwitcher = true
+      {% if settings.currency-switcher-format %}
+        Theme.currencySwitcherFormat = '{{ settings.currency-switcher-format }}';
+        Theme.moneyFormat = {{ shop[settings.currency-switcher-format] | strip_html | json }};
+      {% endif %}
+
+      {% if settings.currency-switcher-default.size > 0 %}
+        Theme.defaultCurrency = {{ settings.currency-switcher-default | escape | json }};
+      {% endif %}
+    {% endif %}
+  </script>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "section-header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Logo image",
+      "info": "400 x 200px .jpg recommended"
+    },
+    {
+      "type": "text",
+      "id": "logo-width",
+      "label": "Logo width",
+      "info": "Custom logo width (in pixels)",
+      "default": "400"
+    },
+    {
+      "type": "checkbox",
+      "id": "center-header",
+      "label": "Center logo (or site title)"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "header-format",
+      "label": "Header Format",
+      "default": "normal",
+      "info": "If header format set to Minimal, the logo position is always centered on smaller screen sizes regardless of position chosen above.",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "expanded",
+          "label": "Expanded: show social links"
+        },
+        {
+          "value": "minimal",
+          "label": "Minimal: short and sticky"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Cart preview"
+    },
+    {
+      "type": "select",
+      "id": "cart-icon",
+      "label": "Cart icon",
+      "default": "cart",
+      "options": [
+        {
+          "value": "cart",
+          "label": "Cart"
+        },
+        {
+          "value": "bag",
+          "label": "Bag"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Navigation"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Main menu",
+      "default": "main-menu",
+      "info": "This menu supports dropdowns and mega menus ([?](http://support.pixelunion.net/article/412-how-to-set-up-your-stores-navigation))"
+    },
+    {
+      "type": "range",
+      "id": "meganav-limit-range",
+      "label": "Truncate list after",
+      "min": 3,
+      "max": 18,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "select",
+      "id": "top-level-columns",
+      "label": "Sub-columns layout",
+      "options": [
+        {
+          "value": "one-column",
+          "label": "One column"
+        },
+        {
+          "value": "two-columns",
+          "label": "Two columns"
+        }
+      ]
+    }
+  ]
+}
+
+{% endschema %}

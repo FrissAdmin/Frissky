@@ -1,5 +1,5 @@
 .homepage__why__wrapper {
-  background-color: color(Iron);
+  @include background-image;
   padding: 100px 10%;
 }
 

@@ -1,5 +1,5 @@
 <main class="homepage__container">
-  <div class="homepage__hero__container">
+  <div class="homepage__hero__container" style="background-image: url({{ 'homepage-hero.jpg' | asset_url }})">
     <div class="homepage__hero__text-container">
       <h1 class="homepage__hero__title">Curated skin care for you and your budget.</h1>
       <p class="homepage__hero__text">Skin care recommendations by your personal esthetician.</p>
@@ -7,37 +7,37 @@
     </div>
   </div>
 
-  <div class="homepage__intro__wrapper">
-    <div class="homepage__intro__boxes-container">
-      <div class="homepage__intro__boxes-title">Finding the right skin care products is hard.</div>
+  <div class="homepage__mission__wrapper">
+    <div class="homepage__mission__boxes-container">
+      <div class="homepage__mission__boxes-title">Finding the right skin care products is hard.</div>
 
-      <div class="homepage__intro__box">
-        <div class="homepage__intro__box-title">
+      <div class="homepage__mission__box" style="background-image: url({{ 'homepage-mission-1.jpg' | asset_url }})">
+        <div class="homepage__mission__box-title">
           Paid influencers that don’t know your skin
         </div>
       </div>
 
-      <div class="homepage__intro__box">
-        <div class="homepage__intro__box-title">
+      <div class="homepage__mission__box" style="background-image: url({{ 'homepage-mission-2.jpg' | asset_url }})">
+        <div class="homepage__mission__box-title">
           Your pushy sister-in-law trapped in a pyramid scheme
         </div>
       </div>
 
-      <div class="homepage__intro__box">
-        <div class="homepage__intro__box-title">
+      <div class="homepage__mission__box" style="background-image: url({{ 'homepage-mission-3.jpg' | asset_url }})">
+        <div class="homepage__mission__box-title">
           Online product overload
         </div>
       </div>
 
-      <div class="homepage__intro__box">
-        <div class="homepage__intro__box-title">
+      <div class="homepage__mission__box" style="background-image: url({{ 'homepage-mission-4.jpg' | asset_url }})">
+        <div class="homepage__mission__box-title">
           “Experts” at the mall
         </div>
       </div>
     </div>
 
-    <div class="homepage__intro__title">Say hello to friss</div>
-    <div class="homepage__intro__text">Finally, someone to simplify the process.</div>
+    <div class="homepage__mission__title">Say hello to friss</div>
+    <div class="homepage__mission__text">Finally, someone to simplify the process.</div>
   </div>
 
   <div class="homepage__process__wrapper">
@@ -46,17 +46,17 @@
     <div class="homepage__process__container">
 
       <div class="homepage__process">
-        <div class="homepage__process__icon">a</div>
+        <div class="homepage__process__icon">{% include 'homepage-process-icon-clipboard.svg' %}</div>
         <div class="homepage__process__text">Tell us about yourself. Answer a few easy questions to help our experts get started.</div>
       </div>
 
       <div class="homepage__process">
-        <div class="homepage__process__icon">b</div>
+        <div class="homepage__process__icon">{% include 'homepage-process-icon-messages.svg' %}</div>
         <div class="homepage__process__text">Chat via text with an expert. Our estheticians work with you to hand-select your skin care regimen.</div>
       </div>
 
       <div class="homepage__process">
-        <div class="homepage__process__icon">c</div>
+        <div class="homepage__process__icon">{% include 'homepage-process-icon-products.svg' %}</div>
         <div class="homepage__process__text">No obligations or subscriptions. Buy the products you want, when you want.</div>
       </div>
     </div>
@@ -64,7 +64,7 @@
     <button class="homepage__process__button">Get Started</button>
   </div>
 
-  <div class="homepage__why__wrapper">
+  <div class="homepage__why__wrapper" style="background-image: url({{ 'homepage-why.jpg' | asset_url }})">
     <div class="homepage__why__container">
       <div class="homepage__why__text-container">
         <p>
@@ -83,7 +83,7 @@
   </div>
 
   <div class="homepage__demo__container">
-    <div class="homepage__demo__filler"></div>
+    <div class="homepage__demo__filler" style="background-image: url({{ 'homepage-demo.jpg' | asset_url }})"></div>
 
     <div class="homepage__demo__text">
       <h2>Start the conversation.</h2>
@@ -95,6 +95,6 @@
       <button>Get Started</button>
     </div>
 
-    <div class="homepage__demo__image"></div>
+    <div class="homepage__demo__image" style="background-image: url({{ 'homepage-demo-phone.svg' | asset_url }})"></div>
   </div>
 </main>
