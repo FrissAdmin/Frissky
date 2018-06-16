@@ -1,0 +1,9 @@
+$speeds: (
+  animate : 0.3s,
+  hover   : 0.15s,
+  instant : 0.0001s,
+);
+
+@function speed($key: hover) {
+  @return map-get($speeds, $key);
+}

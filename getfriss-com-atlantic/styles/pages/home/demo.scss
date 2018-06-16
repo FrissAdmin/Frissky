@@ -9,6 +9,7 @@
 .homepage__demo__filler {
   @include background-image;
   flex: 0 0 50%;
+  pointer-events: none;
 }
 
 .homepage__demo__text {
@@ -47,6 +48,7 @@ $phoneWidth: 250px;
   @include background-image;
   left: 50%;
   margin-left: -$phoneWidth / 2;
+  pointer-events: none;
   position: absolute;
   top: 100px;
   width: $phoneWidth;

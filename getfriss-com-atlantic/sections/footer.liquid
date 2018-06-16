@@ -6,11 +6,15 @@
   {%- assign alternateFooter = section.settings.footer-alternate -%}
   {%- assign alternateFooterMenu = section.settings.footer-secondary-menu -%}
 
+  {% comment %}
   {% unless alternateFooter %}
     {% include 'footer-one' %}
   {% else %}
     {% include 'footer-two' %}
   {% endunless %}
+  {% endcomment %}
+
+  {% include 'footer-friss' %}
 
 </div>
 

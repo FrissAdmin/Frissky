@@ -1,0 +1,15 @@
+$timings: (
+  default                : ease-in-out,
+  ease                   : ease,
+  ease-in-cubic          : cubic-bezier(0.55, 0.055, 0.675, 0.19),
+  ease-in-out-quartic    : cubic-bezier(0.7, 0, 0.3, 1),
+  hard-bounce-physics    : cubic-bezier(1, 1.64, 0.02, 0.69),
+  linear                 : linear,
+  over-bounce-in         : cubic-bezier(0.065, 0.46, 0.425, 1.265),
+  over-bounce-in-physics : cubic-bezier(0.05, 1.47, 0.465, 0.925),
+  over-bounce-out        : cubic-bezier(0.665, -0.225, 0.945, 0.45),
+);
+
+@function timing($key: default) {
+  @return map-get($timings, $key);
+}

@@ -1,0 +1,32 @@
+.footer__footer {
+  background-color: color(White);
+  display: block;
+}
+
+.footer__container {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  margin: 0 auto;
+  max-width: 1400px;
+  padding: 0 50px;
+}
+
+.footer__logo {
+  display: block;
+  flex: 0 0 auto;
+}
+
+.footer__links {
+  display: block;
+  flex: 1 0 0px;
+  white-space: nowrap;
+
+  > aside {
+    display: block;
+    height: auto;
+    text-align: right;
+    width: 100%;
+  }
+}

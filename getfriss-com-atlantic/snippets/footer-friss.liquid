@@ -1,0 +1,17 @@
+<footer class="footer__footer">
+  <div class="footer__container">
+    <a href="/" class="footer__logo logo__logo"></a>
+
+    <nav class="footer__links">
+      {% include 'social-links' %}
+    </nav>
+  </div>
+
+  {% if linklists.footer.links %}
+    <div class="footer__extra-links">
+      {% for link in linklists.footer.links %}
+        <a href="{{ link.url }}" class="footer__extra-link">{{ link.title }}</a>
+      {% endfor %}
+    </div>
+  {% endif %}
+</footer>

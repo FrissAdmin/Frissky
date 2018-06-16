@@ -1,0 +1,29 @@
+$iconSize: 32px;
+
+.social-links .social-links__link {
+  color: color(Black);
+  display: inline-block;
+  margin: 0 10px;
+  vertical-align: middle;
+  width: $iconSize;
+  height: $iconSize;
+  text-align: center;
+
+  > svg {
+    display: inline-block;
+    height: auto;
+    max-height: 100%;
+    width: 100%;
+
+    path {
+      fill: color(Black);
+      transition: fill speed() timing();
+    }
+  }
+
+  @include hover {
+    > svg path {
+      fill: color(Maverick);
+    }
+  }
+}
