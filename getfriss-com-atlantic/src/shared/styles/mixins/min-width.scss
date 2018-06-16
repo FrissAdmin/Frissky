@@ -1,0 +1,18 @@
+$breakpoints: (
+  desktop     : 1024px,
+  large-phone : 375px,
+  phone       : 320px,
+  tablet      : 768px,
+);
+
+@mixin min-width($value) {
+  @if (map-has-key($breakpoints, $value)) {
+    @media (min-width: breakpoint($value)) {
+      @content;
+    }
+  } @else {
+    @media (min-width: $value) {
+      @content;
+    }
+  }
+}

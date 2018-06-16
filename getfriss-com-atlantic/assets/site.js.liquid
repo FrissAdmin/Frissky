@@ -202,7 +202,7 @@ window.ThemeEditor = (function(superClass) {
       Registration of a section
           - Takes a string parameter as the first argument which
             matches to `[data-section-type]`
-  
+
        * Example
           @sections = new Sections()
           @sections.register('some-section-type', @someSectionClass)
@@ -4024,3 +4024,11 @@ GiftCardView = (function(superClass) {
   return GiftCardView;
 
 })(Backbone.View);
+
+document.addEventListener('DOMContentLoaded', function (event) {
+  /* Hamburger Nav */
+  document.querySelector('.js-hamburger').addEventListener('click', function (event) {
+    event.preventDefault();
+    document.body.classList.toggle('-is-mobile-nav-open');
+  });
+});

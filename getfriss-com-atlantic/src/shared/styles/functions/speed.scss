@@ -4,6 +4,28 @@ $speeds: (
   instant : 0.0001s,
 );
 
-@function speed($key: hover) {
-  @return map-get($speeds, $key);
+@function speed($keys...) {
+  $value: $speeds;
+
+  @if length($keys) == 0 {
+    @return map-get($value, hover);
+  }
+
+  @each $key in $keys {
+    @if (type-of($key) == list) {
+      $value: speed($key...);
+    } @else if (type-of($key) == number) {
+      @if (unitless($key) == true) {
+        $value: $value * $key;
+      } @else {
+        $value: $value + $key;
+      }
+    }
+
+    @if (type-of($key) == string) {
+      $value: map-get($value, $key);
+    }
+  }
+
+  @return $value;
 }

@@ -4,7 +4,7 @@
   {%- assign logoWidth = section.settings.logo-width | escape -%}
   {%- assign cartIcon = section.settings.cart-icon -%}
 
-  <header class="header__header">
+  <header class="header__header js-header">
     <div class="header__container">
       <a href="/" class="header__logo logo__logo"></a>
 
@@ -17,6 +17,15 @@
           {% include 'icon' with 'cart' %}
         </a>
       </nav>
+
+      <button class="header__hamburger js-hamburger">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+          <rect class="header__hamburger__bar" x="0" y="12" width="100" height="8" rx="4" ry="4" />
+          <rect class="header__hamburger__bar -is-x" x="0" y="46" width="100" height="8" rx="4" ry="4" />
+          <rect class="header__hamburger__bar -is-x" x="0" y="46" width="100" height="8" rx="4" ry="4" />
+          <rect class="header__hamburger__bar" x="0" y="82" width="100" height="8" rx="4" ry="4" />
+        </svg>
+      </button>
     </div>
   </header>
 </div>

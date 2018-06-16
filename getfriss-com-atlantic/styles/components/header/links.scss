@@ -1,15 +1,52 @@
 .header__links {
-  text-align: right;
+  border-top: 1px solid color(Loulou, 0.1);
+  background-color: color(White);
+  opacity: 0;
+  padding: 20px;
+  pointer-events: none;
+  text-align: center;
+  transition: opacity speed(animate) timing(ease-out);
+  transition-delay: speed(animate, 1/4);
+  z-index: 1;
+
+  .-is-mobile-nav-open & {
+    opacity: 1;
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
+
+  @include min-width(desktop) {
+    background-color: transparent;
+    border-top: 0;
+    opacity: 1;
+    padding: 0;
+    pointer-events: auto;
+    text-align: right;
+    transition: none;
+  }
 }
 
 .header__link {
   @include font(sans-serif, 400);
   color: color(Loulou);
+  display: block;
   font-size: 20px;
   line-height: 1;
-  margin: 0 10px;
+  margin: 10px;
   padding: 5px 10px;
   text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(10px) scale(0.9);
+  transition: opacity speed(animate) timing(ease-in), transform speed(animate) timing(ease-in);
+  transition-delay: 0s;
+
+  @include min-width(desktop) {
+    display: block;
+    margin: 0 10px;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 
   &.-is-button {
     border: 1px solid color(Loulou);
@@ -18,5 +55,12 @@
   svg {
     height: 24px;
     width: 24px;
+  }
+
+  .-is-mobile-nav-open & {
+    opacity: 1;
+    transform: none;
+    transition: opacity speed(animate) timing(ease-out), transform speed(animate) timing(ease-out);
+    @include successive-delay(5, speed(animate, 1/4), 0.1, transition);
   }
 }

@@ -1,23 +1,33 @@
 $headerHeight: 60px;
 
 .header__header {
-  background-color: color(White, 0.6);
+  background-color: color(White);
   left: 0;
   position: fixed;
   right: 0;
   top: 0;
+  z-index: 1000;
+
+  @include min-width(desktop) {
+    background-color: color(White, 0.6);
+  }
 }
 
 .header__container {
-  align-items: center;
-  display: flex;
-  flex-flow: row nowrap;
   height: $headerHeight;
-  justify-content: flex-start;
   line-height: $headerHeight;
   margin: 0 auto;
   max-width: 1400px;
-  padding: 0 50px;
+  padding: 0 20px;
+  text-align: center;
+
+  @include min-width(desktop) {
+    align-items: center;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    padding: 0 50px;
+  }
 }
 
 .header__logo {
@@ -29,13 +39,42 @@ $headerHeight: 60px;
 
 .header__links {
   display: block;
-  flex: 1 0 0px;
-  height: $headerHeight;
-  line-height: $headerHeight;
-  white-space: nowrap;
+  left: 0;
+  height: calc(100vh - #{$headerHeight});
+  position: fixed;
+  right: 0;
+  top: $headerHeight;
+
+  @include min-width(desktop) {
+    flex: 1 0 0px;
+    height: $headerHeight;
+    line-height: $headerHeight;
+    position: static;
+    white-space: nowrap;
+  }
 }
 
 .header__link {
   display: inline-block;
   vertical-align: middle;
+}
+
+.header__hamburger {
+  display: block;
+  height: 45px;
+  position: absolute;
+  right: 10px;
+  top: ($headerHeight - 45px) / 2;
+  width: 45px;
+  z-index: 2;
+
+  svg {
+    height: auto;
+    max-height: 100%;
+    width: 100%;
+  }
+
+  @include min-width(desktop) {
+    display: none;
+  }
 }

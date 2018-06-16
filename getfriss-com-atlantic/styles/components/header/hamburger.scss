@@ -1,0 +1,27 @@
+.header__hamburger {
+  outline: none;
+}
+
+.header__hamburger__bar {
+  fill: color(Black);
+  transform-origin: 50% 50%;
+  opacity: 1;
+  transition: opacity speed(animate) timing();
+
+  .-is-mobile-nav-open & {
+    opacity: 0;
+  }
+}
+
+.header__hamburger__bar.-is-x {
+  transition: opacity speed(animate) timing(), transform speed(animate) timing(ease-in-out-quartic);
+
+  .-is-mobile-nav-open & {
+    opacity: 1;
+    transform: rotate(315deg);
+
+    & + .-is-x {
+      transform: rotate(225deg);
+    }
+  }
+}
