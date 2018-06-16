@@ -1,61 +1,84 @@
 .homepage__why__wrapper {
   @include background-image;
-  padding: 100px 10%;
+  padding: 20px;
+
+  @include min-width(desktop) {
+    padding: 100px 10%;
+  }
 }
 
 .homepage__why__container {
-  align-items: stretch;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-}
-
-.homepage__why__text-container {
   display: block;
-  flex: 0 0 50%;
 
-  p {
-    @include font(serif, 400);
-    color: color(Loulou);
-    font-size: 24px;
-    margin: 0 0 20px;
+  @include min-width(desktop) {
+    align-items: stretch;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
   }
 }
 
 $borderWidth: 4px;
 
 .homepage__why__title-container {
-  border: $borderWidth solid color(Loulou);
   display: block;
-  flex: 0 0 40%;
+  margin-bottom: 20px;
   position: relative;
   text-align: center;
 
-  &:before {
+  @include min-width(desktop) {
     border: $borderWidth solid color(Loulou);
-    bottom: -$borderWidth * 3;
-    content: '';
-    left: -$borderWidth * 3;
-    position: absolute;
-    right: -$borderWidth * 3;
-    top: -$borderWidth * 3;
+    flex: 0 0 40%;
+    margin-bottom: 0;
+    order: 1;
+
+    &:before {
+      border: $borderWidth solid color(Loulou);
+      bottom: -$borderWidth * 3;
+      content: '';
+      left: -$borderWidth * 3;
+      position: absolute;
+      right: -$borderWidth * 3;
+      top: -$borderWidth * 3;
+    }
   }
 }
 
 .homepage__why__title {
   @include font(sans-serif, 900);
   color: color(White);
-  font-size: 120px;
-  line-height: 1;
+  font-size: 36px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+
+  @include min-width(desktop) {
+    font-size: 120px;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
 }
 
 .homepage__why__button {
-  @include font(sans-serif, 900);
-  background-color: color(Loulou);
-  border: none;
-  color: color(White);
-  display: inline-block;
-  font-size: 24px;
-  padding: 20px 40px;
-  text-transform: uppercase;
+  @include button;
+}
+
+.homepage__why__text-container {
+  display: block;
+
+  @include min-width(desktop) {
+    flex: 0 0 50%;
+  }
+
+  p {
+    @include font(serif, 400);
+    color: color(Loulou);
+    font-size: 18px;
+    margin: 0 0 20px;
+    text-align: center;
+
+    @include min-width(desktop) {
+      font-size: 24px;
+      text-align: left;
+    }
+  }
 }

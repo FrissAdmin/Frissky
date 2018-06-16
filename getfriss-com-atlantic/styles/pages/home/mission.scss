@@ -1,19 +1,20 @@
 .homepage__mission__wrapper {
   background-color: color(Maverick);
-  padding: 100px 10%;
+  padding: 20px;
+
+  @include min-width(desktop) {
+    padding: 100px 10%;
+  }
 }
 
 $borderWidth: 4px;
 
 .homepage__mission__boxes-container {
-  align-items: flex-start;
   border-bottom: 0;
   border: $borderWidth solid color(Loulou);
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  padding: 40px 60px;
+  padding: 20px;
   position: relative;
+  z-index: 0;
 
   &:before {
     border: $borderWidth solid color(Loulou);
@@ -24,21 +25,38 @@ $borderWidth: 4px;
     position: absolute;
     right: -$borderWidth * 3;
     top: -$borderWidth * 3;
+    z-index: 0;
+  }
+
+  @include min-width(desktop) {
+    align-items: flex-start;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 40px 60px;
   }
 }
 
 .homepage__mission__boxes-title {
   @include font(sans-serif, 900);
-  background-color: color(Maverick);
   color: color(Loulou);
-  font-size: 30px;
-  left: 50%;
-  padding: 0 10px;
-  position: absolute;
+  font-size: 18px;
+  margin-bottom: 20px;
   text-align: center;
-  top: -28px;
-  transform: translateX(-50%);
-  white-space: nowrap;
+
+
+  @include min-width(desktop) {
+    background-color: color(Maverick);
+    font-size: 30px;
+    left: 50%;
+    margin-bottom: 0;
+    padding: 0 10px;
+    position: absolute;
+    top: -18px;
+    top: -28px;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
 }
 
 .homepage__mission__box {
@@ -46,36 +64,64 @@ $borderWidth: 4px;
   @include background-image;
   background-color: color(Iron);
   display: block;
-  flex: 0 0 calc(50% - 10px);
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   position: relative;
+  width: 100%;
+
+  &:last-of-type {
+    marbin-bottom: 0;
+  }
+
+  @include min-width(desktop) {
+    flex: 0 0 calc(50% - 10px);
+    margin-bottom: 50px;
+
+    &:last-of-type {
+      marbin-bottom: 50px;
+    }
+  }
 }
 
 .homepage__mission__box-title {
   @include font(serif, 400);
   background-color: color(Loulou, 0.8);
   color: color(White);
-  font-size: 24px;
+  font-size: 16px;
   left: 0;
   padding: 10px 30px;
   position: absolute;
   text-align: center;
   top: 0;
   width: 100%;
+
+  @include min-width(desktop) {
+    font-size: 24px;
+  }
 }
 
 .homepage__mission__title {
   @include font(sans-serif, 900);
   color: color(Loulou);
-  font-size: 100px;
-  margin: 80px 0 0;
+  font-size: 50px;
+  line-height: 1;
+  margin: 40px 0 0;
   text-align: center;
+
+  @include min-width(desktop) {
+    font-size: 100px;
+    margin-top: 80px;
+  }
 }
 
 .homepage__mission__text {
   @include font(serif, 400);
   color: color(Loulou);
-  font-size: 30px;
-  margin: 30px 0 0;
+  font-size: 18px;
+  margin: 20px 0 0;
   text-align: center;
+
+  @include min-width(desktop) {
+    font-size: 30px;
+    margin-top: 30px;
+  }
 }

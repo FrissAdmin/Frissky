@@ -1,43 +1,62 @@
 .homepage__demo__container {
-  align-items: stretch;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
+  display: block;
   position: relative;
+
+  @include min-width(desktop) {
+    align-items: stretch;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+  }
 }
 
 .homepage__demo__filler {
   @include background-image;
+  display: none;
   flex: 0 0 50%;
   pointer-events: none;
+
+  @include min-width(desktop) {
+    display: block;
+  }
 }
 
 .homepage__demo__text {
   background-color: color(Maverick);
-  flex: 0 0 50%;
-  padding: 100px;
+  padding: 20px;
+  padding-left: 140px;
+
+  @include min-width(desktop) {
+    flex: 0 0 50%;
+    padding: 100px;
+  }
 
   > h2 {
     @include font(sans-serif, 900);
     color: color(Loulou);
-    font-size: 52px;
+    font-size: 20px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+
+    @include min-width(desktop) {
+      font-size: 52px;
+      line-height: 1;
+    }
   }
 
   > p {
     @include font(serif, 400);
     color: color(Loulou);
-    font-size: 24px;
+    font-size: 16px;
     margin: 0 0 20px;
+
+    @include min-width(desktop) {
+      font-size: 24px;
+    }
   }
 
   > button {
-    @include font(sans-serif, 900);
-    background-color: color(Loulou);
-    border: none;
-    color: color(White);
-    font-size: 24px;
-    padding: 20px 40px;
-    text-transform: uppercase;
+    @include button;
   }
 }
 
@@ -46,10 +65,16 @@ $phoneWidth: 250px;
 .homepage__demo__image {
   @include aspect-ratio(9, 16);
   @include background-image;
-  left: 50%;
-  margin-left: -$phoneWidth / 2;
+  left: 20px;
   pointer-events: none;
   position: absolute;
-  top: 100px;
-  width: $phoneWidth;
+  top: 20px;
+  width: 100px;
+
+  @include min-width(desktop) {
+    left: 50%;
+    margin-left: -$phoneWidth / 2;
+    top: 100px;
+    width: $phoneWidth;
+  }
 }

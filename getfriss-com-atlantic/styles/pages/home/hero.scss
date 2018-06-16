@@ -1,32 +1,59 @@
 .homepage__hero__container {
+  @include aspect-ratio(100, 54);
   @include background-image;
-  padding: 100px 10%;
+  background-color: color(White);
+  background-position: top center;
+  background-size: 100% auto;
+
+  @include min-width(desktop) {
+    background-color: color(Iron);
+    background-position: center;
+    background-size: cover;
+    padding: 100px 10%;
+
+    &:before {
+      display: none;
+    }
+  }
 }
 
 .homepage__hero__text-container {
   display: block;
-  max-width: 45%;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+
+  @include min-width(desktop) {
+    max-width: 45%;
+    text-align: left;
+  }
 }
 
 .homepage__hero__title {
   @include font(sans-serif, 900);
   color: color(Loulou);
-  font-size: 52px;
+  font-size: 32px;
   line-height: 1;
+  text-align: center;
+
+  @include min-width(desktop) {
+    font-size: 52px;
+    text-align: left;
+  }
 }
 
 .homepage__hero__text {
   @include font(serif, 400);
   color: color(Loulou);
-  font-size: 24px;
+  font-size: 18px;
+  text-align: center;
+
+  @include min-width(desktop) {
+    font-size: 24px;
+    text-align: left;
+  }
 }
 
 .homepage__hero__button {
-  @include font(sans-serif, 900);
-  background-color: color(Loulou);
-  border: none;
-  color: color(White);
-  font-size: 24px;
-  padding: 20px 40px;
-  text-transform: uppercase;
+  @include button;
 }

@@ -6,29 +6,47 @@
 .homepage__process__title {
   @include font(sans-serif, 900);
   color: color(Loulou);
-  font-size: 52px;
+  font-size: 24px;
+  line-height: 1.2;
   margin: 0;
   text-align: center;
+
+  @include min-width(desktop) {
+    font-size: 52px;
+    line-height: 1;
+  }
 }
 
 .homepage__process__container {
-  align-items: stretch;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
+  display: block;
   margin-bottom: 20px;
+
+  @include min-width(desktop) {
+    align-items: stretch;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+  }
 }
 
 .homepage__process {
-  flex: 0 0 percentage(1/3);
-  padding: 30px;
+  padding: 40px 20px;
+
+  @include min-width(desktop) {
+    flex: 0 0 percentage(1/3);
+    padding: 30px;
+  }
 }
 
 .homepage__process__icon {
-  height: 150px;
+  height: 70px;
   margin-bottom: 20px;
   text-align: center;
   width: auto;
+
+  @include min-width(desktop) {
+    height: 150px;
+  }
 
   svg {
     height: 100%;
@@ -40,16 +58,18 @@
 .homepage__process__text {
   @include font(serif, 400);
   color: color(Loulou);
-  font-size: 18px;
+  font-size: 16px;
+  text-align: center;
+
+  @include min-width(desktop) {
+    font-size: 18px;
+  }
+}
+
+.homepage__process__button-container {
   text-align: center;
 }
 
 .homepage__process__button {
-  @include font(sans-serif, 900);
-  background-color: color(Loulou);
-  border: none;
-  color: color(White);
-  font-size: 24px;
-  padding: 20px 40px;
-  text-transform: uppercase;
+  @include button;
 }
