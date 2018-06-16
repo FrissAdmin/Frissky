@@ -1,0 +1,12 @@
+.header__logo {
+  &::before {
+    @include font(sans-serif, 200);
+    color: color(Loulou);
+    content: 'friss';
+    font-size: 40px;
+  }
+
+  &::first-letter {
+    font-size: 45px;
+  }
+}

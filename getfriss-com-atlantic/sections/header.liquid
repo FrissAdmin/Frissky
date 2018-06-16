@@ -1,66 +1,23 @@
 <div data-section-id="{{ section.id }}" data-section-type="header">
 
-  {%- assign headerFormat = section.settings.header-format -%}
-  {%- assign headerCenter = section.settings.center-header -%}
   {%- assign logo = section.settings.image -%}
   {%- assign logoWidth = section.settings.logo-width | escape -%}
   {%- assign cartIcon = section.settings.cart-icon -%}
-  {%- assign meganavLimit = section.settings.meganav-limit-range | times: 1 | plus: 1 -%}
-  {%- assign topLevelColumns = section.settings.top-level-columns -%}
-  {%- assign brandNames = settings.show-brand-names -%}
-  {%- assign imageBorders = settings.image-borders -%}
 
-  <header
-    class="
-      main-header-wrap
-      main-header--{{ headerFormat }}
-      {% if headerCenter %}main-header--centered{% endif %}
-    "
-    data-header-format="{{ headerFormat }}"
-    data-header-alignment="{{ headerCenter }}"
-  >
-    <section class="main-header">
-
-      {% if headerFormat != 'minimal' %}
-        <div
-          class="
-            action-links
-            clearfix
-            {% unless headerCenter %}content-area{% endunless %}
-          "
-        >
-          {% include 'header-tools' %}
-          {% include 'header-storetitle' %}
-        </div>
-      {% endif %}
-
-      {% if headerFormat == 'minimal' %}
-        {% include 'header-minimal' %}
-      {% else %}
-        {% include 'header-fullnav' %}
-      {% endif %}
-
-      {% include 'header-compactnav' %}
-      {% include 'header-meganav' %}
-
-    </section>
+  <header class="header__header">
+    <div class="header__container">
+      <div class="header__logo"></div>
+      <nav class="header__links">
+        <a class="header__link" href="/pages/about-us">About Us</a>
+        <a class="header__link" href="/pages/about-us">Log In</a>
+        <a class="header__link -is-button" href="/pages/about-us">Get Started</a>
+        <a class="header__link -is-cart" href="/cart">
+          {% comment %}{% include 'icon' with 'bag' %}{% endcomment %}
+          {% include 'icon' with 'cart' %}
+        </a>
+      </nav>
+    </div>
   </header>
-
-  <script>
-    window.headerJSON = {{ section.settings | json }};
-
-    {% if settings.show-currency-switcher %}
-      Theme.currencySwitcher = true
-      {% if settings.currency-switcher-format %}
-        Theme.currencySwitcherFormat = '{{ settings.currency-switcher-format }}';
-        Theme.moneyFormat = {{ shop[settings.currency-switcher-format] | strip_html | json }};
-      {% endif %}
-
-      {% if settings.currency-switcher-default.size > 0 %}
-        Theme.defaultCurrency = {{ settings.currency-switcher-default | escape | json }};
-      {% endif %}
-    {% endif %}
-  </script>
 </div>
 
 {% schema %}

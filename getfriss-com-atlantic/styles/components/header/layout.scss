@@ -1,0 +1,41 @@
+$headerHeight: 60px;
+
+.header__header {
+  background-color: color(White, 0.6);
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+.header__container {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  height: $headerHeight;
+  justify-content: flex-start;
+  line-height: $headerHeight;
+  margin: 0 auto;
+  max-width: 1400px;
+  padding: 0 50px;
+}
+
+.header__logo {
+  display: block;
+  flex: 0 0 auto;
+  height: $headerHeight;
+  line-height: $headerHeight;
+}
+
+.header__links {
+  display: block;
+  flex: 1 0 0px;
+  height: $headerHeight;
+  line-height: $headerHeight;
+  white-space: nowrap;
+}
+
+.header__link {
+  display: inline-block;
+  vertical-align: middle;
+}

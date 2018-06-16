@@ -1,0 +1,52 @@
+<div class="mini-cart-wrap" href="#">
+  <span class="main-header--tools-icon">
+    {% if cartIcon == "cart" %}
+      {% include 'icon' with 'cart' %}
+    {% else %}
+      {% include 'icon' with 'bag' %}
+    {% endif %}
+  </span>
+  <label><span class="item-count">{{ cart.item_count }}</span> {{ 'layout.header.item_count' | t: count: cart.item_count }}</label>
+  <div class="mini-cart {% if shop.customer_accounts_enabled %}account-enabled{% endif %} {% if cart.items.size == 0 %}empty-cart{% endif %}">
+    <div class="arrow"></div>
+    <div class="mini-cart-items-wrap">
+
+        <p class="no-items">{{ 'layout.header.no_items' | t }}</p>
+
+        {% for item in cart.items %}
+        <div id="item-{{ item.id }}" class="item clearfix">
+          <div class="image-wrap">
+            <img alt="{{ item.product.title }}" src="{{ item | img_url: 'small' }}">
+            <a class="{% if imageBorders %}overlay{% endif %}" href="{{ item.url }}"></a>
+          </div>
+          <div class="details">
+            {% if brandNames %}
+              <p class="brand">{{ item.vendor | link_to_vendor }}</p>
+            {% endif %}
+            <p class="title"><a href="{{ item.url }}">{{ item.product.title }}</a><span class="quantity">× <span class="count">{{ item.quantity }}</span></span></p>
+            <p class="price"><span class="money">{{ item.line_price | money }}</span></p>
+            {% unless item.variant.title == 'Default Title' %}<p class="variant">{{ item.variant.title }}</p>{% endunless %}
+            {% if item.properties %}
+              {% for property in item.properties %}
+                {% unless property.last == blank %}
+                  <p class="property">
+                    <span class="property-label">{{ property.first }}:</span>
+                    {% if property.last contains '/uploads/' %}
+                      <a class="property-image" href="{{ property.last }}">{{ property.last | split: '/' | last }}</a>
+                    {% else %}
+                      <span class="property-value">{{ property.last }}</span>
+                    {% endif %}
+                  </p>
+                {% endunless %}
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="options clearfix">
+      <a class="action-button view-cart desaturated" href="/cart">{{ 'layout.header.view_cart' | t }}</a>
+      <a class="action-button checkout" href="/checkout">{{ 'layout.header.checkout' | t }}</a>
+    </div>
+  </div>
+</div>
