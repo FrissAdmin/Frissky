@@ -155,7 +155,8 @@ $transitionStagger: 0.1s;
   left: 0;
   padding: 100px;
   position: absolute;
-  top: 0;
+  top: 50%;
+  transform: translateY(-50%);
   width: 100%;
 }
 

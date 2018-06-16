@@ -33,8 +33,8 @@ export default class Question extends PureComponent {
   }
 
   saveAnswer = () => this.props.surveyActions.setAnswer({
-    answer     : this.state.answer,
-    questionId : this.props.question.get('id'),
+    answer      : this.state.answer,
+    questionKey : this.props.question.get('key'),
   })
 
   handleTextInput = (event) => this.setState({ answer : event.currentTarget.value })

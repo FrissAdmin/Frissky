@@ -23,7 +23,7 @@ export default containerFactory(class Survey extends PureComponent {
   }
 
   isOnLastQuestion = () =>
-    this.state.currentQuestionIndex === this.props.survey.get('questions').size
+    this.state.currentQuestionIndex === this.props.survey.get('questions').size - 1
 
   getCurrentQuestion = () => this.props.survey.getIn(['questions', this.state.currentQuestionIndex])
 
@@ -38,7 +38,7 @@ export default containerFactory(class Survey extends PureComponent {
 
     return this.setState({
       currentQuestionIndex : Math.min(
-        this.props.survey.get('questions').size + 1,
+        this.props.survey.get('questions').size - 1,
         this.state.currentQuestionIndex + 1,
       ),
     });
@@ -54,10 +54,6 @@ export default containerFactory(class Survey extends PureComponent {
 
     return (
       <div className={ styles.Root }>
-        <h1 className={ styles.Title }>Survey</h1>
-
-        <button onClick={ this.submitAnswers } type="submit">Save Answers</button>
-
         <div className={ styles.Questions }>
           <CSSTransitionGroup
             component="div"

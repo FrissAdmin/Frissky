@@ -1,12 +1,13 @@
 import * as actionTypes from 'constants/actionTypes';
-import graphql from 'lib/api/graphql';
-import customerCreate from 'graphQL/mutations/customerCreate';
+import customerCreate   from 'graphQL/mutations/customerCreate';
+import graphql          from 'lib/api/graphql';
 
 export default {
   customerCreate: ({
     email,
     firstName,
     lastName,
+    password,
   }) => ({
     type : actionTypes.CREATE_CUSTOMER,
     payload : graphql(customerCreate, {
@@ -14,7 +15,7 @@ export default {
         email,
         firstName,
         lastName,
-        password  : '',
+        password,
       },
     }),
   }),
