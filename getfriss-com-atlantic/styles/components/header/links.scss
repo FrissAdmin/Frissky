@@ -32,24 +32,38 @@
   display: block;
   font-size: 20px;
   line-height: 1;
-  margin: 10px;
-  padding: 5px 10px;
+  margin: 0 5px;
+  padding: 5px;
   text-transform: uppercase;
   opacity: 0;
   transform: translateY(10px) scale(0.9);
-  transition: opacity speed(animate) timing(ease-in), transform speed(animate) timing(ease-in);
+  transition:
+    border-color speed() timing(),
+    color speed() timing(),
+    opacity speed(animate) timing(ease-in),
+    transform speed(animate) timing(ease-in);
   transition-delay: 0s;
 
+  @include hover {
+    color: color(Maverick);
+  }
+
   @include min-width(desktop) {
-    display: block;
+    display: inline-block;
     margin: 0 10px;
     opacity: 1;
     transform: none;
     transition: none;
+    vertical-align: middle;
   }
 
   &.-is-button {
     border: 1px solid color(Loulou);
+    padding: 5px 10px;
+
+    @include hover {
+      border-color: color(Maverick);
+    }
   }
 
   svg {

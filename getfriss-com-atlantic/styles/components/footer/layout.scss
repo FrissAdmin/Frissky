@@ -4,29 +4,44 @@
 }
 
 .footer__container {
-  align-items: center;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
   margin: 0 auto;
   max-width: 1400px;
-  padding: 0 50px;
+  padding: 10px 20px;
+
+  @include min-width(desktop) {
+    align-items: center;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    padding: 0 50px;
+  }
 }
 
 .footer__logo {
   display: block;
-  flex: 0 0 auto;
+  text-align: center;
+
+  @include min-width(desktop) {
+    flex: 0 0 auto;
+  }
 }
 
 .footer__links {
   display: block;
-  flex: 1 0 0px;
-  white-space: nowrap;
+
+  @include min-width(desktop) {
+    flex: 1 0 0px;
+  }
 
   > aside {
     display: block;
     height: auto;
-    text-align: right;
+    text-align: center;
     width: 100%;
+
+    @include min-width(desktop) {
+      text-align: right;
+      white-space: nowrap;
+    }
   }
 }

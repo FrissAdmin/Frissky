@@ -7,7 +7,7 @@ $breakpoints: (
 
 @mixin min-width($value) {
   @if (map-has-key($breakpoints, $value)) {
-    @media (min-width: breakpoint($value)) {
+    @media (min-width: map-get($breakpoints, $value)) {
       @content;
     }
   } @else {

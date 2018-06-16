@@ -9,7 +9,7 @@ $headerHeight: 60px;
   z-index: 1000;
 
   @include min-width(desktop) {
-    background-color: color(White, 0.6);
+    background-color: color(White, 0.85);
   }
 }
 
@@ -52,11 +52,6 @@ $headerHeight: 60px;
     position: static;
     white-space: nowrap;
   }
-}
-
-.header__link {
-  display: inline-block;
-  vertical-align: middle;
 }
 
 .header__hamburger {

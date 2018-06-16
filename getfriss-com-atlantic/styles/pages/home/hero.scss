@@ -4,12 +4,13 @@
   background-color: color(White);
   background-position: top center;
   background-size: 100% auto;
+  padding-top: 60px;
 
   @include min-width(desktop) {
     background-color: color(Iron);
     background-position: center;
     background-size: cover;
-    padding: 100px 10%;
+    padding: 160px 10% 100px;
 
     &:before {
       display: none;
