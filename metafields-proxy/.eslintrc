@@ -1,0 +1,75 @@
+{
+  "parser": "babel-eslint",
+
+  "plugins": [],
+
+  "extends": [
+    "airbnb/base",
+  ],
+
+  "settings": {
+  },
+
+  "rules": {
+    // throw errors on these
+    "comma-dangle"                 : 2,
+    "function-paren-newline"       : [2, "consistent"],
+    "import/prefer-default-export" : 2,
+    "no-extra-boolean-cast"        : 2,
+    "no-mixed-operators"           : 2,
+    "no-param-reassign"            : [2, { props: false }],
+    "no-restricted-globals"        : [2, "event"],
+    "prefer-const"                 : 2,
+
+    "max-len": [2, {
+      "code"           : 100,
+      "ignoreComments" : true,
+      "ignorePattern"  : "^import\\s.*;$",
+      "ignoreUrls"     : true,
+    }],
+
+    // these rules are disabled because they're very slow and hardly ever violated
+    "import/no-absolute-path"           : 0,
+    "import/no-duplicates"              : 0,
+    "import/no-named-as-default-member" : 0,
+    "import/no-named-as-default"        : 0,
+
+    // component structure
+    "class-methods-use-this"          : 0,
+
+    // accessibility
+    "jsx-a11y/anchor-has-content"             : 0,
+    "jsx-a11y/anchor-is-valid"                : 0,
+    "jsx-a11y/label-has-for"                  : 0,
+    "jsx-a11y/no-static-element-interactions" : 0,
+
+    // these should always be disabled
+    "arrow-parens"                       : 0,
+    "flowtype/space-before-type-colon"   : 0,
+    "global-require"                     : 0,
+    "import/extensions"                  : 0,
+    "import/first"                       : 0,
+    "import/no-dynamic-require"          : 0,
+    "import/no-extraneous-dependencies"  : 0,
+    "import/no-unresolved"               : 0,
+    "import/no-webpack-loader-syntax"    : 0,
+    "key-spacing"                        : 0,
+    "no-extra-parens"                    : [0, "functions"],
+    "no-lonely-if"                       : 0,
+    "no-multi-spaces"                    : 0,
+    "no-plusplus"                        : 0,
+    "no-return-assign"                   : 0,
+    "no-underscore-dangle"               : 0,
+    "no-useless-escape"                  : 0,
+  },
+
+  "env": {
+    "browser": true,
+    "mocha": true,
+  },
+
+  "globals": {
+    "__webpack_public_path__" : true,
+    "whatInput"               : true,
+  },
+}

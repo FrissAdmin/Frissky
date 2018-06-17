@@ -1,0 +1,29 @@
+{
+  "name": "metafields-proxy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel ./src/index.js --out-file handler.js",
+    "deploy:aws": "serverless deploy --aws-profile friss",
+    "deploy": "npm run build && npm run deploy:aws",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^4.13.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "serverless": "1.27.3"
+  },
+  "dependencies": {
+    "graphql": "0.13.2",
+    "request": "2.87.0"
+  }
+}
