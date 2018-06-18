@@ -1,0 +1,37 @@
+{
+  "resource": "/metafields-proxy-production-createMetaFields",
+  "path": "/metafields-proxy-production-createMetaFields",
+  "httpMethod": "POST",
+  "headers": null,
+  "queryStringParameters": null,
+  "pathParameters": null,
+  "stageVariables": null,
+  "requestContext": {
+    "path": "/metafields-proxy-production-createMetaFields",
+    "accountId": "836781813839",
+    "resourceId": "aoljdj",
+    "stage": "test-invoke-stage",
+    "requestId": "0236a788-72c5-11e8-b12a-6775ec0292f5",
+    "identity": {
+      "cognitoIdentityPoolId": null,
+      "cognitoIdentityId": null,
+      "apiKey": "test-invoke-api-key",
+      "cognitoAuthenticationType": null,
+      "userArn": "arn:aws:iam::836781813839:root",
+      "apiKeyId": "test-invoke-api-key-id",
+      "userAgent": "aws-internal/3",
+      "accountId": "836781813839",
+      "caller": "836781813839",
+      "sourceIp": "test-invoke-source-ip",
+      "accessKey": "ASIAIQQK7ZCPW5THHM5A",
+      "cognitoAuthenticationProvider": null,
+      "user": "836781813839"
+    },
+    "resourcePath": "/metafields-proxy-production-createMetaFields",
+    "httpMethod": "POST",
+    "extendedRequestId": "IqqziEAUvHcFZjg=",
+    "apiId": "g4oony290b"
+  },
+  "body": "{\"query\":\"mutation createMetaFields( $customer: ID!, $fields: [FieldInput]! ) { createMetaFields( customer: $customer, fields: $fields ) }\",\"variables\":{\"customer\":567382147108,\"fields\":[{\"key\":\"testkey\",\"value\":\"testvalue\"}]}}",
+  "isBase64Encoded": false
+}

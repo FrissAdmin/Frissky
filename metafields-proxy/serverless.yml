@@ -21,6 +21,8 @@ provider:
   name: aws
   runtime: nodejs6.10
   profile: friss
+  region: us-west-2
+  stage: production
 
 # you can overwrite defaults here
 #  stage: dev
@@ -54,6 +56,11 @@ provider:
 #  exclude:
 #    - exclude-me.js
 #    - exclude-me-dir/**
+package:
+  exclude:
+    - src/**
+  include:
+    - createMetaFields.js
 
 functions:
   createMetaFields:

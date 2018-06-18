@@ -1,11 +1,12 @@
 import {
   GraphQLBoolean,
   GraphQLID,
+  GraphQLInputObjectType,
   GraphQLList,
+  GraphQLNonNull,
   GraphQLObjectType,
   GraphQLSchema,
   GraphQLString,
-  GraphQLNonNull,
 } from 'graphql';
 
 import request from 'request';
@@ -20,17 +21,32 @@ const cleanFields = (fields) => fields.map(({
   value,
 }));
 
+const FieldInput = new GraphQLInputObjectType({
+  name: 'FieldInput',
+  fields: {
+    key    : { type : new GraphQLNonNull(GraphQLString) },
+    value  : { type : new GraphQLNonNull(GraphQLString) },
+  },
+});
+
 export default new GraphQLSchema({
+  query: new GraphQLObjectType({
+    name   : 'Query',
+    fields : {
+      noop: {
+        args    : {},
+        type    : GraphQLBoolean,
+        resolve : () => true,
+      },
+    },
+  }),
   mutation: new GraphQLObjectType({
-    name: 'RootMutationType',
+    name: 'Mutation',
     fields : {
       createMetaFields : {
         args : {
-          customer : new GraphQLNonNull(new GraphQLID()),
-          fields   : new GraphQLList(new GraphQLObjectType({
-            key    : new GraphQLNonNull(new GraphQLString()),
-            value  : new GraphQLNonNull(new GraphQLString()),
-          })),
+          customer : { type : new GraphQLNonNull(GraphQLID) },
+          fields   : { type : new GraphQLList(FieldInput) },
         },
 
         type: GraphQLBoolean,
@@ -38,9 +54,9 @@ export default new GraphQLSchema({
         resolve: (parent, args) => new Promise((resolve, reject) => {
           request.put(
             {
-              url             : `/admin/customers/${args.customer}.json`,
-              method          : 'PUT',
-              headers         : {
+              url     : `https://friss-beauty.myshopify.com/admin/customers/${args.customer}.json`,
+              method  : 'PUT',
+              headers : {
                 /* eslint-disable max-len */
                 Authorization : 'Basic NGNhNmMxOWRiNmQwNzIzNWNhMzMwZTgxNTc5OTBjZDA6ODI1OTdkMDUwYjVjZjYxMmMzM2FiMWE5ZDkxNWQ4NTQ=',
                 /* eslint-enable max-len */

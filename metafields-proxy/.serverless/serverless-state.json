@@ -5,8 +5,8 @@
       "name": "metafields-proxy"
     },
     "provider": {
-      "stage": "dev",
-      "region": "us-east-1",
+      "stage": "production",
+      "region": "us-west-2",
       "variableSyntax": "\\${([ ~:a-zA-Z0-9._'\",\\-\\/\\(\\)]+?)}",
       "name": "aws",
       "runtime": "nodejs6.10",
@@ -23,7 +23,7 @@
           "CreateMetaFieldsLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/metafields-proxy-dev-createMetaFields"
+              "LogGroupName": "/aws/lambda/metafields-proxy-production-createMetaFields"
             }
           },
           "IamRoleLambdaExecution": {
@@ -51,7 +51,7 @@
                     "Fn::Join": [
                       "-",
                       [
-                        "dev",
+                        "production",
                         "metafields-proxy",
                         "lambda"
                       ]
@@ -67,7 +67,7 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/metafields-proxy-dev-createMetaFields:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/metafields-proxy-production-createMetaFields:*"
                           }
                         ]
                       },
@@ -78,7 +78,7 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/metafields-proxy-dev-createMetaFields:*:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/metafields-proxy-production-createMetaFields:*:*"
                           }
                         ]
                       }
@@ -92,8 +92,8 @@
                   "-",
                   [
                     "metafields-proxy",
-                    "dev",
-                    "us-east-1",
+                    "production",
+                    "us-west-2",
                     "lambdaRole"
                   ]
                 ]
@@ -107,9 +107,9 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/metafields-proxy/dev/1529245257287-2018-06-17T14:20:57.287Z/metafields-proxy.zip"
+                "S3Key": "serverless/metafields-proxy/production/1529307479627-2018-06-18T07:37:59.627Z/metafields-proxy.zip"
               },
-              "FunctionName": "metafields-proxy-dev-createMetaFields",
+              "FunctionName": "metafields-proxy-production-createMetaFields",
               "Handler": "handler.createMetaFields",
               "MemorySize": 1024,
               "Role": {
@@ -126,14 +126,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "CreateMetaFieldsLambdaVersionSS6UXhRAYCTt1JgjU5xcvMSfrNnRhB1QRpb8ncKGo": {
+          "CreateMetaFieldsLambdaVersion0faNXx4o7eVNDzx1abMFw3jTJnwfn0Zgnh1z4zIOKA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateMetaFieldsLambdaFunction"
               },
-              "CodeSha256": "3nkZXdBzEMAb2lOX2esTPilvSmpiHGRzf2gh9WM/kZk="
+              "CodeSha256": "IFF8TQz4uUMm2eNOwIUTqCmSM3NGAq9DR5ofdtR7RfQ="
             }
           }
         },
@@ -146,7 +146,7 @@
           "CreateMetaFieldsLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateMetaFieldsLambdaVersionSS6UXhRAYCTt1JgjU5xcvMSfrNnRhB1QRpb8ncKGo"
+              "Ref": "CreateMetaFieldsLambdaVersion0faNXx4o7eVNDzx1abMFw3jTJnwfn0Zgnh1z4zIOKA"
             }
           }
         }
@@ -173,7 +173,7 @@
       "createMetaFields": {
         "handler": "handler.createMetaFields",
         "events": [],
-        "name": "metafields-proxy-dev-createMetaFields",
+        "name": "metafields-proxy-production-createMetaFields",
         "package": {},
         "vpc": {}
       }
@@ -181,7 +181,7 @@
     "artifact": "/Users/bryan/sites/Frissky/metafields-proxy/.serverless/metafields-proxy.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/metafields-proxy/dev/1529245257287-2018-06-17T14:20:57.287Z",
+    "artifactDirectoryName": "serverless/metafields-proxy/production/1529307479627-2018-06-18T07:37:59.627Z",
     "artifact": "metafields-proxy.zip"
   }
 }
