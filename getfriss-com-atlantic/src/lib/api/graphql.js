@@ -1,21 +1,20 @@
-const getAuthorizationHeader = () => ({
-  'X-Shopify-Storefront-Access-Token' : '46794d7f69a3f9118b64a84928c25a3c',
-});
-
 const fetchSettings = {
   method   : 'POST',
   mode     : 'cors',
   redirect : 'follow',
 };
 
-export default (query, variables) =>
-  new Promise((resolve, reject) => fetch('https://friss-beauty.myshopify.com/api/graphql', {
+export default ({
+  headers,
+  query,
+  url,
+  variables,
+}) =>
+  new Promise((resolve, reject) => fetch(url, {
     ...fetchSettings,
 
-    headers : {
-      'Content-Type' : 'application/json',
-      ...getAuthorizationHeader(),
-    },
+    headers,
+
     body : JSON.stringify({
       query,
       variables,

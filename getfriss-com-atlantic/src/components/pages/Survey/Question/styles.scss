@@ -1,6 +1,106 @@
-$transitionDelay: 0.3s;
-$transitionDuration: 0.5s;
-$transitionStagger: 0.1s;
+.Root {
+  left: 0;
+  padding: 100px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+}
+
+.Title {
+  @include font(sans-serif, 400);
+  color: color(Loulou);
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.SubTitle {
+  @include font(sans-serif, 600);
+  color: color(Loulou);
+  font-size: 10px;
+  margin: 10px 0;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.Input {
+  border: 2px solid color(Maverick, 0.5);
+  @include font(sans-serif, 300);
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: color(Loulou);
+  display: block;
+  font-size: 16px;
+  margin: 0 auto;
+  max-width: 400px;
+  padding: 5px;
+  width: 100%;
+}
+
+.ChoiceGroup {
+  list-style-type: none;
+  text-align: center;
+}
+
+$choiceSize: 40px;
+
+.ChoiceWrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.ChoiceInput {
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+}
+
+.Choice {
+  @include font(sans-serif, 400);
+  border: 2px solid color(Loulou, 0.5);
+  border-radius: $choiceSize / 2;
+  // box-shadow: 0 2px 4px color(Loulou, 0.1);
+  color: color(Loulou);
+  cursor: pointer;
+  display: block;
+  font-size: 14px;
+  height: $choiceSize;
+  line-height: $choiceSize - 4px;
+  margin: 5px;
+  padding: 0 20px;
+  width: auto;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+
+  &:hover {
+    border-color: color(Loulou, 0.8);
+    background-color: color(Maverick, 0.5);
+  }
+}
+
+.ChoiceInput:checked + .Choice {
+  border-color: color(Loulou, 1);
+  background-color: color(Maverick);
+  // box-shadow: 0 0 0 1px color(Loulou, 1), 0 2px 4px 1px color(Loulou, 0.1);
+
+  &:hover {
+    background-color: color(Maverick);
+  }
+}
+
+.SaveButton {
+  background-color: color(Loulou);
+  border: 0;
+  color: color(White);
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+}
+
+$transitionDelay: 0.2s;
+$transitionDuration: 0.4s;
+$transitionStagger: 0.08s;
 
 @mixin animate-in {
   .Title,
@@ -149,103 +249,4 @@ $transitionStagger: 0.1s;
 
 :global(.css-transition-leaveActive) {
   @include animate-out-active;
-}
-
-.Root {
-  left: 0;
-  padding: 100px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 100%;
-}
-
-.Title {
-  @include font(sans-serif, 400);
-  color: color(Loulou);
-  font-size: 20px;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.SubTitle {
-  @include font(sans-serif, 600);
-  color: color(Loulou);
-  font-size: 10px;
-  margin: 10px 0;
-  text-transform: uppercase;
-  text-align: center;
-}
-
-.Input {
-  border: 2px solid color(Maverick, 0.5);
-  @include font(sans-serif, 300);
-  border-radius: 4px;
-  box-sizing: border-box;
-  color: color(Loulou);
-  display: block;
-  font-size: 16px;
-  margin: 0 auto;
-  max-width: 50%;
-  padding: 5px;
-  width: 100%;
-}
-
-.ChoiceGroup {
-  list-style-type: none;
-  text-align: center;
-}
-
-$choiceSize: 40px;
-
-.ChoiceWrapper {
-  display: inline-block;
-  position: relative;
-}
-
-.ChoiceInput {
-  left: 0;
-  opacity: 0;
-  position: absolute;
-  top: 0;
-}
-
-.Choice {
-  @include font(sans-serif, 400);
-  border: 2px solid color(Loulou, 0.5);
-  border-radius: $choiceSize / 2;
-  // box-shadow: 0 2px 4px color(Loulou, 0.1);
-  color: color(Loulou);
-  cursor: pointer;
-  display: block;
-  font-size: 14px;
-  height: $choiceSize;
-  line-height: $choiceSize - 4px;
-  margin: 5px;
-  padding: 0 20px;
-  width: auto;
-  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
-
-  &:hover {
-    border-color: color(Loulou, 0.8);
-    background-color: color(Maverick, 0.5);
-  }
-}
-
-.ChoiceInput:checked + .Choice {
-  border-color: color(Loulou, 1);
-  // box-shadow: 0 0 0 1px color(Loulou, 1), 0 2px 4px 1px color(Loulou, 0.1);
-
-  &:hover {
-    background-color: transparent;
-  }
-}
-
-.SaveButton {
-  background-color: color(Loulou);
-  border: 0;
-  color: color(White);
-  display: block;
-  margin: 20px auto 0;
-  padding: 10px 20px;
 }

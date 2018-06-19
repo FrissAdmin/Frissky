@@ -6,8 +6,8 @@ import React, { PureComponent } from 'react';
 import styles                   from './styles';
 
 const transitionDelay    = 200;
-const transitionDuration = 500;
-const transitionStagger  = 100;
+const transitionDuration = 400;
+const transitionStagger  = 80;
 
 const singleTransitionDuration = transitionDuration + (transitionStagger * 3);
 const doubleTransitionDuration = (singleTransitionDuration * 2) + transitionDelay;
@@ -28,7 +28,7 @@ export default containerFactory(class Survey extends PureComponent {
   getCurrentQuestion = () => this.props.survey.getIn(['questions', this.state.currentQuestionIndex])
 
   getAnswer(question) {
-    return this.props.survey.getIn(['answers', question.get('id')]);
+    return this.props.survey.getIn(['answers', question.get('key')]);
   }
 
   nextQuestion = (event) => {
@@ -54,6 +54,8 @@ export default containerFactory(class Survey extends PureComponent {
 
     return (
       <div className={ styles.Root }>
+        <button onClick={ this.submitAnswers }>Submit Answers</button>
+
         <div className={ styles.Questions }>
           <CSSTransitionGroup
             component="div"

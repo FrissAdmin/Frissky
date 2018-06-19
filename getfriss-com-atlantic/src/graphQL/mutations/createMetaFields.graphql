@@ -1,0 +1,9 @@
+mutation createMetaFields(
+  $customer: ID!
+  $fields: [FieldInput]!
+) {
+  createMetaFields(
+    customer: $customer
+    fields: $fields
+  )
+}

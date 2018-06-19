@@ -3,13 +3,10 @@ import PropTypes          from 'prop-types';
 
 export const actions = PropTypes.objectOf(PropTypes.func);
 
-export const surveyAnswer = ImmutablePropTypes.contains({
-  answer     : PropTypes.string,
-  choice     : PropTypes.string,
-  questionId : PropTypes.number,
-});
+export const surveyAnswerKey = PropTypes.string;
+export const surveyAnswer = PropTypes.string;
 
-export const surveyAnswers = ImmutablePropTypes.mapOf(surveyAnswer);
+export const surveyAnswers = ImmutablePropTypes.mapOf(surveyAnswerKey, surveyAnswer);
 
 export const surveyQuestionChoice = PropTypes.string;
 

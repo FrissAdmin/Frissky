@@ -1,5 +1,4 @@
 import * as appPropTypes        from 'constants/propTypes';
-import Immutable                from 'immutable';
 import PropTypes                from 'prop-types';
 import React, { PureComponent } from 'react';
 import slugify                  from 'lib/slugify';
@@ -7,38 +6,71 @@ import styles                   from './styles';
 
 export default class Question extends PureComponent {
   static propTypes = {
-    answer               : appPropTypes.surveyAnswer,
-    isCurrent            : PropTypes.bool,
-    isVisible            : PropTypes.bool,
-    nextQuestion         : PropTypes.func.isRequired,
-    question             : appPropTypes.surveyQuestion,
+    answer        : appPropTypes.surveyAnswer,
+    isCurrent     : PropTypes.bool,
+    isVisible     : PropTypes.bool,
+    nextQuestion  : PropTypes.func.isRequired,
+    question      : appPropTypes.surveyQuestion,
     surveyActions : appPropTypes.actions,
   }
 
   static defaultProps = {
-    answer : Immutable.Map({
-      answer   : '',
-      question : '',
-    }),
+    answer : null,
   }
 
-  state = {
-    answer : this.props.answer.get('answer'),
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      answer : this.getInitialAnswer(props.question, props.answer),
+    };
+  }
+
+  isMultipleChoice = (question) =>
+    question.get('type') === 'choice' &&
+    question.get('allowMultipleChoices') === true
+
+  getInitialAnswer(question, answer) {
+    if (this.isMultipleChoice(question)) {
+      if (typeof answer === 'string') return answer.split('|');
+      return [];
+    }
+
+    return answer || '';
+  }
+
+  isChecked(choice) {
+    if (!this.isMultipleChoice(this.props.question)) return this.state.answer === choice;
+    return this.state.answer.findIndex(a => a === choice) > -1;
   }
 
   nextQuestion = (event) => {
     event.preventDefault();
-    this.saveAnswer();
+    this.saveAnswer(this.state.answer);
     this.props.nextQuestion();
   }
 
-  saveAnswer = () => this.props.surveyActions.setAnswer({
-    answer      : this.state.answer,
+  saveAnswer = (answer) => this.props.surveyActions.setAnswer({
+    answer      : Array.isArray(answer) ? answer.join('|') : answer,
     questionKey : this.props.question.get('key'),
   })
 
-  handleTextInput = (event) => this.setState({ answer : event.currentTarget.value })
-  handleChoice = (event) => this.setState({ answer : event.currentTarget.value })
+  handleTextInput = ({ target: { value } }) => this.setState({ answer : value })
+  handleTextKeyPress = (event) => (event.charCode === 13 ? this.nextQuestion(event) : false)
+
+  handleChoice = ({ target : { value } }) => {
+    if (this.isMultipleChoice(this.props.question)) {
+      const index = this.state.answer.findIndex(a => a === value);
+      const newAnswer = this.state.answer.slice(0);
+
+      if (index === -1) newAnswer.push(value);
+      if (index !== -1) newAnswer.splice(index, 1);
+
+      return this.setState({ answer : newAnswer });
+    }
+
+    return this.setState({ answer : value });
+  }
 
   getRootClasses = () => [
     styles.Root,
@@ -57,6 +89,7 @@ export default class Question extends PureComponent {
       <input
         className={ styles.Input }
         onChange={ this.handleTextInput }
+        onKeyPress={ this.handleTextKeyPress }
         type="text"
         value={ this.state.answer }
       />
@@ -74,12 +107,12 @@ export default class Question extends PureComponent {
             key={ `question-${question.get('id')}-${slugify(choice)}` }
           >
             <input
-              checked={ choice === this.state.answer }
+              checked={ this.isChecked(choice) }
               className={ styles.ChoiceInput }
               id={ `question-${question.get('id')}-${slugify(choice)}` }
               name={ `question-${question.get('id')}` }
               onChange={ this.handleChoice }
-              type="radio"
+              type={ question.get('allowMultipleChoices') === true ? 'checkbox' : 'radio' }
               value={ choice }
             />
 

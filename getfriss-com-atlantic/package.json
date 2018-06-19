@@ -35,7 +35,8 @@
     "react-transition-group": "1.2.1",
     "redux": "^3.7.2",
     "redux-immutable": "^4.0.0",
-    "redux-promise-middleware": "^5.0.0"
+    "redux-promise-middleware": "^5.0.0",
+    "redux-thunk": "2.3.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

@@ -6,6 +6,6 @@ import initialState         from './initialState';
 export default createReducer(initialState, {
   [actionTypes.CREATE_CUSTOMER_FULFILLED]: (state, { payload }) => state.set(
     'user',
-    Immutable.fromJS(payload.data.customerCreate),
+    Immutable.fromJS(payload.data.customerCreate.customer),
   ),
 });

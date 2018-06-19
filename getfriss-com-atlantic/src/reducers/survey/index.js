@@ -4,8 +4,8 @@ import Immutable            from 'immutable';
 import initialState         from './initialState';
 
 export default createReducer(initialState, {
-  [actionTypes.SET_ANSWER]: (state, { payload }) =>
-    state.setIn(['answers', payload.questionKey], Immutable.fromJS(payload)),
+  [actionTypes.SET_ANSWER]: (state, { payload: { answer, questionKey } }) =>
+    state.setIn(['answers', questionKey], Immutable.fromJS(answer)),
 
   [actionTypes.SAVE_ANSWERS_FULFILLED]: state => state.set('saved', true),
 });

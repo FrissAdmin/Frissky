@@ -2,8 +2,8 @@ export const CREATE_CUSTOMER           = 'CREATE_CUSTOMER';
 export const CREATE_CUSTOMER_PENDING   = `${CREATE_CUSTOMER}_PENDING`;
 export const CREATE_CUSTOMER_FULFILLED = `${CREATE_CUSTOMER}_FULFILLED`;
 
-export const SAVE_ANSWERS              = 'SAVE_ANSWERS';
-export const SAVE_ANSWERS_PENDING      = `${SAVE_ANSWERS}_PENDING`;
-export const SAVE_ANSWERS_FULFILLED    = `${SAVE_ANSWERS}_FULFILLED`;
+export const SAVE_SURVEY               = 'SAVE_SURVEY';
+export const SAVE_SURVEY_PENDING       = `${SAVE_SURVEY}_PENDING`;
+export const SAVE_SURVEY_FULFILLED     = `${SAVE_SURVEY}_FULFILLED`;
 
 export const SET_ANSWER                = 'SET_ANSWER';

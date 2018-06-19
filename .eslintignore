@@ -1,5 +1,7 @@
 getfriss-com-atlantic/assets/**
 getfriss-com-atlantic/webpack.config.dev.js
 getfriss-com-atlantic/webpack.config.prod.js
+metafields-proxy/handler.js
+metafields-proxy/webpack.config.js
 node_modules/**
 old_site/**
