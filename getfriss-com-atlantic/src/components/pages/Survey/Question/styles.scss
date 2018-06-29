@@ -35,6 +35,7 @@
   margin: 0 auto;
   max-width: 400px;
   padding: 5px;
+  text-align: center;
   width: 100%;
 }
 
@@ -59,7 +60,7 @@ $choiceSize: 40px;
 
 .Choice {
   @include font(sans-serif, 400);
-  border: 2px solid color(Loulou, 0.5);
+  border: 2px solid color(Loulou, 0.4);
   border-radius: $choiceSize / 2;
   // box-shadow: 0 2px 4px color(Loulou, 0.1);
   color: color(Loulou);
@@ -81,12 +82,38 @@ $choiceSize: 40px;
 
 .ChoiceInput:checked + .Choice {
   border-color: color(Loulou, 1);
-  background-color: color(Maverick);
+  background-color: color(White);
   // box-shadow: 0 0 0 1px color(Loulou, 1), 0 2px 4px 1px color(Loulou, 0.1);
 
   &:hover {
-    background-color: color(Maverick);
+    background-color: color(White);
   }
+}
+
+.ChoiceWrapper svg {
+  background-color: color(Loulou);
+  border-radius: 50%;
+  display: block;
+  height: 25px;
+  opacity: 0;
+  padding: 3px;
+  position: absolute;
+  right: 0;
+  top: -5px;
+  transform: scale(0.8);
+  transition:
+    opacity speed(animate) timing(ease-in-cubic),
+    transform speed(animate) timing(ease-in-cubic);
+  width: 25px;
+
+  path {
+    fill: color(White);
+  }
+}
+
+.ChoiceWrapper .ChoiceInput:checked ~ svg {
+  opacity: 1;
+  transform: none;
 }
 
 .SaveButton {

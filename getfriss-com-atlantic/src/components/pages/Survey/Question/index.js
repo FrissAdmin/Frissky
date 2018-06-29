@@ -6,12 +6,11 @@ import styles                   from './styles';
 
 export default class Question extends PureComponent {
   static propTypes = {
-    answer        : appPropTypes.surveyAnswer,
-    isCurrent     : PropTypes.bool,
-    isVisible     : PropTypes.bool,
-    nextQuestion  : PropTypes.func.isRequired,
-    question      : appPropTypes.surveyQuestion,
-    surveyActions : appPropTypes.actions,
+    answer         : appPropTypes.surveyAnswer,
+    isLastQuestion : PropTypes.bool,
+    nextQuestion   : PropTypes.func.isRequired,
+    question       : appPropTypes.surveyQuestion,
+    surveyActions  : appPropTypes.actions,
   }
 
   static defaultProps = {
@@ -69,14 +68,13 @@ export default class Question extends PureComponent {
       return this.setState({ answer : newAnswer });
     }
 
+    if (!this.props.isLastQuestion) {
+      this.saveAnswer(value);
+      return this.props.nextQuestion();
+    }
+
     return this.setState({ answer : value });
   }
-
-  getRootClasses = () => [
-    styles.Root,
-    (this.props.isCurrent ? styles.isCurrent : ''),
-    (this.props.isVisible ? styles.isVisible : ''),
-  ].join(' ')
 
   renderInput() {
     if (this.props.question.get('type') === 'text') return this.renderTextInput();
@@ -122,6 +120,25 @@ export default class Question extends PureComponent {
             >
               { choice }
             </label>
+
+            <svg
+              version="1.1"
+              viewBox="0 0 100 100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="
+                M80.467,28.54
+                c-1.562-1.562-4.096-1.562-5.658,0
+                L40.868,62.48
+                L27.194,48.806
+                c-1.562-1.562-4.095-1.562-5.657,0
+                c-1.562,1.562-1.562,4.095,0,5.657
+                L38.04,70.966
+                c0.781,0.781,1.805,1.172,2.829,1.172
+                s2.047-0.391,2.829-1.172l36.77-36.769
+                C82.028,32.634,82.028,30.102,80.467,28.54z
+              " />
+            </svg>
           </div>
         </For>
       </div>
@@ -132,7 +149,7 @@ export default class Question extends PureComponent {
     const { question } = this.props;
 
     return (
-      <div className={ this.getRootClasses() }>
+      <div className={ styles.Root }>
         <h4 className={ styles.Title }>{ question.get('title') }</h4>
 
         <If condition={ question.get('subtitle') }>

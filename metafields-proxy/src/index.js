@@ -9,7 +9,7 @@ export default (event, context, callback) => {
       schema,
       body.query,
       null, // root value
-      {}, // context
+      {},   // context
       body.variables || {},
     )
       .then(result => callback(null, {

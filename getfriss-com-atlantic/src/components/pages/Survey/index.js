@@ -22,7 +22,7 @@ export default containerFactory(class Survey extends PureComponent {
     currentQuestionIndex : 0,
   }
 
-  isOnLastQuestion = () =>
+  isLastQuestion = () =>
     this.state.currentQuestionIndex === this.props.survey.get('questions').size - 1
 
   getCurrentQuestion = () => this.props.survey.getIn(['questions', this.state.currentQuestionIndex])
@@ -32,7 +32,7 @@ export default containerFactory(class Survey extends PureComponent {
   }
 
   nextQuestion = (event) => {
-    if (this.isOnLastQuestion()) {
+    if (this.isLastQuestion()) {
       return this.submitAnswers(event);
     }
 
@@ -74,6 +74,7 @@ export default containerFactory(class Survey extends PureComponent {
           >
             <Question
               answer={ this.getAnswer(question) }
+              isLastQuestion={ this.isLastQuestion() }
               key={ `question-${question.get('id')}` }
               nextQuestion={ this.nextQuestion }
               question={ question }

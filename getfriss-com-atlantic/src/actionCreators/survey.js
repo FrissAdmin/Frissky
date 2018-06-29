@@ -31,10 +31,19 @@ const surveyAnswersActions = {
       .then(response => {
         const { data: { customerCreate: { customer } } } = response;
 
+        if (customer === null) return response;
+
         console.log('create response: ', response);
 
+        const encodedId = customer.id;
+        const matches = atob(encodedId).match(/\/(\d+)$/);
+
+        if (matches === null) return response;
+
+        const actualId = matches[1];
+
         console.log('request payload: ', {
-          customer : customer.id,
+          customer : actualId,
           fields   : surveyAnswers.keySeq().map(key => ({
             key,
             value : surveyAnswers.get(key),
@@ -44,7 +53,7 @@ const surveyAnswersActions = {
         dispatch({
           type    : actionTypes.SAVE_SURVEY,
           payload : lambda(createMetaFields, {
-            customer : customer.id,
+            customer : actualId,
             fields   : surveyAnswers.keySeq().map(key => ({
               key,
               value : surveyAnswers.get(key),
